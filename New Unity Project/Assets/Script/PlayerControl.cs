@@ -12,6 +12,10 @@ public class PlayerControl : MonoBehaviour
     public float hurtY;
     private bool can_j;
     private bool ishurt;
+    private bool isattack;
+    public GameObject sword;
+    private float a_timer;
+    public float attackcooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +23,13 @@ public class PlayerControl : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         can_j = true;
         ishurt = false;
+        isattack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        a_timer += Time.deltaTime;
         float xm = 0;
         if (Input.GetKey(KeyCode.RightArrow)&& ishurt==false)
         {
@@ -42,9 +48,19 @@ public class PlayerControl : MonoBehaviour
             can_j = false;
             Debug.Log(can_j);
         }
-        
+        if (Input.GetKeyDown(KeyCode.A) && isattack == false)
+        {
+            Attack();
+            a_timer = 0;
+        }
+        if (a_timer >= attackcooldown && isattack == true)
+        {
+            sword.transform.Rotate(new Vector3(0, 0, 90));
+            isattack = false;
+        }
         Debug.Log(can_j);
         target.Translate(new Vector3(xm, 0, 0));
+        Debug.Log(a_timer);
         
     }
     private void OnCollisionEnter(Collision collision) {
@@ -60,4 +76,11 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Hurt");
         }
     }
+    private void Attack() {
+        sword.transform.Rotate(new Vector3(0, 0, -90));
+        Debug.Log("Attack");
+        isattack = true;
+       
+    }
+
 }
