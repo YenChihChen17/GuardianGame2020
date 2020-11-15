@@ -8,21 +8,24 @@ public class PlayerControl : MonoBehaviour
     public float speed;
     private Rigidbody rig;
     public float jumpF;
+    public float hurtX;
+    public float hurtY;
     private bool can_j;
-  
+    private bool ishurt;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
         can_j = true;
+        ishurt = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         float xm = 0;
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow)&& ishurt==false)
         {
             xm += speed * Time.deltaTime;
         }
@@ -44,7 +47,17 @@ public class PlayerControl : MonoBehaviour
         target.Translate(new Vector3(xm, 0, 0));
         
     }
-    private void OnCollisionStay(Collision collision) {
-        can_j = true;
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Ground")
+        {
+            can_j = true;
+            ishurt = false;
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            rig.AddForce(new Vector3(-hurtX,hurtY, 0), ForceMode.Impulse);
+            ishurt = true;
+            Debug.Log("Hurt");
+        }
     }
 }
