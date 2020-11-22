@@ -76,6 +76,13 @@ public class PlayerControl : MonoBehaviour
             ///Debug.Log("Hurt");
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+         if (collision.gameObject.tag == "Ground")
+            {
+                can_j = false;
+            }
+    }
     private void Attack() {///劍旋轉
         sword.transform.Rotate(new Vector3(0, 0, -90));
 ///Debug.Log("Attack");
