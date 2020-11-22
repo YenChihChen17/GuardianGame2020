@@ -20,6 +20,8 @@ public class EnemyControl : MonoBehaviour
         attacked = false;
         cooldown = cooldownS;
         attackcool = 0.5f;
+        ///EnemyHP = GameObject.Find("GameManeger").GetComponent<GameManeger>().EnemyHP;
+       /// Damage_P = GameObject.Find("GameManeger").GetComponent<GameManeger>().Damage_P;
     }
     
     // Update is called once per frame
@@ -59,14 +61,16 @@ public class EnemyControl : MonoBehaviour
             }
         }
        
-        Debug.Log(cooldown);
+       /// Debug.Log(cooldown);
     }
     private void OnTriggerEnter(Collider PW)
     {
         if (PW.gameObject.tag == "Weapon") {
             attacked = true;
             timer = 0;
-        }
+            GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
+            Debug.Log("Enemy"+GameManeger.EnemyHP);
+                }
     }
     private void Attack()
     {

@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     private bool ishurt;
     private bool isattack;
     public GameObject sword;
+    public GameObject swordcol;
     private float a_timer;
     public float attackcooldown;
 
@@ -24,6 +25,8 @@ public class PlayerControl : MonoBehaviour
         can_j = true;
         ishurt = false;
         isattack = false;
+        swordcol.GetComponent<Collider>().enabled = false;
+        /// Debug.Log(PlayerHP);
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class PlayerControl : MonoBehaviour
         {
             rig.AddForce(new Vector3(0, jumpF, 0), ForceMode.Impulse);
             can_j = false;
-            Debug.Log(can_j);
+          ///  Debug.Log(can_j);
         }
         if (Input.GetKeyDown(KeyCode.A) && isattack == false)///攻擊觸發
         {
@@ -57,8 +60,9 @@ public class PlayerControl : MonoBehaviour
         {
             sword.transform.Rotate(new Vector3(0, 0, 90));
             isattack = false;
+            swordcol.GetComponent<Collider>().enabled = false;
         }
-        Debug.Log(can_j);
+       /// Debug.Log(can_j);
         target.Translate(new Vector3(xm, 0, 0));
         ///Debug.Log(a_timer);
         
@@ -69,10 +73,12 @@ public class PlayerControl : MonoBehaviour
             can_j = true;
             ishurt = false;
         }
-        if (collision.gameObject.tag == "Enemy")///撞到敵人
+        if (collision.gameObject.tag == "Enemy" && ishurt==false)///撞到敵人
         {
             rig.AddForce(new Vector3(-hurtX,hurtY, 0), ForceMode.Impulse);
             ishurt = true;
+            GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
+            Debug.Log("Player"+GameManeger.PlayerHP);
             ///Debug.Log("Hurt");
         }
     }
@@ -84,10 +90,9 @@ public class PlayerControl : MonoBehaviour
             }
     }
     private void Attack() {///劍旋轉
+        swordcol.GetComponent<Collider>().enabled = true; ///關閉武器碰撞
         sword.transform.Rotate(new Vector3(0, 0, -90));
-///Debug.Log("Attack");
         isattack = true;
-       
     }
 
 }
