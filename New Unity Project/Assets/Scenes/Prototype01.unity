@@ -355,11 +355,11 @@ MonoBehaviour:
   Player: {fileID: 1500546705}
   Enemy: {fileID: 2064626185}
   PlayerP: {fileID: 6989624662785545567, guid: 8394d829928082a4ba97d66b8814fa40, type: 3}
-  Home: {fileID: 1693450726}
+  Home: {fileID: 1264532223}
   GameOverUI: {fileID: 81852238}
   YouDied: {fileID: 1406869213}
   RebornT: 2
-  CloneNum: 2
+  CloneNum: 1
 --- !u!4 &816135962
 Transform:
   m_ObjectHideFlags: 0
@@ -553,7 +553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264532223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.2, y: 8.81, z: 0}
+  m_LocalPosition: {x: -40, y: 4.79, z: 0}
   m_LocalScale: {x: 8.8897, y: 8.8897, z: 8.8897}
   m_Children: []
   m_Father: {fileID: 0}
@@ -715,36 +715,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6989624664281895886}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1693450726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1693450727}
-  m_Layer: 0
-  m_Name: Home
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1693450727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693450726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.78, y: 1.19, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1817398875
 GameObject:
   m_ObjectHideFlags: 0
