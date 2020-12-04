@@ -73,14 +73,6 @@ public class PlayerControl : MonoBehaviour
             can_j = true;
             ishurt = false;
         }
-        if (collision.gameObject.tag == "Enemy" && ishurt==false)///撞到敵人
-        {
-            rig.AddForce(new Vector3(-hurtX,hurtY, 0), ForceMode.Impulse);
-            ishurt = true;
-            GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
-            Debug.Log("Player"+GameManeger.PlayerHP);
-            ///Debug.Log("Hurt");
-        }
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -89,6 +81,19 @@ public class PlayerControl : MonoBehaviour
                 can_j = false;
             }
     }
+
+    private void OnTriggerEnter(Collider Enemy)
+    {
+        if (Enemy.gameObject.tag == "Enemy" && ishurt == false)///撞到敵人
+        {
+            rig.AddForce(new Vector3(-hurtX, hurtY, 0), ForceMode.Impulse);
+            ishurt = true;
+            GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
+            Debug.Log("Player" + GameManeger.PlayerHP);
+            ///Debug.Log("Hurt");
+        }
+    }
+
     private void Attack() {///劍旋轉
         swordcol.GetComponent<Collider>().enabled = true; ///關閉武器碰撞
         sword.transform.Rotate(new Vector3(0, 0, -90));
