@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class GameManeger : MonoBehaviour
 {     
-    static public int PlayerHP = 10;
-    static public int EnemyHP = 100;
-    static public int Damage_P = 5;
-    static public int Damage_E = 5;
+    static public int PlayerHP ;
+    static public int EnemyHP ;
+    static public int Damage_P ;
+    static public int Damage_E ;
 
     public GameObject Player;
+    public GameObject PlayerClone;
     public GameObject Enemy;
-    public GameObject PlayerP;
     public GameObject Home;
-
     public GameObject GameOverUI;
     public GameObject YouDied;
-
     public float RebornT;
     public int CloneNum;
+
+    public int Player_HP;
+    public int Enemy_HP;
+    public int Player_Damage;
+    public int Enemy_Damage;
+
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerHP = Player_HP;
+        EnemyHP = Enemy_HP;
+        Damage_P = Player_Damage;
+        Damage_E = Enemy_Damage;
     }
 
     // Update is called once per frame
@@ -32,13 +39,13 @@ public class GameManeger : MonoBehaviour
         
         if (PlayerHP <= 0 && CloneNum >=0) 
         {
-            if (GameObject.Find("Player") == true)
+            if (GameObject.Find("PlayerContent") == true)
             {
                 Destroy(Player);
             }
             else
             {
-                Destroy(GameObject.Find("Player(Clone)"));
+                Destroy(GameObject.Find("PlayerContent(Clone)"));
             }
 
             timer += Time.deltaTime;
@@ -47,12 +54,12 @@ public class GameManeger : MonoBehaviour
                 YouDied.SetActive(true);
                 if (timer >= RebornT)
                 {
-                    PlayerHP = 20;
+                    PlayerHP = Player_HP;
                     Debug.Log(PlayerHP);
                     CloneNum = CloneNum - 1;
                     timer = 0;
                     YouDied.SetActive(false);
-                    Instantiate(PlayerP,Home.transform.position, new Quaternion(0, 0, 0, 0));
+                    Instantiate(PlayerClone,Home.transform.position, new Quaternion(0, 0, 0, 0));
                 }
             }
         }
@@ -62,7 +69,7 @@ public class GameManeger : MonoBehaviour
         }
         if(CloneNum == 0 )
         {
-            if (GameObject.Find("Player(Clone)") == false)
+            if (GameObject.Find("PlayerContent(Clone)") == false)
             {
                 GameOverUI.SetActive(true);
             }

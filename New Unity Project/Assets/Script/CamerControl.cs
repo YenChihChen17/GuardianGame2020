@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamerControl : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
     public GameObject Home;
     private Vector3 offset;
     public float smooth;

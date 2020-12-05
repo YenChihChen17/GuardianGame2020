@@ -12,6 +12,8 @@ public class EnemyControl : MonoBehaviour
     private float attackcool;
     private bool attacked;
     private bool attack;
+    private Rigidbody Player;
+
     public float stop_t;
     // Start is called before the first frame update
     void Start()
@@ -20,8 +22,7 @@ public class EnemyControl : MonoBehaviour
         attacked = false;
         cooldown = cooldownS;
         attackcool = 0.5f;
-        ///EnemyHP = GameObject.Find("GameManeger").GetComponent<GameManeger>().EnemyHP;
-        /// Damage_P = GameObject.Find("GameManeger").GetComponent<GameManeger>().Damage_P;
+        Player =  GameObject.Find("Player").GetComponent<Rigidbody>();
     }
     
     // Update is called once per frame
@@ -70,7 +71,15 @@ public class EnemyControl : MonoBehaviour
             timer = 0;
             GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
             Debug.Log("Enemy"+GameManeger.EnemyHP);
-                }
+            if(this.transform.position.x - GameObject.Find("Player").transform.position.x >=0)
+            {
+                Player.AddForce(new Vector3(-4, 0, 0), ForceMode.Impulse);
+            }
+            else
+            {
+                Player.AddForce(new Vector3(4, 0, 0), ForceMode.Impulse);
+            }
+        }
     }
     private void Attack()
     {
