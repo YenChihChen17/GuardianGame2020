@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public GameObject weapon;
+    public GameObject Player;
     public float speed;
     private float timer;
     public float cooldownS;
@@ -12,7 +13,6 @@ public class EnemyControl : MonoBehaviour
     private float attackcool;
     private bool attacked;
     private bool attack;
-    private Rigidbody Player;
 
     public float stop_t;
     // Start is called before the first frame update
@@ -22,7 +22,6 @@ public class EnemyControl : MonoBehaviour
         attacked = false;
         cooldown = cooldownS;
         attackcool = 0.5f;
-        Player =  GameObject.Find("Player").GetComponent<Rigidbody>();
     }
     
     // Update is called once per frame
@@ -67,17 +66,20 @@ public class EnemyControl : MonoBehaviour
     {
         if (PW.gameObject.tag == "Weapon")
         {
+            GameObject Player = GameObject.Find("Player");
             attacked = true;
             timer = 0;
             GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
             Debug.Log("Enemy"+GameManeger.EnemyHP);
-            if(this.transform.position.x - GameObject.Find("Player").transform.position.x >=0)
+            if(this.transform.position.x - Player.transform.position.x >=0)
             {
-                Player.AddForce(new Vector3(-4, 0, 0), ForceMode.Impulse);
+
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-4, 0, 0), ForceMode.Impulse);
             }
             else
             {
-                Player.AddForce(new Vector3(4, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(
+                    4, 0, 0), ForceMode.Impulse);
             }
         }
     }

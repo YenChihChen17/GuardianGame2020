@@ -118,6 +118,9 @@ MonoBehaviour:
   hurtY: 5
   AttackRange: {fileID: 8070064118183750298}
   AtkTime: 0.1
+  FallMutilpe: 2.5
+  LowJumpMutilpe: 5
+  JumpVelocity: 10
 --- !u!65 &7706451962283945705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -171,6 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8070064118129545939}
+  - component: {fileID: -8330862238513463602}
   m_Layer: 0
   m_Name: PlayerContent
   m_TagString: Untagged
@@ -194,6 +198,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-8330862238513463602
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070064118129545941}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8070064118183750298
 GameObject:
   m_ObjectHideFlags: 0

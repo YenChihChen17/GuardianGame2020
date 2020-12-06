@@ -9,7 +9,6 @@ public class GameManeger : MonoBehaviour
     static public int Damage_P ;
     static public int Damage_E ;
 
-    public GameObject Player;
     public GameObject PlayerClone;
     public GameObject Enemy;
     public GameObject Home;
@@ -31,6 +30,7 @@ public class GameManeger : MonoBehaviour
         EnemyHP = Enemy_HP;
         Damage_P = Player_Damage;
         Damage_E = Enemy_Damage;
+        Instantiate(PlayerClone, Home.transform.position, new Quaternion(0, 0, 0, 0));
     }
 
     // Update is called once per frame
@@ -39,14 +39,8 @@ public class GameManeger : MonoBehaviour
         
         if (PlayerHP <= 0 && CloneNum >=0) 
         {
-            if (GameObject.Find("PlayerContent") == true)
-            {
-                Destroy(Player);
-            }
-            else
-            {
+            
                 Destroy(GameObject.Find("PlayerContent(Clone)"));
-            }
 
             timer += Time.deltaTime;
             if (CloneNum>0)
