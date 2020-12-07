@@ -953,5 +953,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8070064118129545941, guid: df8cdf4f2d3bf014db4e0d3474de7281,
         type: 3}
+    - target: {fileID: 4852082575655278423, guid: 7258c8c04855f0d4eb8a68cca446b22e,
+        type: 3}
+      propertyPath: PopUpDamage
+      value: 
+      objectReference: {fileID: 2146269775728299957, guid: 81016ad69dfe93d4d8c60b60245d868d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7258c8c04855f0d4eb8a68cca446b22e, type: 3}
