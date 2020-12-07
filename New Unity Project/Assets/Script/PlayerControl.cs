@@ -39,6 +39,15 @@ public class PlayerControl : MonoBehaviour
     {
         Move();
         Attack();
+        a_timer += Time.deltaTime;
+        if(a_timer >= 0.2)// 攻擊判定存在時間
+        {
+            AttackRange.SetActive(false);
+        }
+        if (a_timer >= AtkTime && isattack == true)//攻擊冷卻時間
+        {
+            isattack = false;
+        }
         AttackPos.transform.position = this.transform.position;
     }
 
@@ -120,16 +129,11 @@ public class PlayerControl : MonoBehaviour
     private void Attack()
     {
         a_timer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && isattack == false)
         {
             AttackRange.SetActive(true);
             isattack = true;
             a_timer = 0;
-        }
-        if(a_timer >= AtkTime && isattack == true)
-        {
-            AttackRange.SetActive(false);
-            isattack = false;
         }
     }
 

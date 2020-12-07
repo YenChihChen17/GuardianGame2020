@@ -15,6 +15,7 @@ public class EnemyControl : MonoBehaviour
     private bool attack;
 
     public float stop_t;
+    public GameObject PopUpDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,16 +65,18 @@ public class EnemyControl : MonoBehaviour
     }
     private void OnTriggerEnter(Collider PW)
     {
-        if (PW.gameObject.tag == "Weapon")
+        if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
             GameObject Player = GameObject.Find("Player");
+            GameObject mObject = (GameObject)Instantiate(PopUpDamage, transform.position + new Vector3 (Random.Range(-1,2),2,0), Quaternion.identity);
+            mObject.GetComponent<Damage>().Value = GameManeger.Damage_P;
             attacked = true;
             timer = 0;
             GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
             Debug.Log("Enemy"+GameManeger.EnemyHP);
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
-
+                
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(-4, 0, 0), ForceMode.Impulse);
             }
             else
