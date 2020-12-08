@@ -24,7 +24,7 @@ public class GameManeger : MonoBehaviour
 
     private float timer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerHP = Player_HP;
         EnemyHP = Enemy_HP;

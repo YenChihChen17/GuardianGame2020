@@ -59,7 +59,7 @@ public class Damage : MonoBehaviour
         if (mScreen.z > 0)
         {
             GUI.color = Color.red;
-            GUI.skin.label.fontSize = 25;
+            GUI.skin.label.fontSize = 100;
             //内部使用GUI坐标进行绘制
             GUI.Label(new Rect(mPoint.x, mPoint.y, ContentWidth, ContentHeight), Value.ToString());
         }
