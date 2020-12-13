@@ -8,6 +8,7 @@ public class GameManeger : MonoBehaviour
     static public int EnemyHP ;
     static public int Damage_P ;
     static public int Damage_E ;
+    static public int HomeHP;
 
     public GameObject PlayerClone;
     public GameObject Enemy;
@@ -21,6 +22,7 @@ public class GameManeger : MonoBehaviour
     public int Enemy_HP;
     public int Player_Damage;
     public int Enemy_Damage;
+    public int Home_HP;
 
     private float timer;
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class GameManeger : MonoBehaviour
     {
         PlayerHP = Player_HP;
         EnemyHP = Enemy_HP;
+        HomeHP = Home_HP;
         Damage_P = Player_Damage;
         Damage_E = Enemy_Damage;
         Instantiate(PlayerClone, Home.transform.position, new Quaternion(0, 0, 0, 0));
@@ -67,6 +70,10 @@ public class GameManeger : MonoBehaviour
             {
                 GameOverUI.SetActive(true);
             }
+        }
+        if(HomeHP<=0)
+        {
+            Destroy(Home);
         }
     }
 }

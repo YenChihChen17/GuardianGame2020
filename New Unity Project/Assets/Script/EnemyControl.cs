@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
+    public GameObject Home;
     public GameObject weapon;
     public GameObject Player;
     public float speed;
-    private float timer;
+    public float StopPos;
     public float cooldownS;
+
+    private float timer;
     private float cooldown;
     private float attackcool;
     private bool attacked;
     private bool attack;
+    private float PosX;
 
     public float stop_t;
     public GameObject PopUpDamage;
@@ -29,6 +33,7 @@ public class EnemyControl : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        PosX = this.transform.position.x - Home.transform.position.x;
         if (attack == false)
         {
             cooldown -= Time.deltaTime;
@@ -49,7 +54,7 @@ public class EnemyControl : MonoBehaviour
             }
         }
      
-        if (attacked == false)
+        if (attacked == false && PosX >= StopPos)
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
         }
