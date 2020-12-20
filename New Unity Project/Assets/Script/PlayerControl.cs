@@ -6,13 +6,15 @@ public class PlayerControl : MonoBehaviour
 {
     public Transform target;
     public Transform AttackPos;
+    public Transform CounterPos;
     public float speed;
-    public float jumpF;
     public float hurtX;
     public float defendX;
     public GameObject AttackRange;
+    public GameObject CounterRange;
     public float AtkTime;// 攻擊判定時間
     public float HurtTime;// 受傷判定時間
+    public float CounterTime;// 反擊判定時間
     public float FallMutilpe;
     public float LowJumpMutilpe;
     public float JumpVelocity;
@@ -24,6 +26,7 @@ public class PlayerControl : MonoBehaviour
     private bool hurt;
     private bool attack;
     private bool defend;
+    private bool counter;
     private bool TurnAround; /// 判斷方向
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class PlayerControl : MonoBehaviour
         attack = false;
         defend = false;
         TurnAround = true;
+        CounterRange.SetActive(false);
         AttackRange.SetActive(false);
         rig =this. GetComponent<Rigidbody>();
     }
@@ -61,7 +65,16 @@ public class PlayerControl : MonoBehaviour
                 hurt = false;
             }
         }
-
+        if(counter == true)
+        {
+            b_timer += Time.deltaTime;
+            if(b_timer >= CounterTime)
+            {
+                CounterRange.SetActive(false);
+                counter = false;
+            }
+        }
+        CounterPos.transform.position = this.transform.position;
         AttackPos.transform.position = this.transform.position;
     }
 
@@ -75,6 +88,7 @@ public class PlayerControl : MonoBehaviour
             {
                 target.transform.Rotate(new Vector3(0, 180, 0));
                 AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 TurnAround = true;
             }
             xm += speed * Time.deltaTime;
@@ -86,6 +100,7 @@ public class PlayerControl : MonoBehaviour
             {
                 target.transform.Rotate(new Vector3(0, 180, 0));
                 AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 TurnAround = false;
             }
             xm += speed * Time.deltaTime;
@@ -104,10 +119,10 @@ public class PlayerControl : MonoBehaviour
             {
                 rig.velocity += Vector3.up * Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
             }
-            else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+           /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             {
                 rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
-            }
+            }*/
         }
  
     }
@@ -131,7 +146,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider Enemy)
     {
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false)///撞到敵人
+        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false && counter == false )///撞到敵人
         {
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
@@ -139,10 +154,15 @@ public class PlayerControl : MonoBehaviour
             b_timer = 0;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend==true)///防禦敵人
+        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend== true && counter == false)///防禦敵人
         {
             rig.AddForce(new Vector3(-defendX, 0, 0), ForceMode.Impulse);
             hurt = true;
+            b_timer = 0;
+            //Debug.Log("Player" + GameManeger.PlayerHP);
+        }
+        if (Enemy.gameObject.tag == "Enemy"  && counter == true)///防禦敵人
+        {
             b_timer = 0;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
@@ -163,6 +183,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false)
         {
+            b_timer = 0;
+            CounterRange.SetActive(true);
+            counter = true;
             defend = true;
             Debug.Log("Defend");
         }

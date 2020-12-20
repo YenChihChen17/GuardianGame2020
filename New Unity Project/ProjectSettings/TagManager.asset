@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Weapon
   - Home
+  - Counter
   layers:
   - Default
   - TransparentFX
