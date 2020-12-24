@@ -18,6 +18,8 @@ public class PlayerControl : MonoBehaviour
     public float FallMutilpe;
     public float LowJumpMutilpe;
     public float JumpVelocity;
+    public float acceleration;
+    public float deceleration;
 
     private float a_timer;
     private float b_timer;
@@ -28,7 +30,7 @@ public class PlayerControl : MonoBehaviour
     private bool defend;
     private bool counter;
     private bool TurnAround; /// 判斷方向
-
+    private Vector3 X;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +62,7 @@ public class PlayerControl : MonoBehaviour
         if(hurt == true)
         {
             b_timer += Time.deltaTime;
-            if (b_timer >= HurtTime)
+            if (b_timer >= HurtTime && rig.velocity.x == 0f)
             {
                 hurt = false;
             }
@@ -74,57 +76,66 @@ public class PlayerControl : MonoBehaviour
                 counter = false;
             }
         }
+        Debug.Log(X);
         CounterPos.transform.position = this.transform.position;
         AttackPos.transform.position = this.transform.position;
+        
     }
 
     private void Move() // 移動跳躍
     {
-        float xm = 0;
-
-        if (Input.GetKey(KeyCode.RightArrow) && hurt == false) ///移動
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && can_j == true) ///給予加速度
         {
-            if (TurnAround == false)
-            {
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-                TurnAround = true;
-            }
-            xm += speed * Time.deltaTime;
-            target.Translate(new Vector3(xm,0,0));
+         X.x = Mathf.Lerp(X.x, speed, Time.deltaTime * acceleration);
+         rig.velocity = X;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && hurt == false)///移動
+
+        if (Input.GetKey(KeyCode.RightArrow) && TurnAround == false) //控制速度方向
         {
-            if (TurnAround == true)
+            target.transform.Rotate(new Vector3(0, 180, 0));
+            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            TurnAround = true;
+            if (X.x < 0)
             {
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-                TurnAround = false;
+                X = X * -1;
+                speed = speed * -1;
             }
-            xm += speed * Time.deltaTime;
-            target.Translate(new Vector3(xm, 0, 0));
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && TurnAround == true)//控制速度方向
+        {
+            target.transform.Rotate(new Vector3(0, 180, 0));
+            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            TurnAround = false;
+            if (X.x > 0)
+            {
+                X = X * -1;
+                speed = speed * -1;
+            }
+        }
+
+        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(X.x) >0 && can_j == true && hurt == false) //減速
+        {
+            X.x = Mathf.Lerp(X.x, 0, Time.deltaTime *deceleration);
+            rig.velocity = X;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && can_j == true)
          {
              rig.velocity = Vector3.up * JumpVelocity;
-
          }
-
         if (can_j == false)
         {
             if (rig.velocity.y < 0)
             {
                 rig.velocity += Vector3.up * Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
             }
-           /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+           /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
             {
                 rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
             }*/
         }
- 
     }
     
     private void OnCollisionExit(Collision collision)///離開地面
@@ -148,6 +159,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false && counter == false )///撞到敵人
         {
+            rig.velocity = new Vector3(0, 0, 0);
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
@@ -174,6 +186,8 @@ public class PlayerControl : MonoBehaviour
         a_timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false)
         {
+            X.x = 0f;
+            rig.velocity = new Vector3(0, 0, 0);
             AttackRange.SetActive(true);
             attack = true;
             a_timer = 0;
@@ -183,6 +197,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false)
         {
+            X.x = 0f;
+            rig.velocity = new Vector3(0, 0, 0);
             b_timer = 0;
             CounterRange.SetActive(true);
             counter = true;
@@ -191,6 +207,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.S) )
         {
+            X.x = 0f;
+            rig.velocity = new Vector3(0, 0, 0);
             defend = false;
             Debug.Log("Break");
         }

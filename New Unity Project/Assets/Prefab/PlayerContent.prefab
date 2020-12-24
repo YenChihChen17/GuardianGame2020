@@ -248,6 +248,8 @@ MonoBehaviour:
   FallMutilpe: 2
   LowJumpMutilpe: 1
   JumpVelocity: 7
+  acceleration: 0.8
+  deceleration: 1
 --- !u!65 &7706451962283945705
 BoxCollider:
   m_ObjectHideFlags: 0

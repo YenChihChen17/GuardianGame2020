@@ -325,7 +325,7 @@ MonoBehaviour:
   YouDied: {fileID: 1406869213}
   RebornT: 2
   CloneNum: 3
-  Player_HP: 10
+  Player_HP: 50
   Enemy_HP: 100
   Player_Damage: 5
   Enemy_Damage: 5
