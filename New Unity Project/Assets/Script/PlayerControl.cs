@@ -30,14 +30,19 @@ public class PlayerControl : MonoBehaviour
     private bool defend;
     private bool counter;
     private bool TurnAround; /// 判斷方向
-    private Vector3 X;
-    // Start is called before the first frame update
+    private float SpeedX;
+    private float SpeedY;
+    private bool GameStart;
+    private bool EnemyPos;
+  //  private Vector3 X;
+   // Start is called before the first frame update
     void Start()
     {
         can_j = false;
         hurt = false;
         attack = false;
         defend = false;
+        GameStart = false;
         TurnAround = true;
         CounterRange.SetActive(false);
         AttackRange.SetActive(false);
@@ -46,7 +51,9 @@ public class PlayerControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {  
+    {
+        Ray ray = new Ray(transform.position, transform.right);
+        RaycastHit hit;
         Move();
         Attack();
         Defend();
@@ -59,7 +66,7 @@ public class PlayerControl : MonoBehaviour
             attack = false;
         }
 
-        if(hurt == true)
+        if(hurt == true) // 受傷判定
         {
             b_timer += Time.deltaTime;
             if (b_timer >= HurtTime && rig.velocity.x == 0f)
@@ -76,60 +83,75 @@ public class PlayerControl : MonoBehaviour
                 counter = false;
             }
         }
-        Debug.Log(X);
         CounterPos.transform.position = this.transform.position;
         AttackPos.transform.position = this.transform.position;
-        
+        if (GameStart == true && hurt == false)
+        {
+            rig.velocity = new Vector3(SpeedX, SpeedY, 0);
+        }
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            // 如果與物體發生碰撞，在Scene檢視中繪製射線  
+            Debug.DrawLine(ray.origin, hit.point, Color.red);
+            // 列印射線檢測到的物體的名稱  
+            Debug.Log( hit.transform.name);
+            if(hit.collider.tag == "Enemy")
+            {
+                EnemyPos = true;
+            }
+            else
+            {
+                EnemyPos = false;
+            }
+        }
+        Debug.Log(EnemyPos);
     }
-
     private void Move() // 移動跳躍
     {
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && can_j == true) ///給予加速度
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && can_j == true && defend == false) ///給予加速度
         {
-         X.x = Mathf.Lerp(X.x, speed, Time.deltaTime * acceleration);
-         rig.velocity = X;
+          SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) && TurnAround == false) //控制速度方向
+        if (Input.GetKey(KeyCode.RightArrow) && TurnAround == false && defend == false) //控制速度方向
         {
             target.transform.Rotate(new Vector3(0, 180, 0));
             AttackPos.transform.Rotate(new Vector3(0, 180, 0));
             CounterPos.transform.Rotate(new Vector3(0, 180, 0));
             TurnAround = true;
-            if (X.x < 0)
+            if (SpeedX < 0)
             {
-                X = X * -1;
+                SpeedX = SpeedX * -1;
                 speed = speed * -1;
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && TurnAround == true)//控制速度方向
+        else if (Input.GetKey(KeyCode.LeftArrow) && TurnAround == true && defend == false)//控制速度方向
         {
             target.transform.Rotate(new Vector3(0, 180, 0));
             AttackPos.transform.Rotate(new Vector3(0, 180, 0));
             CounterPos.transform.Rotate(new Vector3(0, 180, 0));
             TurnAround = false;
-            if (X.x > 0)
+            if (SpeedX > 0)
             {
-                X = X * -1;
+                SpeedX = SpeedX * -1;
                 speed = speed * -1;
             }
         }
 
-        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(X.x) >0 && can_j == true && hurt == false) //減速
+        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) >0 && can_j == true && hurt == false) //減速
         {
-            X.x = Mathf.Lerp(X.x, 0, Time.deltaTime *deceleration);
-            rig.velocity = X;
+            SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime *deceleration);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && can_j == true)
+        if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false)
          {
-             rig.velocity = Vector3.up * JumpVelocity;
+             SpeedY = JumpVelocity;
          }
         if (can_j == false)
         {
-            if (rig.velocity.y < 0)
+            if (SpeedY != 0)
             {
-                rig.velocity += Vector3.up * Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
             }
            /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
             {
@@ -152,29 +174,33 @@ public class PlayerControl : MonoBehaviour
         {
             can_j = true;
             hurt = false;
+            GameStart = true;
+            SpeedY = 0;
         }
     }
 
     private void OnTriggerEnter(Collider Enemy)
     {
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false && counter == false )///撞到敵人
+        if (Enemy.gameObject.tag == "Enemy" && hurt == false && counter == false && EnemyPos == false)///撞到敵人
         {
-            rig.velocity = new Vector3(0, 0, 0);
+            SpeedX = 0;
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
             b_timer = 0;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend== true && counter == false)///防禦敵人
+        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend== true && counter == false && EnemyPos == true)///防禦敵人
         {
+            SpeedX = 0;
             rig.AddForce(new Vector3(-defendX, 0, 0), ForceMode.Impulse);
             hurt = true;
             b_timer = 0;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
-        if (Enemy.gameObject.tag == "Enemy"  && counter == true)///防禦敵人
+        if (Enemy.gameObject.tag == "Enemy"  && counter == true && EnemyPos == true)///防禦敵人
         {
+            SpeedX = 0;
             b_timer = 0;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
@@ -186,8 +212,7 @@ public class PlayerControl : MonoBehaviour
         a_timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false)
         {
-            X.x = 0f;
-            rig.velocity = new Vector3(0, 0, 0);
+            SpeedX = 0;
             AttackRange.SetActive(true);
             attack = true;
             a_timer = 0;
@@ -195,22 +220,20 @@ public class PlayerControl : MonoBehaviour
     }
     private void Defend()
     {
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false)
+        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false )
         {
-            X.x = 0f;
-            rig.velocity = new Vector3(0, 0, 0);
+            SpeedX = 0;
             b_timer = 0;
             CounterRange.SetActive(true);
             counter = true;
             defend = true;
-            Debug.Log("Defend");
+           // Debug.Log("Defend");
         }
         if (Input.GetKeyUp(KeyCode.S) )
         {
-            X.x = 0f;
-            rig.velocity = new Vector3(0, 0, 0);
+            SpeedX = 0;
             defend = false;
-            Debug.Log("Break");
+           // Debug.Log("Break");
         }
 
     }

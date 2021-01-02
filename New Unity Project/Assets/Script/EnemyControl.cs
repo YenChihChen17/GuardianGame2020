@@ -73,8 +73,8 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
             GameObject Player = GameObject.Find("Player");
-            GameObject mObject = (GameObject)Instantiate(PopUpDamage, transform.position + new Vector3 (Random.Range(-1,2),2,0), Quaternion.identity);
-            mObject.GetComponent<Damage>().Value = GameManeger.Damage_P;
+            /*GameObject mObject = (GameObject)Instantiate(PopUpDamage, transform.position + new Vector3 (Random.Range(-1,2),2,0), Quaternion.identity);//產生傷害數字
+            mObject.GetComponent<Damage>().Value = GameManeger.Damage_P;*/
             attacked = true;
             timer = 0;
             GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;

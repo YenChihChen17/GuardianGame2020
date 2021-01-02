@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3554582964892388373}
   m_Layer: 0
   m_Name: 'CounterPos '
-  m_TagString: Weapon
+  m_TagString: Counter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,8 +248,8 @@ MonoBehaviour:
   FallMutilpe: 2
   LowJumpMutilpe: 1
   JumpVelocity: 7
-  acceleration: 0.8
-  deceleration: 1
+  acceleration: 1
+  deceleration: 2
 --- !u!65 &7706451962283945705
 BoxCollider:
   m_ObjectHideFlags: 0
