@@ -9,7 +9,8 @@ public class EnemyControl : MonoBehaviour
     public GameObject Player;
     public float speed;
     public float StopPos;
-    public float cooldownS;
+    public float AttackedCoolDown;
+    public float CounteredTime;
 
     private float timer;
     private float cooldown;
@@ -17,56 +18,70 @@ public class EnemyControl : MonoBehaviour
     private bool attacked;
     private bool attack;
     private float PosX;
+    private bool counter;
+    private float CounteredTimeP;
 
     public float stop_t;
     public GameObject PopUpDamage;
     // Start is called before the first frame update
     void Start()
     {
+        counter = false;
         attack = false;
         attacked = false;
-        cooldown = cooldownS;
+        cooldown = AttackedCoolDown;
         attackcool = 0.5f;
+        CounteredTimeP = CounteredTime;
     }
     
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        PosX = this.transform.position.x - Home.transform.position.x;
-        if (attack == false)
+        PosX = this.transform.position.x - Home.transform.position.x; // 計算與家的距離
+
+        if (attack == false)// Boss攻擊控制
         {
             cooldown -= Time.deltaTime;
             if (cooldown <= 0)
             {
                 Attack();
-                cooldown = cooldownS;
+                cooldown = AttackedCoolDown;
             }
         }
-        if(attack == true)
+        else if(attack == true && counter == false) // Boss攻擊控制
         {
             attackcool -= Time.deltaTime;
             if (attackcool <= 0)///攻擊重置
             {
                 weapon.transform.Rotate(new Vector3(0, 0, -90));
-                attackcool = 0.5f;
+                attackcool = 1f;
                 attack = false;
             }
         }
      
-        if (attacked == false && PosX >= StopPos)
+        if (attacked == false && PosX >= StopPos && counter == false ) // Boss 移動控制
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
         }
-        if (attacked == true)
+        else if (counter == true)//Boss 被反擊時
         {
-            cooldown = cooldownS;
+            CounteredTime -= Time.deltaTime;
+            if (CounteredTime<=0)
+            {
+                counter = false;
+                CounteredTime = CounteredTimeP;
+            }
+        }
+
+        if (attacked == true) // 被攻擊計時器
+        {
+            cooldown = AttackedCoolDown;
             if (timer >=stop_t )
             {
                 attacked = false;
             }
         }
-    /// Debug.Log(cooldown);
     }
     private void OnTriggerEnter(Collider PW)
     {
@@ -81,20 +96,27 @@ public class EnemyControl : MonoBehaviour
             Debug.Log("Enemy"+GameManeger.EnemyHP);
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
-                
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-4, 0, 0), ForceMode.Impulse);
+                PlayerControl.AttackEnemy = true;
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-5, 0, 0), ForceMode.Impulse);
             }
             else
             {
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(
-                    4, 0, 0), ForceMode.Impulse);
+                    5, 0, 0), ForceMode.Impulse);
+                PlayerControl.AttackEnemy = true;
             }
         }
+        if (PW.gameObject.tag == "Counter" && attack == true )
+        {
+            attacked = true;
+            Debug.Log("Countered");
+            counter = true;
+        }
+
     }
     private void Attack()
     {
         weapon.transform.Rotate(new Vector3(0, 0, 90));
         attack = true;
-        ///Debug.Log("Attack");
     }
 }

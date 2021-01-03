@@ -1081,7 +1081,7 @@ PrefabInstance:
     - target: {fileID: 4852082575655278422, guid: 7258c8c04855f0d4eb8a68cca446b22e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4852082575655278422, guid: 7258c8c04855f0d4eb8a68cca446b22e,
         type: 3}
@@ -1169,6 +1169,16 @@ PrefabInstance:
         type: 3}
       propertyPath: StopPos
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852082575655278423, guid: 7258c8c04855f0d4eb8a68cca446b22e,
+        type: 3}
+      propertyPath: CounteredTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852082575655278423, guid: 7258c8c04855f0d4eb8a68cca446b22e,
+        type: 3}
+      propertyPath: AttackedCoolDown
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7258c8c04855f0d4eb8a68cca446b22e, type: 3}
