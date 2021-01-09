@@ -114,7 +114,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Move() // 移動跳躍
     {
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && can_j == true && defend == false) ///給予加速度
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && defend == false ) ///給予加速度
         {
           SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
