@@ -7,19 +7,23 @@ public class EnemyControl : MonoBehaviour
     public GameObject Home;
     public GameObject weapon;
     public GameObject Player;
+    public GameObject Enemy;
     public float speed;
     public float StopPos;
     public float AttackedCoolDown;
     public float CounteredTime;
+    public float HitHomeCoolDown;
 
     private float timer;
     private float cooldown;
     private float attackcool;
     private bool attacked;
     private bool attack;
+    private bool HitHome;
     private float PosX;
     private bool counter;
     private float CounteredTimeP;
+    private float HitTimer;
 
     public float stop_t;
     public GameObject PopUpDamage;
@@ -32,13 +36,15 @@ public class EnemyControl : MonoBehaviour
         cooldown = AttackedCoolDown;
         attackcool = 0.5f;
         CounteredTimeP = CounteredTime;
+        HitHome = false;
+        HitTimer = HitHomeCoolDown;
     }
     
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        PosX = this.transform.position.x - Home.transform.position.x; // 計算與家的距離
+       // PosX = this.transform.position.x - Home.transform.position.x; // 計算與家的距離
 
         if (attack == false)// Boss攻擊控制
         {
@@ -60,7 +66,7 @@ public class EnemyControl : MonoBehaviour
             }
         }
      
-        if (attacked == false && PosX >= StopPos && counter == false ) // Boss 移動控制
+        if (attacked == false && counter == false && HitHome == false ) // Boss 移動控制
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
         }
@@ -71,6 +77,16 @@ public class EnemyControl : MonoBehaviour
             {
                 counter = false;
                 CounteredTime = CounteredTimeP;
+            }
+        }
+
+        if(HitHome == true) // 打到基地被彈飛後的計時器
+        {
+            HitTimer -= Time.deltaTime;
+            if(HitTimer <= 0)
+            {
+                HitHome = false;
+                HitTimer = HitHomeCoolDown;
             }
         }
 
@@ -111,6 +127,12 @@ public class EnemyControl : MonoBehaviour
             attacked = true;
             Debug.Log("Countered");
             counter = true;
+        }
+        if (PW.gameObject.tag == "Home")
+        {
+            HitHome = true;
+            Enemy.GetComponent<Rigidbody>().AddForce(new Vector3(10, 0, 0), ForceMode.Impulse);
+            Debug.Log("Hit");
         }
 
     }
