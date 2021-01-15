@@ -13,6 +13,7 @@ public class EnemyControl : MonoBehaviour
     public float AttackedCoolDown;
     public float CounteredTime;
     public float HitHomeCoolDown;
+    public float hitF;
 
     private float timer;
     private float cooldown;
@@ -131,7 +132,7 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Home")
         {
             HitHome = true;
-            Enemy.GetComponent<Rigidbody>().AddForce(new Vector3(10, 0, 0), ForceMode.Impulse);
+            Enemy.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
             Debug.Log("Hit");
         }
 

@@ -226,7 +226,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void Defend() 
     {
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false )
+        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true)
         {
             SpeedX = 0;
             b_timer = 0;
