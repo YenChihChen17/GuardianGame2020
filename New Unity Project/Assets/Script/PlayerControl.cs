@@ -35,6 +35,8 @@ public class PlayerControl : MonoBehaviour
     private float SpeedY;
     private bool GameStart;
     private bool EnemyPos;
+    private bool Right;
+    private bool Left;
   //  private Vector3 X;
    // Start is called before the first frame update
     void Start()
@@ -49,6 +51,9 @@ public class PlayerControl : MonoBehaviour
         AttackRange.SetActive(false);
         rig =this. GetComponent<Rigidbody>();
         AttackEnemy = false;
+        Right = false;
+        Left = false;
+
     }
 
     // Update is called once per frame
@@ -118,6 +123,10 @@ public class PlayerControl : MonoBehaviour
         {
           SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
+        if ((Right == true || Left == true) && hurt == false && defend == false) ///給予加速度, 虛擬搖桿操控
+        {
+            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+        }
 
         if (Input.GetKey(KeyCode.RightArrow) && TurnAround == false && defend == false) //控制角色方向
         {
@@ -144,9 +153,39 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+        if (Right == true && TurnAround == false && defend == false) //控制角色方向, 虛擬搖桿操控
+        {
+            target.transform.Rotate(new Vector3(0, 180, 0));
+            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            TurnAround = true;
+            if (SpeedX < 0)
+            {
+                SpeedX = SpeedX * -1;
+                speed = speed * -1;
+            }
+        }
+        
+        else if (Left == true && TurnAround == true && defend == false)//控制角色方向
+        {
+            target.transform.Rotate(new Vector3(0, 180, 0));
+            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            TurnAround = false;
+            if (SpeedX > 0)
+            {
+                SpeedX = SpeedX * -1;
+                speed = speed * -1;
+            }
+        }
+
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) >0 && can_j == true && hurt == false) //放開控制鍵後減速
         {
             SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime *deceleration);
+        }
+        if (Right == false && Left == false && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
+        {
+            SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
@@ -240,5 +279,23 @@ public class PlayerControl : MonoBehaviour
             defend = false;
            // Debug.Log("Break");
         }
+    }
+    public void GoRight()
+    {
+        Left = false;
+        Right = true;
+        Debug.Log("Right");
+    }
+    public void GoLeft()
+    {
+        Right = false;
+        Left = true;
+        Debug.Log("Left");
+    }
+    public void Stop()
+    {
+        Right = false;
+        Left = false;
+        Debug.Log("Stop");
     }
 }
