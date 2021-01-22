@@ -134,6 +134,7 @@ public class EnemyControl : MonoBehaviour
             HitHome = true;
             Enemy.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
             Debug.Log("Hit");
+            GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }
 
     }
