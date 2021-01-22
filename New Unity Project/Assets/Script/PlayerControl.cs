@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rig;
     private bool can_j;
     private bool hurt;
-    private bool attack;
+    public bool attack;
     private bool defend;
     private bool counter;
     private bool TurnAround; /// 判斷方向
@@ -64,10 +64,10 @@ public class PlayerControl : MonoBehaviour
         Move();
         Attack();
         Defend();
-        if(a_timer >= 0.2)// 攻擊判定存在時間
+        /*if(a_timer >= 0.2)// 攻擊判定存在時間
         {
             AttackRange.SetActive(false);
-        }
+        }*/
         if (a_timer >= AtkTime && attack == true)//攻擊冷卻時間
         {
             attack = false;
@@ -252,13 +252,13 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void Attack()
+    public void Attack()
     {
         a_timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false)
         {
             SpeedX = 0;
-            AttackRange.SetActive(true);
+            //AttackRange.SetActive(true);
             attack = true;
             a_timer = 0;
         }
