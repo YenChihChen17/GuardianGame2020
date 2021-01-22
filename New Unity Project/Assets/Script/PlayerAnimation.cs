@@ -17,11 +17,11 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region attack animation
+        #region 角色攻擊動畫
         atk = player.GetComponent<PlayerControl>().attack;
         if (atk==true)
         {
-            //Debug.Log("yes");
+            //Debug.Log("OK");
             p_animator.SetBool("isAttack", true);
         }
         else
@@ -30,13 +30,14 @@ public class PlayerAnimation : MonoBehaviour
         }
         #endregion
     }
-
-    void AttackTime()
+    #region 攻擊判定
+    void AttackTime()//進入攻擊判定
     {
-        Attackrange.SetActive(true);
+        Attackrange.SetActive(true);//攻擊特效：20幀
     }
-    void AttackTimeOut()
+    void AttackTimeOut()//離開攻擊判定
     {
         Attackrange.SetActive(false);
     }
+    #endregion
 }
