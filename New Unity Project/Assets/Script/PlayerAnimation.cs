@@ -31,11 +31,11 @@ public class PlayerAnimation : MonoBehaviour
         #endregion
     }
     #region 攻擊判定
-    void AttackTime()//進入攻擊判定
+    void OnAttackEnter()//進入攻擊判定
     {
-        Attackrange.SetActive(true);//攻擊特效：20幀
+        Attackrange.SetActive(true);//攻擊特效：20幀=2s
     }
-    void AttackTimeOut()//離開攻擊判定
+    void OnAttackExit()//離開攻擊判定
     {
         Attackrange.SetActive(false);
     }
