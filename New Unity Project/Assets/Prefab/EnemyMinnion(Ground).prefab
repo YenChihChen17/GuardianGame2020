@@ -136,10 +136,10 @@ GameObject:
   - component: {fileID: 4852082575655278421}
   - component: {fileID: 4852082575655278420}
   - component: {fileID: 4852082575655278419}
-  - component: {fileID: 4852082575655278423}
   - component: {fileID: 2064626186}
+  - component: {fileID: 560255807837111331}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: EnemyMinnion(Ground)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 4852082575655278418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.69, y: 1.94, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 66315353}
   m_Father: {fileID: 0}
@@ -220,30 +220,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4852082575655278423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4852082575655278418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef67e1e479e64d4ea6ce0008a01eef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Home: {fileID: 0}
-  weapon: {fileID: 66315352}
-  Player: {fileID: 0}
-  Enemy: {fileID: 0}
-  speed: 1
-  StopPos: 0
-  AttackedCoolDown: 0
-  CounteredTime: 5
-  HitHomeCoolDown: 0
-  hitF: 0
-  stop_t: 1.5
-  PopUpDamage: {fileID: 0}
 --- !u!54 &2064626186
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -260,3 +236,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &560255807837111331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852082575655278418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8a83ebd2d074b2580ac867dcba6811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Home: {fileID: 0}
+  weapon: {fileID: 0}
+  Player: {fileID: 0}
+  Enemy: {fileID: 0}
+  speed: 5
+  StopPos: 0
+  AttackedCoolDown: 0
+  CounteredTime: 0
+  HitHomeCoolDown: 0
+  hitF: 0
+  stop_t: 0
+  PopUpDamage: {fileID: 0}
