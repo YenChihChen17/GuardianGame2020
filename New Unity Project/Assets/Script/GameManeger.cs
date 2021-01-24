@@ -20,9 +20,11 @@ public class GameManeger : MonoBehaviour
     public GameObject Minnion;
     public GameObject EnemyRespawnPoint;
     public GameObject Boss;
+    public GameObject FlyMinnion;
     public float RebornT;
     public int CloneNum;
     public float[] Waves;
+    public bool[] Fly;
     public float BossBornTimer;
 
     public int Player_HP;
@@ -117,7 +119,14 @@ public class GameManeger : MonoBehaviour
             S -= Time.deltaTime;
             if (S < 0 && Born == true)
             {
-                Instantiate(Minnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                if (Fly[i]==false)
+                {
+                    Instantiate(Minnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                }
+               else
+                {
+                    Instantiate(FlyMinnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                }
                 Born = false;
                 if (i < Waves.Length)
                 {

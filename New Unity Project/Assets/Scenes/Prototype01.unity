@@ -691,20 +691,16 @@ MonoBehaviour:
   Minnion: {fileID: 4852082575655278418, guid: 41e05b564cac5497c9e909313ae78741, type: 3}
   EnemyRespawnPoint: {fileID: 677868667}
   Boss: {fileID: 4852082575655278418, guid: 7258c8c04855f0d4eb8a68cca446b22e, type: 3}
+  FlyMinnion: {fileID: 8632207965862573613, guid: 12b1c7d2fb9141e488cbf6eaf09c6072,
+    type: 3}
   RebornT: 2
   CloneNum: 3
   Waves:
   - 1
-  - 4
-  - 0.5
-  - 3
-  - 0.5
-  - 0.5
-  - 3
   - 1
   - 1
-  - 1
-  BossBornTimer: 3
+  Fly: 000100
+  BossBornTimer: 5
   Player_HP: 25
   Enemy_HP: 100
   Player_Damage: 10
