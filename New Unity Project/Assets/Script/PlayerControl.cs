@@ -65,6 +65,7 @@ public class PlayerControl : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.right); 
         RaycastHit hit;
+
         Move();
         Attack();
         Defend();
@@ -77,6 +78,7 @@ public class PlayerControl : MonoBehaviour
                 hurt = false;
             }
         }
+
         if (counter == true) // 控制反擊collider 關閉
         {
             b_timer += Time.deltaTime;
@@ -87,7 +89,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (GameStart == true && hurt == false && AttackEnemy == false) // 移動時速度控制
+        if (GameStart == true && hurt == false && AttackEnemy == false) // 移動速度控制
         {
             rig.velocity = new Vector3(SpeedX, SpeedY, 0);
         }
@@ -107,7 +109,6 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
-        Debug.Log(a_timer);
     }
 
     private void Move() // 移動跳躍
@@ -179,6 +180,7 @@ public class PlayerControl : MonoBehaviour
          {
              SpeedY = JumpVelocity;
          }
+
         if (can_j == false) //落下加速
         {
             if (SpeedY != 0)
@@ -213,24 +215,26 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider Enemy)
     {
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && counter == false)///撞到敵人
+        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false )///撞到敵人
         {
             SpeedX = 0;
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
             b_timer = 0;
-            //Debug.Log("Player" + GameManeger.PlayerHP);
+            Debug.Log("Hurt");
         }
-        if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend== true && EnemyPos == true)///防禦敵人
+
+        else if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == true && EnemyPos == true)///防禦敵人
         {
             SpeedX = 0;
             rig.AddForce(new Vector3(-defendX, 0, 0), ForceMode.Impulse);
             hurt = true;
             b_timer = 0;
-            //Debug.Log("Player" + GameManeger.PlayerHP);
+            Debug.Log("Defend");
         }
-        if (Enemy.gameObject.tag == "Enemy"  && defend == true && EnemyPos == true)///防禦敵人
+
+        else if (Enemy.gameObject.tag == "Enemy"  && defend == true && EnemyPos == true)///防禦敵人
         {
             SpeedX = 0;
             b_timer = 0;
@@ -268,12 +272,10 @@ public class PlayerControl : MonoBehaviour
             counter = true;
             CounterRange.SetActive(true);
             defend = true;
-           // Debug.Log("Defend");
         }
         if (Input.GetKeyUp(KeyCode.S) )
         {
             defend = false;
-           // Debug.Log("Break");
         }
     }
     public void GoRight()

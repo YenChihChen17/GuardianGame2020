@@ -319,9 +319,9 @@ MonoBehaviour:
   target: {fileID: 8070064116297325501}
   AttackPos: {fileID: 8070064117708934381}
   CounterPos: {fileID: 3554582964892388373}
-  speed: 12
+  speed: 8
   hurtX: 15
-  defendX: 8
+  defendX: 10
   AttackRange: {fileID: 8070064118183750298}
   CounterRange: {fileID: 2477915300630476051}
   AtkTime: 1
@@ -330,8 +330,8 @@ MonoBehaviour:
   FallMutilpe: 2.5
   LowJumpMutilpe: 1
   JumpVelocity: 7
-  acceleration: 2
-  deceleration: 3
+  acceleration: 3.5
+  deceleration: 5
   attack: 0
 --- !u!1 &8070064117708934380
 GameObject:

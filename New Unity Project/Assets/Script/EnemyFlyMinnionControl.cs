@@ -60,14 +60,15 @@ public class EnemyFlyMinnionControl : MonoBehaviour
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
                 PlayerControl.AttackEnemy = true;
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-10, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-3, 0, 0), ForceMode.Impulse);
             }
             else
             {
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(10, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(3, 0, 0), ForceMode.Impulse);
                 PlayerControl.AttackEnemy = true;
             }
         }
+
         if (PW.gameObject.tag == "Home")
         {
             Destroy(this.gameObject);

@@ -100,13 +100,7 @@ public class EnemyControl : MonoBehaviour
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
                 PlayerControl.AttackEnemy = true;
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-5, 0, 0), ForceMode.Impulse);
-            }
-            else
-            {
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(
-                    5, 0, 0), ForceMode.Impulse);
-                PlayerControl.AttackEnemy = true;
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-10, 0, 0), ForceMode.Impulse);
             }
         }
         if (PW.gameObject.tag == "Counter" && attack == true )
@@ -122,7 +116,5 @@ public class EnemyControl : MonoBehaviour
             Debug.Log("Hit");
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }
-
     }
-
 }
