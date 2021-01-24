@@ -285,7 +285,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -319,7 +319,8 @@ MonoBehaviour:
   target: {fileID: 8070064116297325501}
   AttackPos: {fileID: 8070064117708934381}
   CounterPos: {fileID: 3554582964892388373}
-  speed: 8
+  speed: 10
+  SpeedX: 5
   hurtX: 15
   defendX: 10
   AttackRange: {fileID: 8070064118183750298}

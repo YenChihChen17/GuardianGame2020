@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     public Transform AttackPos;
     public Transform CounterPos;
     public float speed;
+    public float SpeedX; // 起始速度
     public float hurtX;
     public float defendX;
     public GameObject AttackRange;
@@ -31,14 +32,12 @@ public class PlayerControl : MonoBehaviour
     private bool defend;
     private bool counter;
     private bool attack_timer;
-    private float SpeedX;
+
     private float SpeedY;
     private bool GameStart;
     private bool EnemyPos;
     private bool Right;
     private bool Left;
-    private bool FaceLeft;
-  //  private Vector3 X;
    // Start is called before the first frame update
     void Start()
     {
@@ -207,7 +206,6 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             can_j = true;
-            hurt = false;
             GameStart = true;
             SpeedY = 0;
         }
