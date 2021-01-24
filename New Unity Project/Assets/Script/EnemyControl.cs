@@ -4,38 +4,34 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public GameObject Home;
     public GameObject weapon;
-    public GameObject Player;
-    public GameObject Enemy;
     public float speed;
     public float StopPos;
     public float AttackedCoolDown;
     public float CounteredTime;
     public float HitHomeCoolDown;
     public float hitF;
+    public float AttackPrepareTime;
+    public float DistanceBetween;
 
     private float timer;
-    private float cooldown;
-    private float attackcool;
     private bool attacked;
     private bool attack;
     private bool HitHome;
-    private float PosX;
     private bool counter;
     private float CounteredTimeP;
     private float HitTimer;
+    private bool PlayerNearBy;
+    private float Distance;
 
     public float stop_t;
-    public GameObject PopUpDamage;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject Home = GameObject.Find("Home");
         counter = false;
         attack = false;
         attacked = false;
-        cooldown = AttackedCoolDown;
-        attackcool = 0.5f;
         CounteredTimeP = CounteredTime;
         HitHome = false;
         HitTimer = HitHomeCoolDown;
@@ -44,30 +40,22 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-       // PosX = this.transform.position.x - Home.transform.position.x; // 計算與家的距離
+        if(GameObject.Find("Player")==true)
+        {
+            GameObject Player = GameObject.Find("Player");
+            Distance = this.transform.position.x - Player.transform.position.x;
+        }
 
-        if (attack == false)// Boss攻擊控制
+        if (Distance <= DistanceBetween)
         {
-            cooldown -= Time.deltaTime;
-            if (cooldown <= 0)
-            {
-                Attack();
-                cooldown = AttackedCoolDown;
-            }
+            PlayerNearBy = true;
         }
-        else if(attack == true && counter == false) // Boss攻擊控制
+        else if (Distance > DistanceBetween)
         {
-            attackcool -= Time.deltaTime;
-            if (attackcool <= 0)///攻擊重置
-            {
-                weapon.transform.Rotate(new Vector3(0, 0, -90));
-                attackcool = 1f;
-                attack = false;
-            }
+            PlayerNearBy = false;
         }
-     
-        if (attacked == false && counter == false && HitHome == false ) // Boss 移動控制
+
+        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && attack == false ) // Boss 移動控制
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
         }
@@ -93,8 +81,8 @@ public class EnemyControl : MonoBehaviour
 
         if (attacked == true) // 被攻擊計時器
         {
-            cooldown = AttackedCoolDown;
-            if (timer >=stop_t )
+            timer += Time.deltaTime;
+            if (timer >= stop_t )
             {
                 attacked = false;
             }
@@ -105,8 +93,6 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
             GameObject Player = GameObject.Find("Player");
-            /*GameObject mObject = (GameObject)Instantiate(PopUpDamage, transform.position + new Vector3 (Random.Range(-1,2),2,0), Quaternion.identity);//產生傷害數字
-            mObject.GetComponent<Damage>().Value = GameManeger.Damage_P;*/
             attacked = true;
             timer = 0;
             GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
@@ -132,15 +118,11 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Home")
         {
             HitHome = true;
-            Enemy.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
             Debug.Log("Hit");
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }
 
     }
-    private void Attack()
-    {
-        weapon.transform.Rotate(new Vector3(0, 0, 90));
-        attack = true;
-    }
+
 }

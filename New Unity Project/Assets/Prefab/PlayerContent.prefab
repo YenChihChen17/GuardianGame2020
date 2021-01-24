@@ -319,12 +319,12 @@ MonoBehaviour:
   target: {fileID: 8070064116297325501}
   AttackPos: {fileID: 8070064117708934381}
   CounterPos: {fileID: 3554582964892388373}
-  speed: 5
+  speed: 12
   hurtX: 15
   defendX: 8
   AttackRange: {fileID: 8070064118183750298}
   CounterRange: {fileID: 2477915300630476051}
-  AtkTime: 0.5
+  AtkTime: 1
   HurtTime: 0.5
   CounterTime: 0.2
   FallMutilpe: 2.5

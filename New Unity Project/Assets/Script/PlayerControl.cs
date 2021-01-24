@@ -30,13 +30,14 @@ public class PlayerControl : MonoBehaviour
     public bool attack;
     private bool defend;
     private bool counter;
-    private bool TurnAround; /// 判斷方向
+    private bool attack_timer;
     private float SpeedX;
     private float SpeedY;
     private bool GameStart;
     private bool EnemyPos;
     private bool Right;
     private bool Left;
+    private bool FaceLeft;
   //  private Vector3 X;
    // Start is called before the first frame update
     void Start()
@@ -46,7 +47,7 @@ public class PlayerControl : MonoBehaviour
         attack = false;
         defend = false;
         GameStart = false;
-        TurnAround = true;
+        attack_timer = false;
         CounterRange.SetActive(false);
         AttackRange.SetActive(false);
         rig =this. GetComponent<Rigidbody>();
@@ -59,22 +60,16 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CounterPos.transform.position = this.transform.position;
+        AttackPos.transform.position = this.transform.position;
+
         Ray ray = new Ray(transform.position, transform.right); 
         RaycastHit hit;
         Move();
         Attack();
         Defend();
-        /*if(a_timer >= 0.2)// 攻擊判定存在時間
-        {
-            AttackRange.SetActive(false);
-        }*/
-        if (a_timer >= AtkTime && attack == true)//攻擊冷卻時間
-        {
-            attack = false;
-            AttackEnemy = false;
-        }
 
-        if(hurt == true) // 受傷判定
+        if(hurt == true) // 受傷判定冷卻
         {
             b_timer += Time.deltaTime;
             if (b_timer >= HurtTime && rig.velocity.x == 0f)
@@ -91,18 +86,16 @@ public class PlayerControl : MonoBehaviour
                 counter = false;
             }
         }
-        CounterPos.transform.position = this.transform.position;
-        AttackPos.transform.position = this.transform.position;
 
         if (GameStart == true && hurt == false && AttackEnemy == false) // 移動時速度控制
         {
             rig.velocity = new Vector3(SpeedX, SpeedY, 0);
         }
 
-        if (Physics.Raycast(ray, out hit, 100.0f)) // 偵測防禦方向是否正確
+        if (Physics.Raycast(ray, out hit)) // 偵測防禦方向是否正確
         {
             // 如果與物體發生碰撞，在Scene檢視中繪製射線  
-           //Debug.DrawLine(ray.origin, hit.point, Color.red);
+            Debug.DrawLine(ray.origin, hit.point, Color.red);
             // 列印射線檢測到的物體的名稱  
             //Debug.Log( hit.transform.name);
             if(hit.collider.tag == "Enemy")
@@ -114,75 +107,69 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
-        //Debug.Log(EnemyPos);
+        Debug.Log(a_timer);
     }
 
     private void Move() // 移動跳躍
     {
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && hurt == false && defend == false ) ///給予加速度
+        if (Input.GetKey(KeyCode.RightArrow) && defend == false && attack_timer == false && hurt == false) //控制角色方向
         {
-          SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+            if (SpeedX < 0)
+            {
+                SpeedX = SpeedX * -1;
+                speed = speed * -1;
+                target.transform.Rotate(new Vector3(0, 180, 0));
+                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            }
+            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
-        if ((Right == true || Left == true) && hurt == false && defend == false) ///給予加速度, 虛擬搖桿操控
+        else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && attack_timer == false && hurt == false)//控制角色方向
         {
+
+            if (SpeedX > 0)
+            {
+                SpeedX = SpeedX * -1;
+                speed = speed * -1;
+                target.transform.Rotate(new Vector3(0, 180, 0));
+                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+            }
             SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) && TurnAround == false && defend == false) //控制角色方向
+        if (Right == true  && defend == false && attack_timer == false && hurt == false) //控制角色方向, 虛擬搖桿操控
         {
-            target.transform.Rotate(new Vector3(0, 180, 0));
-            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-            TurnAround = true;
             if (SpeedX < 0)
             {
                 SpeedX = SpeedX * -1;
                 speed = speed * -1;
+                target.transform.Rotate(new Vector3(0, 180, 0));
+                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
             }
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && TurnAround == true && defend == false)//控制角色方向
-        {
-            target.transform.Rotate(new Vector3(0, 180, 0));
-            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-            TurnAround = false;
-            if (SpeedX > 0)
-            {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-            }
+            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+
         }
 
-        if (Right == true && TurnAround == false && defend == false) //控制角色方向, 虛擬搖桿操控
+        else if (Left == true && defend == false && attack_timer == false && hurt == false)//控制角色方向
         {
-            target.transform.Rotate(new Vector3(0, 180, 0));
-            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-            TurnAround = true;
-            if (SpeedX < 0)
-            {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-            }
-        }
-        
-        else if (Left == true && TurnAround == true && defend == false)//控制角色方向
-        {
-            target.transform.Rotate(new Vector3(0, 180, 0));
-            AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-            CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-            TurnAround = false;
             if (SpeedX > 0)
             {
                 SpeedX = SpeedX * -1;
                 speed = speed * -1;
+                target.transform.Rotate(new Vector3(0, 180, 0));
+                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
             }
+            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
         }
 
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) >0 && can_j == true && hurt == false) //放開控制鍵後減速
         {
             SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime *deceleration);
         }
+
         if (Right == false && Left == false && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
         {
             SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
@@ -255,12 +242,21 @@ public class PlayerControl : MonoBehaviour
     public void Attack()
     {
         a_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false)
+        if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false && attack_timer == false)
         {
             SpeedX = 0;
-            //AttackRange.SetActive(true);
             attack = true;
             a_timer = 0;
+            attack_timer = true;
+        }
+        if(a_timer >= 0.5)
+        {
+            attack = false;
+        }    
+        if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
+        {
+            AttackEnemy = false;
+            attack_timer = false;
         }
     }
     private void Defend() 
@@ -284,18 +280,18 @@ public class PlayerControl : MonoBehaviour
     {
         Left = false;
         Right = true;
-        Debug.Log("Right");
+       // Debug.Log("Right");
     }
     public void GoLeft()
     {
         Right = false;
         Left = true;
-        Debug.Log("Left");
+       // Debug.Log("Left");
     }
     public void Stop()
     {
         Right = false;
         Left = false;
-        Debug.Log("Stop");
+       // Debug.Log("Stop");
     }
 }

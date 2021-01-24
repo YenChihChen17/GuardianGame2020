@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Home
   - Counter
+  - Wall
   layers:
   - Default
   - TransparentFX
