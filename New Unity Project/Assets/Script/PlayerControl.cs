@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     public float acceleration;
     public float deceleration;
     public static bool AttackEnemy;
+    public bool KeyBoard;
 
     private float a_timer;
     private float b_timer;
@@ -88,7 +89,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (GameStart == true && hurt == false && AttackEnemy == false) // 移動速度控制
+        if (GameStart == true && hurt == false && AttackEnemy == false && GameManeger.PlayerHP >0) // 移動速度控制
         {
             rig.velocity = new Vector3(SpeedX, SpeedY, 0);
         }
@@ -108,79 +109,88 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
+       // Debug.Log(this.GetComponent<Rigidbody>().velocity);
     }
 
     private void Move() // 移動跳躍
     {
-        if (Input.GetKey(KeyCode.RightArrow) && defend == false && attack_timer == false && hurt == false) //控制角色方向
+        
+        if(KeyBoard == true)
         {
-            if (SpeedX < 0)
+            #region 鍵盤操控
+            if (Input.GetKey(KeyCode.RightArrow) && defend == false && attack_timer == false && hurt == false) //控制角色方向
             {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                if (SpeedX < 0)
+                {
+                    SpeedX = SpeedX * -1;
+                    speed = speed * -1;
+                    target.transform.Rotate(new Vector3(0, 180, 0));
+                    AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                    CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                }
+                SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
             }
-            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && attack_timer == false && hurt == false)//控制角色方向
-        {
-
-            if (SpeedX > 0)
+            else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && attack_timer == false && hurt == false)//控制角色方向
             {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
-            }
-            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
-        }
 
-        if (Right == true  && defend == false && attack_timer == false && hurt == false) //控制角色方向, 虛擬搖桿操控
-        {
-            if (SpeedX < 0)
+                if (SpeedX > 0)
+                {
+                    SpeedX = SpeedX * -1;
+                    speed = speed * -1;
+                    target.transform.Rotate(new Vector3(0, 180, 0));
+                    AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                    CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                }
+                SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+            }
+
+            if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
             {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
             }
-            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
-
+            #endregion
         }
-
-        else if (Left == true && defend == false && attack_timer == false && hurt == false)//控制角色方向
+        else
         {
-            if (SpeedX > 0)
+            #region 虛擬鍵盤操控
+            if (Right == true && defend == false && attack_timer == false && hurt == false) //控制角色方向, 虛擬搖桿操控
             {
-                SpeedX = SpeedX * -1;
-                speed = speed * -1;
-                target.transform.Rotate(new Vector3(0, 180, 0));
-                AttackPos.transform.Rotate(new Vector3(0, 180, 0));
-                CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                if (SpeedX < 0)
+                {
+                    SpeedX = SpeedX * -1;
+                    speed = speed * -1;
+                    target.transform.Rotate(new Vector3(0, 180, 0));
+                    AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                    CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                }
+                SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+
             }
-            SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
-        }
+            else if (Left == true && defend == false && attack_timer == false && hurt == false)//控制角色方向
+            {
+                if (SpeedX > 0)
+                {
+                    SpeedX = SpeedX * -1;
+                    speed = speed * -1;
+                    target.transform.Rotate(new Vector3(0, 180, 0));
+                    AttackPos.transform.Rotate(new Vector3(0, 180, 0));
+                    CounterPos.transform.Rotate(new Vector3(0, 180, 0));
+                }
+                SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+            }
 
-        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) >0 && can_j == true && hurt == false) //放開控制鍵後減速
-        {
-            SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime *deceleration);
-        }
-
-        if (Right == false && Left == false && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
-        {
-            SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
+            if (Right == false && Left == false && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
+            {
+                SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
+            }
+            #endregion
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
-         {
+        {
              SpeedY = JumpVelocity;
-         }
-
-        if (can_j == false) //落下加速
+        }
+        else if (can_j == false) //落下加速
         {
             if (SpeedY != 0)
             {

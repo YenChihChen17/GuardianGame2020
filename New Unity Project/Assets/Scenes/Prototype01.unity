@@ -695,13 +695,10 @@ MonoBehaviour:
     type: 3}
   RebornT: 2
   CloneNum: 3
-  Waves:
-  - 1
-  - 1
-  - 1
-  Fly: 000100
-  BossBornTimer: 15
-  Player_HP: 25
+  Waves: []
+  Fly: 
+  BossBornTimer: 10
+  Player_HP: 5
   Enemy_HP: 100
   Player_Damage: 10
   Enemy_Damage: 5

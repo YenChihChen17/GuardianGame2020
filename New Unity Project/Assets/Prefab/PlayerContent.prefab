@@ -319,20 +319,21 @@ MonoBehaviour:
   target: {fileID: 8070064116297325501}
   AttackPos: {fileID: 8070064117708934381}
   CounterPos: {fileID: 3554582964892388373}
-  speed: 10
-  SpeedX: 5
+  speed: 5
+  SpeedX: 2
   hurtX: 15
   defendX: 10
   AttackRange: {fileID: 8070064118183750298}
   CounterRange: {fileID: 2477915300630476051}
-  AtkTime: 1
+  AtkTime: 0.9
   HurtTime: 0.5
   CounterTime: 0.2
   FallMutilpe: 2.5
   LowJumpMutilpe: 1
-  JumpVelocity: 7
-  acceleration: 3.5
+  JumpVelocity: 8
+  acceleration: 3
   deceleration: 5
+  KeyBoard: 1
   attack: 0
 --- !u!1 &8070064117708934380
 GameObject:

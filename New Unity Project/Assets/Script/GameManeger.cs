@@ -73,7 +73,7 @@ public class GameManeger : MonoBehaviour
         if (PlayerHP <= 0 && CloneNum >=0) 
         {
             
-                Destroy(GameObject.Find("PlayerContent(Clone)"));
+                Destroy(GameObject.Find("PlayerContent(Clone)"),1);
 
             timer += Time.deltaTime;
             if (CloneNum>0)
