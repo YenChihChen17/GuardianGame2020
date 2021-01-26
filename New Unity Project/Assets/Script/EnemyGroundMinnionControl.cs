@@ -6,14 +6,14 @@ public class EnemyGroundMinnionControl : MonoBehaviour
 {
     public float speed;
 
-    private int HP;
+    //private int HP; sonic changed:抓不到生命值
     private bool Dead;
 
     // Start is called before the first frame update
     void Start()
     {
         Dead = false;
-        HP = GameManeger.MinnionHP;
+        //HP = GameManeger.MinnionHP;sonic changed:抓不到生命值
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
         }
         
-        if (HP<=0)
+        if (GameManeger.MinnionHP<=0) //sonic changed:抓不到生命值
         {
             Destroy(GetComponent<Collider>());
             Destroy(this.gameObject,3);
@@ -37,7 +37,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" )
         {
             GameObject Player = GameObject.Find("Player");
-            HP = HP - GameManeger.Damage_P;
+            GameManeger.MinnionHP = GameManeger.MinnionHP - GameManeger.Damage_P;
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
                 PlayerControl.AttackEnemy = true;
