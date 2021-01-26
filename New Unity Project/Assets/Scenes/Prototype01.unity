@@ -387,7 +387,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 25}
+  m_SizeDelta: {x: 320, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326798932
 MonoBehaviour:
@@ -698,7 +698,7 @@ MonoBehaviour:
   Waves: []
   Fly: 
   BossBornTimer: 10
-  Player_HP: 5
+  Player_HP: 25
   Enemy_HP: 100
   Player_Damage: 10
   Enemy_Damage: 5
@@ -1286,7 +1286,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 25}
+  m_SizeDelta: {x: 320, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495292378
 MonoBehaviour:
@@ -2031,7 +2031,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -276.4, y: 200}
-  m_SizeDelta: {x: 309.22766, y: 12.995636}
+  m_SizeDelta: {x: 320, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2129510065
 MonoBehaviour:
