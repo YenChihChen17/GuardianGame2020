@@ -10,6 +10,8 @@ public class GameManeger : MonoBehaviour
     static public int Damage_E ;
     static public int HomeHP;
     static public int MinnionHP;
+    static public int PlayerMana;//Sonic add
+    static public int ManaConsume;//Sonic add 魔力消耗
 
     public GameObject PlayerClone;
     public GameObject Enemy;
@@ -33,6 +35,8 @@ public class GameManeger : MonoBehaviour
     public int Enemy_Damage;
     public int Home_HP;
     public int Minnion_HP;
+    public int Player_Mana;//Sonic add
+    public int Mana_consume;// 魔力消耗
 
     private float timer;
     private bool Born;
@@ -44,6 +48,8 @@ public class GameManeger : MonoBehaviour
     void Awake()
     {
         PlayerHP = Player_HP;
+        PlayerMana = Player_Mana;// Sonic add
+        ManaConsume = Mana_consume;//Sonic Add
         EnemyHP = Enemy_HP;
         HomeHP = Home_HP;
         Damage_P = Player_Damage;
@@ -102,6 +108,11 @@ public class GameManeger : MonoBehaviour
         if(HomeHP<=0)
         {
             Destroy(Home);
+        }
+        if (PlayerMana <= 0)//SOnic add 待補=0時的反應
+        {
+            Destroy(Home);
+
         }
     }
     private void InstantiateMinnion()

@@ -280,11 +280,14 @@ public class PlayerControl : MonoBehaviour
             counter = true;
             CounterRange.SetActive(true);
             defend = true;
+            GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
         }
         if (Input.GetKeyUp(KeyCode.S) )
         {
             defend = false;
         }
+
+
     }
     public void GoRight()
     {
