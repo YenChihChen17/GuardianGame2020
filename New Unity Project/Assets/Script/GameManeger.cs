@@ -109,11 +109,7 @@ public class GameManeger : MonoBehaviour
         {
             Destroy(Home);
         }
-        if (PlayerMana <= 0)//SOnic add 待補=0時的反應
-        {
-            Destroy(Home);
-
-        }
+       
     }
     private void InstantiateMinnion()
     {
