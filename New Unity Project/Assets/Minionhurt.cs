@@ -14,6 +14,6 @@ public class Minionhurt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3(800 * ((float)GameManeger.MinnionHP / (float)FullHP) - 800, 0, 0);
+        this.transform.localPosition = new Vector3(800 * ((float)this.GetComponentInParent<EnemyGroundMinnionControl>().HP / (float)FullHP) - 800, 0, 0) ;
     }
 }

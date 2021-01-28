@@ -42,7 +42,7 @@ public class EnemyControl : MonoBehaviour
     {
         if(GameObject.Find("Player")==true)
         {
-            GameObject Player = GameObject.Find("Player");
+            GameObject Player = GameObject.FindWithTag("Player");
             Distance = this.transform.position.x - Player.transform.position.x;
         }
 
