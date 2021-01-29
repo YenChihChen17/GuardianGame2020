@@ -5,14 +5,13 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public GameObject weapon;
-    public float speed;
-    public float StopPos;
-    public float AttackedCoolDown;
+    public float MoveSpeed;
     public float CounteredTime;
     public float HitHomeCoolDown;
     public float hitF;
-    public float AttackPrepareTime;
     public float DistanceBetween;
+    public float PrepareScale;
+    public int AttackSpeedScale;
 
     private float timer;
     private bool attacked;
@@ -23,6 +22,9 @@ public class EnemyControl : MonoBehaviour
     private float HitTimer;
     private bool PlayerNearBy;
     private float Distance;
+    private float s;
+    private int i;
+    private bool DoAttack;
 
     public float stop_t;
     // Start is called before the first frame update
@@ -30,17 +32,20 @@ public class EnemyControl : MonoBehaviour
     {
         GameObject Home = GameObject.Find("Home");
         counter = false;
-        attack = false;
+        attack = true;
         attacked = false;
         CounteredTimeP = CounteredTime;
         HitHome = false;
         HitTimer = HitHomeCoolDown;
+        s = 0;
+        i = 1;
+        DoAttack = false;
     }
     
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find("Player")==true)
+        if(GameObject.FindWithTag("Player")==true)
         {
             GameObject Player = GameObject.FindWithTag("Player");
             Distance = this.transform.position.x - Player.transform.position.x;
@@ -49,15 +54,16 @@ public class EnemyControl : MonoBehaviour
         if (Distance <= DistanceBetween)
         {
             PlayerNearBy = true;
+            DoAttack = true;
         }
         else if (Distance > DistanceBetween)
         {
             PlayerNearBy = false;
         }
 
-        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && attack == false ) // Boss 移動控制
+        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false) // Boss 移動控制
         {
-            transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
+            transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
         }
         else if (counter == true)//Boss 被反擊時
         {
@@ -87,7 +93,9 @@ public class EnemyControl : MonoBehaviour
                 attacked = false;
             }
         }
+        Attack();
     }
+
     private void OnTriggerEnter(Collider PW)
     {
         if (PW.gameObject.tag == "Weapon" && attacked == false)
@@ -116,5 +124,38 @@ public class EnemyControl : MonoBehaviour
             Debug.Log("Hit");
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }
+    }
+
+    void Attack()
+    {
+        if(DoAttack == true)
+        {
+            if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 250)&& attack == true)
+            {
+                weapon.transform.Rotate(Vector3.forward * Time.deltaTime * i);
+                if (weapon.transform.eulerAngles.z > 90 && weapon.transform.eulerAngles.z <95)
+                {
+                    attack = false;
+                }
+            }
+            else if (attack == false)
+            {
+                weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
+                if (weapon.transform.eulerAngles.z > 300 && weapon.transform.eulerAngles.z < 305)
+                {
+                    DoAttack = false;
+                    attack = true;
+                }
+            }
+            s += Time.deltaTime;
+            if (s >= 0.2 && i < 150)
+            {
+                 i = i * AttackSpeedScale;
+                 s = 0;
+            }
+
+        }
+        
+       // Debug.Log(weapon.transform.eulerAngles.z);
     }
 }
