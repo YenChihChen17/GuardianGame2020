@@ -30,7 +30,7 @@ public class CameraControl : MonoBehaviour
 
         Vector3 position = this.transform.position;
         position.x = Mathf.Lerp(this.transform.position.x, target.transform.position.x, smooth * Time.deltaTime);
-        position.y = Mathf.Lerp(this.transform.position.y, target.transform.position.y+2, smooth * Time.deltaTime);
+        position.y = Mathf.Lerp(this.transform.position.y, target.transform.position.y+1, smooth * Time.deltaTime);
         this.transform.position = position;
     }
 }
