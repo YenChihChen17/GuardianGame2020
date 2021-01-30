@@ -842,19 +842,30 @@ MonoBehaviour:
   Boss: {fileID: 4852082575655278418, guid: 7258c8c04855f0d4eb8a68cca446b22e, type: 3}
   FlyMinnion: {fileID: 8632207965862573613, guid: 12b1c7d2fb9141e488cbf6eaf09c6072,
     type: 3}
-  RebornT: 2
-  CloneNum: 3
-  Waves: []
-  Fly: 
-  BossBornTimer: 600
-  Player_HP: 25
-  Enemy_HP: 100
-  Player_Damage: 10
-  Enemy_Damage: 5
-  Home_HP: 20
-  Minnion_HP: 10
-  Player_Mana: 15
-  Mana_consume: 5
+  BreakTime: 5
+  Waves: 2
+  BossBornTimer: 8
+  minionWaves:
+  - seconds:
+    - 1
+    - 1
+    type: 0000000001000000
+  - seconds:
+    - 1
+    - 1
+    type: 0000000000000000
+  playerSetting:
+    Player_HP: 20
+    Player_Damage: 5
+    Player_Mana: 0
+    CloneNum: 3
+    RebornT: 5
+    Mana_consume: 0
+    Home_HP: 50
+  enemySetting:
+    Enemy_HP: 50
+    Enemy_Damage: 10
+    Minnion_HP: 5
 --- !u!4 &816135962
 Transform:
   m_ObjectHideFlags: 0
