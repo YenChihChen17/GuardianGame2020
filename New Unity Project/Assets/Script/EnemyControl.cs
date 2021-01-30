@@ -27,8 +27,6 @@ public class EnemyControl : MonoBehaviour
     private bool DoAttack;
 
     public float stop_t;
-
-    public GameObject bullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,10 +94,6 @@ public class EnemyControl : MonoBehaviour
             }
         }
         Attack();
-
-        //簡易嘴砲
-        bullet.transform.position += new Vector3(-0.1f, 0f, 0f);
-        
     }
 
     private void OnTriggerEnter(Collider PW)
