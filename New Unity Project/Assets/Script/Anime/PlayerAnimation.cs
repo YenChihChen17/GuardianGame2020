@@ -8,18 +8,16 @@ public class PlayerAnimation : MonoBehaviour
     public GameObject player;
     bool atk;
     public GameObject Attackrange;
-
     private bool Attacking;
     // Start is called before the first frame update
     void Start()
     {
-        p_animator = this.transform.GetComponent<Animator>();       
+        p_animator = this.transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         #region 角色攻擊動畫
         atk = player.GetComponent<PlayerControl>().attack;
         if (atk==true)

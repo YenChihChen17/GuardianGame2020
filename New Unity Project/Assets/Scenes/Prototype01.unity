@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 167225587}
   - component: {fileID: 167225589}
   - component: {fileID: 167225588}
+  - component: {fileID: 167225590}
   m_Layer: 5
   m_Name: Heart(Bar)
   m_TagString: Untagged
@@ -273,6 +274,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167225586}
   m_CullTransparentMesh: 0
+--- !u!95 &167225590
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167225586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdc5c775c8bfb4f058c6b60ae7d38bb3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &175103478
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +833,7 @@ GameObject:
   - component: {fileID: 816135961}
   m_Layer: 0
   m_Name: GameManeger
-  m_TagString: Untagged
+  m_TagString: GameManeger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2803,6 +2823,7 @@ GameObject:
   - component: {fileID: 2129510067}
   - component: {fileID: 2129510066}
   - component: {fileID: 2129510065}
+  - component: {fileID: 2129510068}
   m_Layer: 5
   m_Name: 'Player_Health_Bar '
   m_TagString: Untagged
@@ -2881,3 +2902,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129510063}
   m_CullTransparentMesh: 1
+--- !u!114 &2129510068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129510063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e18f3eb8e1fb4385ae689cdec91f8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_HPbar: {fileID: 167225586}
+  HPlimit: 0
