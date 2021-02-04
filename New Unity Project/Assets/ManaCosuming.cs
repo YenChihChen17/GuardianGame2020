@@ -16,5 +16,6 @@ public class ManaCosuming : MonoBehaviour
     {
         this.transform.localPosition = new Vector3(320 * ((float)GameManeger.PlayerMana / (float)FullHP) - 320, 0, 0);
     }
+
 }
 

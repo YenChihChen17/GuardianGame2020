@@ -12,6 +12,7 @@ public class GameManeger : MonoBehaviour
     static public int MinnionHP;
     static public int PlayerMana;//Sonic add
     static public int ManaConsume;//Sonic add 魔力消耗
+    static public bool KeyBoardControl;
 
     public GameObject PlayerClone;
     public GameObject Enemy;
@@ -26,6 +27,7 @@ public class GameManeger : MonoBehaviour
     public float BreakTime;
     public int Waves;
     public float BossBornTimer;
+    public bool KeyBoard;
 
     private float timer;
     private float wavetimer;
@@ -68,6 +70,7 @@ public class GameManeger : MonoBehaviour
 
     void Awake()
     {
+        KeyBoardControl = KeyBoard;
         wavetimer = 0;
         i = 0;
         PlayerHP = playerSetting.Player_HP;

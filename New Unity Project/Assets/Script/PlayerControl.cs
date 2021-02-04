@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     public float acceleration;
     public float deceleration;
     public static bool AttackEnemy;
-    public bool KeyBoard;
+    private bool KeyBoard;
 
     private float a_timer;
     private float b_timer;
@@ -39,9 +39,13 @@ public class PlayerControl : MonoBehaviour
     private bool EnemyPos;
     private bool Right;
     private bool Left;
+    private bool Jump;
+    private bool DoAtk;
+    private bool DoDf;
    // Start is called before the first frame update
     void Start()
     {
+        KeyBoard = GameManeger.KeyBoardControl;
         can_j = false;
         hurt = false;
         attack = false;
@@ -54,6 +58,8 @@ public class PlayerControl : MonoBehaviour
         AttackEnemy = false;
         Right = false;
         Left = false;
+        DoAtk = false;
+        DoDf = false;
 
     }
 
@@ -148,6 +154,22 @@ public class PlayerControl : MonoBehaviour
             {
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
             }
+            if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
+            {
+                SpeedY = JumpVelocity;
+            }
+            else if (can_j == false) //落下加速
+            {
+                if (SpeedY != 0)
+                {
+                    SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                }
+                /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
+                 {
+                     rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
+                 }*/
+            }
+
             #endregion
         }
         else
@@ -183,23 +205,24 @@ public class PlayerControl : MonoBehaviour
             {
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
             }
-            #endregion
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
-        {
-             SpeedY = JumpVelocity;
-        }
-        else if (can_j == false) //落下加速
-        {
-            if (SpeedY != 0)
+            if (Jump == true && can_j == true && defend == false) // 跳躍
             {
-                SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                SpeedY = JumpVelocity;
             }
-           /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
+            else if (can_j == false) //落下加速
             {
-                rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
-            }*/
+                Jump = false;
+                if (SpeedY != 0)
+                {
+                    SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                }
+                /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
+                 {
+                     rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
+                 }*/
+            }
+            #endregion
         }
     }
     
@@ -261,14 +284,24 @@ public class PlayerControl : MonoBehaviour
             a_timer = 0;
             attack_timer = true;
         }
+        else if(DoAtk && attack == false && defend == false && attack_timer == false)
+        {
+            SpeedX = 0;
+            attack = true;
+            a_timer = 0;
+            attack_timer = true;
+        }
+
         if(a_timer >= 0.5)
         {
             attack = false;
-        }    
+        }
+        
         if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
             AttackEnemy = false;
             attack_timer = false;
+            DoAtk = false;
         }
     }
     private void Defend() 
@@ -282,13 +315,27 @@ public class PlayerControl : MonoBehaviour
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
         }
+        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true)
+        {
+            SpeedX = 0;
+            b_timer = 0;
+            counter = true;
+            CounterRange.SetActive(true);
+            defend = true;
+            GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
+        }
+
         if (Input.GetKeyUp(KeyCode.S) )
         {
             defend = false;
         }
-
+        else if (DoDf == false)
+        {
+            defend = false;
+        }
 
     }
+
     public void GoRight()
     {
         Left = false;
@@ -301,10 +348,31 @@ public class PlayerControl : MonoBehaviour
         Left = true;
        // Debug.Log("Left");
     }
-    public void Stop()
+    public void StopRight()
     {
         Right = false;
-        Left = false;
        // Debug.Log("Stop");
+    }
+    public void StopLeft()
+    {
+        Left = false;
+        // Debug.Log("Stop");
+    }
+    public void DoJump()
+    {
+        Jump = true;
+        // Debug.Log("Left");
+    }
+    public void DoAttack()
+    {
+        DoAtk = true;
+    }
+    public void DoDefend()
+    {
+        DoDf = true;
+    }
+    public void ResetDefend()
+    {
+        DoDf = false;
     }
 }
