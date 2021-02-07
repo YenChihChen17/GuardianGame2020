@@ -9,7 +9,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
     public float hitF;
     public GameObject Whole;
 
-    private int HP;
+    public int HP;
     private bool Dead;
     private int up;
     private float timer;

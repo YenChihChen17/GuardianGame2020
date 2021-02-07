@@ -26,11 +26,17 @@ public class GameManeger : MonoBehaviour
     public GameObject Boss;
     public GameObject FlyMinnion;
     public GameObject Wave;
+    public GameObject YouWin;
+    [Header("波數間的時間間隔")]
     public float BreakTime;
+    [Header("Boss 前的時間間隔")]
+    public float BossBornTimer;
+    [Header("切換虛擬鍵盤操作")]
+    public bool KeyBoard;
+    [Header("是否為Boss關")]
+    public bool isBossStage;
     [Header("記得這裡要填符合MinionWveas 中的波數")]
     public int Waves;
-    public float BossBornTimer;
-    public bool KeyBoard;
 
     private float timer;
     private float wavetimer;
@@ -103,13 +109,15 @@ public class GameManeger : MonoBehaviour
         */
         Wave.GetComponent<Text>().text = "Wave 1";
         Wave.SetActive(true);
+        YouWin.SetActive(false);
+        YouDied.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
         InstantiateMinnion();
 
-        if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false)
+        if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false && isBossStage)
         {
             Wave.SetActive(true);
             Wave.GetComponent<Text>().text = "Warning";
@@ -122,6 +130,10 @@ public class GameManeger : MonoBehaviour
                 Instantiate(Boss, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
                 BossTime = false;
             }
+        }
+        else if (Run == false && BossTime == true && isBossStage == false && GameObject.FindWithTag("Enemy") == false)
+        {
+            YouWin.SetActive(true);
         }
 
         if (PlayerHP <= 0 && playerSetting.CloneNum >=0) 
@@ -156,6 +168,10 @@ public class GameManeger : MonoBehaviour
         if(HomeHP<=0)
         {
             Destroy(Home);
+        }
+        else if(EnemyHP<=0)
+        {
+            YouWin.SetActive(true);
         }
 
         if(GameObject.FindWithTag("Enemy"))
