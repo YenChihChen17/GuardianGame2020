@@ -563,4 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  hitF: 1
+  Whole: {fileID: 4852082575655278418}
   HP: 0

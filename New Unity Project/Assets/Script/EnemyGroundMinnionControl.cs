@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyGroundMinnionControl : MonoBehaviour
 {
     public float speed;
+    public float hitF;
+    public GameObject Whole;
 
     //private int HP; sonic changed:抓不到生命值
     private bool Dead;
@@ -28,7 +30,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
         if (HP<=0) //sonic changed:抓不到生命值
         {
             Destroy(GetComponent<Collider>());
-            Destroy(this.gameObject,3);
+            Destroy(Whole.gameObject,1);
             Dead = true;
         }
         //Debug.Log(HP);
@@ -43,11 +45,11 @@ public class EnemyGroundMinnionControl : MonoBehaviour
             if (this.transform.position.x - Player.transform.position.x >= 0)//受攻擊給玩家反作用力
             {
                 PlayerControl.AttackEnemy = true;
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-6, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-hitF, 0, 0), ForceMode.Impulse);
             }
             else
             {
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(6, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
                 PlayerControl.AttackEnemy = true;
             }
         }

@@ -249,7 +249,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846575526473565916}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -661,13 +661,13 @@ Rigidbody:
   m_GameObject: {fileID: 4852082575655278418}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 36
+  m_CollisionDetection: 1
 --- !u!114 &1621925529317925039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,14 +681,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3010825777864615271}
-  MoveSpeed: 1
+  Home: {fileID: 0}
+  MoveSpeed: 2
   CounteredTime: 2
   HitHomeCoolDown: 3
-  hitF: 2
-  DistanceBetween: 6
+  hitF: 5
+  DistanceBetweenPlayer: 5
+  DistanceBetweenHome: 6
   PrepareScale: 35
-  AttackSpeedScale: 10
-  stop_t: 3
+  AttackSpeedScale: 6
+  HitHome: 0
+  counter: 0
+  stop_t: 0.5
   bullet: {fileID: 1846575526473565916}
 --- !u!1 &5556582011242421867
 GameObject:
@@ -702,6 +706,7 @@ GameObject:
   - component: {fileID: 8678220980779481120}
   - component: {fileID: 5648908610331214942}
   - component: {fileID: 3350293895126330779}
+  - component: {fileID: 1416321611725742366}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Enemy
@@ -783,3 +788,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1416321611725742366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556582011242421867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338abb1dd6b18a34ba014b3023c445a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boss: {fileID: 4852082575655278418}
+  hitF: 8

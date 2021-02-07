@@ -6,6 +6,8 @@ public class EnemyFlyMinnionControl : MonoBehaviour
 {
     public float speedX;
     public float speedY;
+    public float hitF;
+    public GameObject Whole;
 
     private int HP;
     private bool Dead;
@@ -46,7 +48,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(GetComponent<Collider>());
-            Destroy(this.gameObject, 3);
+            Destroy(Whole.gameObject);
             Dead = true;
         }
         //Debug.Log(HP);
@@ -60,11 +62,11 @@ public class EnemyFlyMinnionControl : MonoBehaviour
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
                 PlayerControl.AttackEnemy = true;
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-3, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-hitF, 0, 0), ForceMode.Impulse);
             }
             else
             {
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(3, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
                 PlayerControl.AttackEnemy = true;
             }
         }

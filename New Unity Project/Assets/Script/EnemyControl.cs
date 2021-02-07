@@ -5,34 +5,36 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public GameObject weapon;
+    public GameObject Home;
     public float MoveSpeed;
     public float CounteredTime;
     public float HitHomeCoolDown;
     public float hitF;
-    public float DistanceBetween;
+    public float DistanceBetweenPlayer;
+    public float DistanceBetweenHome;
     public float PrepareScale;
     public int AttackSpeedScale;
 
     private float timer;
     private bool attacked;
     private bool attack;
-    private bool HitHome;
-    private bool counter;
+    public  bool HitHome;
+    public bool counter;
     private float CounteredTimeP;
     private float HitTimer;
     private bool PlayerNearBy;
     private float Distance;
     private float s;
     private int i;
-    private bool DoAttack;
-
+    public bool DoAttack;
+    private bool HomeNearBy;
     public float stop_t;
 
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject Home = GameObject.Find("Home");
+        Home = GameObject.FindWithTag("Home");
         counter = false;
         attack = true;
         attacked = false;
@@ -52,23 +54,49 @@ public class EnemyControl : MonoBehaviour
             GameObject Player = GameObject.FindWithTag("Player");
             Distance = this.transform.position.x - Player.transform.position.x;
         }
+        else if (GameObject.FindWithTag("Player") == false)
+        {
+            PlayerNearBy = false;
+            Distance = this.transform.position.x - Home.transform.position.x;
+            if (Distance < DistanceBetweenHome)
+            {
+                HomeNearBy = true;
+                DoAttack = true;
+            }
+            else
+            {
+                HomeNearBy = false;
+            }
+        }
 
-        if (Distance <= DistanceBetween)
+        if (Distance <= DistanceBetweenPlayer) 
         {
             PlayerNearBy = true;
             DoAttack = true;
         }
-        else if (Distance > DistanceBetween)
+        else if (Distance > DistanceBetweenPlayer)
         {
             PlayerNearBy = false;
         }
 
-        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false) // Boss 移動控制
+        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false) // Boss 移動控制
         {
             transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
         }
         else if (counter == true)//Boss 被反擊時
         {
+            if (weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 300)
+            {
+                s += Time.deltaTime;
+                float x = 500;
+                if (s >= 0.2 && x > 0)
+                {
+                    x = x/2;
+                    s = 0;
+                }
+                weapon.transform.Rotate(Vector3.back * Time.deltaTime * x);
+                Debug.Log("Reset");
+            } 
             CounteredTime -= Time.deltaTime;
             if (CounteredTime<=0)
             {
@@ -95,8 +123,10 @@ public class EnemyControl : MonoBehaviour
                 attacked = false;
             }
         }
-        Attack();
-
+        if(counter == false)
+        {
+            Attack();
+        }
         //簡易嘴砲
         bullet.transform.position += new Vector3(-0.1f, 0f, 0f);
         
@@ -114,29 +144,17 @@ public class EnemyControl : MonoBehaviour
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
                 PlayerControl.AttackEnemy = true;
-                Player.GetComponent<Rigidbody>().AddForce(new Vector3(-10, 0, 0), ForceMode.Impulse);
+                Player.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 0), ForceMode.Impulse);
             }
         }
-        if (PW.gameObject.tag == "Counter" && attack == true )
-        {
-            attacked = true;
-            Debug.Log("Countered");
-            counter = true;
-        }
-        if (PW.gameObject.tag == "Home")
-        {
-            HitHome = true;
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
-            Debug.Log("Hit");
-            GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
-        }
+
     }
 
     void Attack()
     {
         if(DoAttack == true)
         {
-            if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 250)&& attack == true)
+            if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 200)&& attack == true)
             {
                 weapon.transform.Rotate(Vector3.forward * Time.deltaTime * i);
                 if (weapon.transform.eulerAngles.z > 90 && weapon.transform.eulerAngles.z <95)
@@ -161,7 +179,7 @@ public class EnemyControl : MonoBehaviour
             }
 
         }
-        
+
        // Debug.Log(weapon.transform.eulerAngles.z);
     }
 }

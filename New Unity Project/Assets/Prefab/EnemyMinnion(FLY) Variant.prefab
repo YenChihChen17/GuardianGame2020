@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedX: 2
   speedY: 3
+  Whole: {fileID: 8632207965862573613}
 --- !u!1001 &3791410821788246399
 PrefabInstance:
   m_ObjectHideFlags: 0

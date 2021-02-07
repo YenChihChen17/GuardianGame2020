@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManeger : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class GameManeger : MonoBehaviour
     public GameObject EnemyRespawnPoint;
     public GameObject Boss;
     public GameObject FlyMinnion;
+    public GameObject Wave;
     public float BreakTime;
+    [Header("記得這裡要填符合MinionWveas 中的波數")]
     public int Waves;
     public float BossBornTimer;
     public bool KeyBoard;
@@ -44,6 +47,7 @@ public class GameManeger : MonoBehaviour
     public struct MinionWaves
     {
         public float[] seconds;
+        [Tooltip("0 是地面小兵, 1 是飛行小兵")]
         public int[] type;
     }
     [System.Serializable]
@@ -60,7 +64,7 @@ public class GameManeger : MonoBehaviour
     [System.Serializable]
     public struct EnemySetting
     {
-        public int Enemy_HP;
+        public int Boss_HP;
         public int Enemy_Damage;
         public int Minnion_HP;
     }
@@ -76,7 +80,7 @@ public class GameManeger : MonoBehaviour
         PlayerHP = playerSetting.Player_HP;
         PlayerMana = playerSetting.Player_Mana;// Sonic add
         ManaConsume = playerSetting.Mana_consume;//Sonic Add
-        EnemyHP = enemySetting.Enemy_HP;
+        EnemyHP = enemySetting.Boss_HP;
         HomeHP = playerSetting.Home_HP;
         Damage_P = playerSetting.Player_Damage;
         Damage_E = enemySetting.Enemy_Damage;
@@ -88,23 +92,30 @@ public class GameManeger : MonoBehaviour
     }
     private void Start()
     {
-       /* WavesAndNum = new Dictionary<int, int>();
-        for (int i=0;i<minionWaves.Length; i++)
-        {
-            if(!WavesAndNum.ContainsKey(minionWaves[i].waves))
-            {
-                WavesAndNum.Add(minionWaves[i].waves, minionWaves[i].num);
-            }
-        }
-       */
+        /* WavesAndNum = new Dictionary<int, int>();
+         for (int i=0;i<minionWaves.Length; i++)
+         {
+             if(!WavesAndNum.ContainsKey(minionWaves[i].waves))
+             {
+                 WavesAndNum.Add(minionWaves[i].waves, minionWaves[i].num);
+             }
+         }
+        */
+        Wave.GetComponent<Text>().text = "Wave 1";
+        Wave.SetActive(true);
     }
     // Update is called once per frame
     void Update()
     {
         InstantiateMinnion();
 
-        if (Run == false && BossTime == true)
+        if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false)
         {
+            Wave.SetActive(true);
+            Wave.GetComponent<Text>().text = "Warning";
+            float alpha = Mathf.PingPong(1 * Time.time, 1);
+            Wave.GetComponent<Text>().color=new Color(100, 0, 0, alpha);
+
             BossBornTimer -= Time.deltaTime;
             if(BossBornTimer <= 0)
             {
@@ -146,13 +157,20 @@ public class GameManeger : MonoBehaviour
         {
             Destroy(Home);
         }
+
+        if(GameObject.FindWithTag("Enemy"))
+        {
+            Wave.SetActive(false);
+        }
     }
     private void InstantiateMinnion()
     {
         if(Run == true)
         {
-            if(Born == false)
+            if(Born == false && GameObject.FindWithTag("Enemy") == false)
             {
+                Wave.SetActive(true);
+                Wave.GetComponent<Text>().text = "Wave " + (i + 1);//出現Wave字樣
                 wavetimer += Time.deltaTime;
                 if (wavetimer >= BreakTime)
                 {
@@ -177,7 +195,7 @@ public class GameManeger : MonoBehaviour
                     a = 0;
                     wavetimer = 0;
                     inCal = false;
-                    Debug.Log("NextWaves");
+                    //Debug.Log("NextWaves");
                     i++;
                     if (i == Waves)
                     {
@@ -193,7 +211,7 @@ public class GameManeger : MonoBehaviour
                 if(type ==0 && Born == true)
                 {
                     Instantiate(Minnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
-                    Debug.Log(a);
+                    //Debug.Log(a);
                     inCal = true;
                     Born = false;
                     a++;
@@ -201,7 +219,7 @@ public class GameManeger : MonoBehaviour
                 else if (type == 1 && Born == true)
                 {
                     Instantiate(FlyMinnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
-                    Debug.Log(a);
+                    //Debug.Log(a);
                     inCal = true;
                     Born = false;
                     a++;

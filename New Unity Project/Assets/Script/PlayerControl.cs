@@ -336,6 +336,7 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    #region 虛擬鍵盤控制
     public void GoRight()
     {
         Left = false;
@@ -375,4 +376,6 @@ public class PlayerControl : MonoBehaviour
     {
         DoDf = false;
     }
+    #endregion 
+
 }
