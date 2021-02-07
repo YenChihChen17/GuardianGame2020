@@ -509,8 +509,8 @@ MonoBehaviour:
   target: {fileID: 8070064116297325501}
   AttackPos: {fileID: 8070064117708934381}
   CounterPos: {fileID: 3554582964892388373}
-  speed: 5
-  SpeedX: 4
+  speed: 2.8
+  SpeedX: 1.7
   hurtX: 8
   defendX: 4
   AttackRange: {fileID: 8070064118183750298}
@@ -521,8 +521,8 @@ MonoBehaviour:
   FallMutilpe: 2.5
   LowJumpMutilpe: 1
   JumpVelocity: 8
-  acceleration: 3
-  deceleration: 5
+  acceleration: 5
+  deceleration: 20
   defend: 0
   attack: 0
   move: 0
@@ -636,8 +636,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070064118183750298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -0.25, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0.855, y: -0.25, z: 0}
+  m_LocalScale: {x: 3.016992, y: 3.1803231, z: 1.9099922}
   m_Children: []
   m_Father: {fileID: 8070064117708934381}
   m_RootOrder: 0

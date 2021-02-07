@@ -122,15 +122,15 @@ public class PlayerControl : MonoBehaviour
         // Debug.Log(this.GetComponent<Rigidbody>().velocity);
 
         // Debug.Log(move);
-        Debug.Log(defend);
+        //Debug.Log(defend);
 
 
     }
 
     private void Move() // 移動跳躍
     {
-        
-        if(KeyBoard == true)
+     
+        if (KeyBoard == true)
         {
             #region 鍵盤操控
             if (Input.GetKey(KeyCode.RightArrow) && defend == false && attack_timer == false && hurt == false) //控制角色方向
@@ -221,6 +221,7 @@ public class PlayerControl : MonoBehaviour
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
                 move = false;
             }
+
 
             if (Jump == true && can_j == true && defend == false) // 跳躍
             {
