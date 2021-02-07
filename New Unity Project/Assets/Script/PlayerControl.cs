@@ -29,10 +29,14 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rig;
     private bool can_j;
     private bool hurt;
-    public bool attack;
-    private bool defend;
+    public bool defend;
     private bool counter;
     private bool attack_timer;
+    //動畫用
+    public bool attack;
+    public bool move;
+    public bool jumping;
+    public bool ground;
 
     private float SpeedY;
     private bool GameStart;
@@ -115,7 +119,12 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
-       // Debug.Log(this.GetComponent<Rigidbody>().velocity);
+        // Debug.Log(this.GetComponent<Rigidbody>().velocity);
+
+        // Debug.Log(move);
+        Debug.Log(defend);
+
+
     }
 
     private void Move() // 移動跳躍
@@ -135,6 +144,7 @@ public class PlayerControl : MonoBehaviour
                     CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 }
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+                move = true;
             }
             else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && attack_timer == false && hurt == false)//控制角色方向
             {
@@ -148,21 +158,25 @@ public class PlayerControl : MonoBehaviour
                     CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 }
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+                move = true;
             }
 
             if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
             {
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
+                move = false;
             }
             if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
             {
                 SpeedY = JumpVelocity;
+                jumping = true;
             }
             else if (can_j == false) //落下加速
             {
                 if (SpeedY != 0)
                 {
                     SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                    jumping = true;
                 }
                 /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
                  {
@@ -186,7 +200,7 @@ public class PlayerControl : MonoBehaviour
                     CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 }
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
-
+                move = true;
             }
             else if (Left == true && defend == false && attack_timer == false && hurt == false)//控制角色方向
             {
@@ -199,16 +213,19 @@ public class PlayerControl : MonoBehaviour
                     CounterPos.transform.Rotate(new Vector3(0, 180, 0));
                 }
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
+                move = true;
             }
 
             if (Right == false && Left == false && Mathf.Abs(SpeedX) > 0 && can_j == true && hurt == false) //放開控制鍵後減速
             {
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
+                move = false;
             }
 
             if (Jump == true && can_j == true && defend == false) // 跳躍
             {
                 SpeedY = JumpVelocity;
+                jumping = true;
             }
             else if (can_j == false) //落下加速
             {
@@ -216,12 +233,18 @@ public class PlayerControl : MonoBehaviour
                 if (SpeedY != 0)
                 {
                     SpeedY += Physics.gravity.y * (FallMutilpe - 1) * Time.deltaTime;
+                    jumping = true;
                 }
                 /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
                  {
                      rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
                  }*/
             }
+            if (ground==true)
+            {
+                jumping = false;
+            }
+            //Debug.Log(jumping);
             #endregion
         }
     }
@@ -231,7 +254,8 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
             {
                 can_j = false;
-            }
+                ground = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)///碰到地面
@@ -241,6 +265,7 @@ public class PlayerControl : MonoBehaviour
             can_j = true;
             GameStart = true;
             SpeedY = 0;
+            ground = true;
         }
     }
 
@@ -314,6 +339,7 @@ public class PlayerControl : MonoBehaviour
             CounterRange.SetActive(true);
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
+
         }
         else if (DoDf && attack == false && hurt == false && defend == false && can_j == true)
         {

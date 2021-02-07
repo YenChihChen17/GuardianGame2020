@@ -7,6 +7,9 @@ public class PlayerAnimation : MonoBehaviour
     Animator p_animator;
     public GameObject player;
     bool atk;
+    bool mov;
+    bool jum;
+    bool def;
     public GameObject Attackrange;
     private bool Attacking;
     // Start is called before the first frame update
@@ -31,6 +34,45 @@ public class PlayerAnimation : MonoBehaviour
             p_animator.SetBool("isAttack", false);
         }
         #endregion
+        #region 角色移動動畫
+        mov = player.GetComponent<PlayerControl>().move;
+        if (mov == true)
+        {
+            //Debug.Log("OK");
+            p_animator.SetBool("isMove", true);
+
+        }
+        else
+        {
+            p_animator.SetBool("isMove", false);
+        }
+        #endregion
+        #region 角色跳躍動畫
+        jum = player.GetComponent<PlayerControl>().jumping;
+        if (jum == true)
+        {
+            //Debug.Log("OK");
+            p_animator.SetBool("isJump", true);
+
+        }
+        else
+        {
+            p_animator.SetBool("isJump", false);
+        }
+        #endregion
+        #region 角色防禦動畫
+        def = player.GetComponent<PlayerControl>().defend;
+        if (def == true)
+        {
+            //Debug.Log("OK");
+            p_animator.SetBool("isDef", true);
+
+        }
+        else
+        {
+            p_animator.SetBool("isDef", false);
+        }
+        #endregion
     }
     #region 攻擊判定
     void OnAttackEnter()//進入攻擊判定
@@ -42,4 +84,6 @@ public class PlayerAnimation : MonoBehaviour
         Attackrange.SetActive(false);
     }
     #endregion
+
+
 }
