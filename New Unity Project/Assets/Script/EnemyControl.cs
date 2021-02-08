@@ -85,7 +85,7 @@ public class EnemyControl : MonoBehaviour
         }
         else if (counter == true)//Boss 被反擊時
         {
-            if (weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 300)
+            if (weapon.transform.eulerAngles.z < 150 || weapon.transform.eulerAngles.z > 300)
             {
                 s += Time.deltaTime;
                 float x = 500;
@@ -171,7 +171,11 @@ public class EnemyControl : MonoBehaviour
                     attack = true;
                 }
             }
-            s += Time.deltaTime;
+            else if (weapon.transform.eulerAngles.z > 90 )
+            {
+                attack = false;
+            }
+                s += Time.deltaTime;
             if (s >= 0.2 && i < 150)
             {
                  i = i * AttackSpeedScale;
@@ -179,7 +183,10 @@ public class EnemyControl : MonoBehaviour
             }
 
         }
-
-       // Debug.Log(weapon.transform.eulerAngles.z);
+        else if (DoAttack == false && (weapon.transform.eulerAngles.z <300|| weapon.transform.eulerAngles.z > 305))
+        {
+            weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
+        }
+        // Debug.Log(weapon.transform.eulerAngles.z);
     }
 }

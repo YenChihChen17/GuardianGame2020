@@ -139,12 +139,14 @@ public class GameManeger : MonoBehaviour
         if (PlayerHP <= 0 && playerSetting.CloneNum >=0) 
         {
             
-                Destroy(GameObject.Find("PlayerContent(Clone)"),1);
+                Destroy(GameObject.Find("PlayerContent(Clone)"));
 
             timer += Time.deltaTime;
             if (playerSetting.CloneNum > 0)
             {
                 YouDied.SetActive(true);
+                float alpha = Mathf.PingPong(2* Time.time, 1);
+                YouDied.GetComponentInChildren<Text>().color = new Color(1, 1, 1, alpha);
                 if (timer >= playerSetting.RebornT)
                 {
                     PlayerHP = playerSetting.Player_HP;
@@ -172,6 +174,8 @@ public class GameManeger : MonoBehaviour
         }
         else if(EnemyHP<=0)
         {
+            Boss = GameObject.FindWithTag("Enemy");
+            Destroy(Boss);
             YouWin.SetActive(true);
         }
 
