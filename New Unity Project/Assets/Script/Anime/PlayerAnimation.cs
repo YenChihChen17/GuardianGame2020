@@ -9,6 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     bool atk;
     bool mov;
     bool jum;
+    bool isground;
     bool def;
     public GameObject Attackrange;
     private bool Attacking;
@@ -49,7 +50,8 @@ public class PlayerAnimation : MonoBehaviour
         #endregion
         #region 角色跳躍動畫
         jum = player.GetComponent<PlayerControl>().jumping;
-        if (jum == true)
+        isground = player.GetComponent<PlayerControl>().ground;
+        if (isground==false&&jum==true)
         {
             //Debug.Log("OK");
             p_animator.SetBool("isJump", true);
