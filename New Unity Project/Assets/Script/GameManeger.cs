@@ -15,18 +15,18 @@ public class GameManeger : MonoBehaviour
     static public int ManaConsume;//Sonic add 魔力消耗
     static public bool KeyBoardControl;
 
-    public GameObject PlayerClone;
-    public GameObject Enemy;
-    public GameObject Home;
-    public GameObject PlayerRespawn;
-    public GameObject GameOverUI;
-    public GameObject YouDied;
-    public GameObject Minnion;
-    public GameObject EnemyRespawnPoint;
-    public GameObject Boss;
-    public GameObject FlyMinnion;
-    public GameObject Wave;
-    public GameObject YouWin;
+    static public float _Speed;
+    static public float _SpeedX; // 起始速度
+    static public float _Acceleration;
+    static public float _Deceleration;
+    static public float _hurtX;
+    static public float _defendX;
+    static public float _AtkTime;// 攻擊判定時間
+    static public float _HurtTime;// 受傷判定時間
+    static public float _CounterTime;// 反擊判定時間
+    static public float _FallMutilpe;
+    static public float _JumpVelocity;
+
     [Header("波數間的時間間隔")]
     public float BreakTime;
     [Header("Boss 前的時間間隔")]
@@ -50,6 +50,22 @@ public class GameManeger : MonoBehaviour
     private int a ;
     // Start is called before the first frame update
     [System.Serializable]
+    public struct GameObejct
+    {
+        public GameObject PlayerClone;
+        public GameObject Boss;
+        public GameObject FlyMinnion;
+        public GameObject Minnion;
+        public GameObject Home;
+        public GameObject PlayerRespawn;
+        public GameObject EnemyRespawnPoint;
+        [Header("UI")]
+        public GameObject GameOverUI;
+        public GameObject YouDied;
+        public GameObject Wave;
+        public GameObject YouWin;
+    }
+    [System.Serializable]
     public struct MinionWaves
     {
         public float[] seconds;
@@ -59,13 +75,42 @@ public class GameManeger : MonoBehaviour
     [System.Serializable]
     public struct PlayerSetting
     {
+        [Tooltip("玩家重生數")]
+        public int CloneNum;
+        [Tooltip("玩家重生時間")]
+        public float RebornT;
+        [Tooltip("水晶HP")]
+        public int Home_HP;
+        [Header("玩家資料")]
         public int Player_HP;
         public int Player_Damage;
         public int Player_Mana;//Sonic add
-        public int CloneNum;
-        public float RebornT;
         public int Mana_consume;// 魔力消耗
-        public int Home_HP;
+        [Header("移動跳躍")]
+        [Tooltip("最終速度")]
+        public float speed;
+        [Tooltip("起始速度速度")]
+        public float SpeedX; // 起始速度
+        [Tooltip("移動開始加速度")]
+        public float acceleration;
+        [Tooltip("移動結束加速度")]
+        public float deceleration;
+        [Tooltip("跳躍落下時向下加速度")]
+        public float FallMutilpe;
+        [Tooltip("跳躍時初始向上加速度")]
+        public float JumpVelocity;
+        [Header("受傷")]
+        [Tooltip("受傷後受力")]
+        public float hurtX;
+        [Tooltip("防禦狀態下受傷後受力")]
+        public float defendX;
+        [Tooltip("受傷後多久可以移動")]
+        public float HurtTime;// 受傷判定時間
+        [Header("攻擊防禦")]
+        [Tooltip("攻擊後多久可以移動")]
+        public float AtkTime;// 攻擊判定時間
+        [Tooltip("反擊判定持續時間")]
+        public float CounterTime;// 反擊判定時間
     }
     [System.Serializable]
     public struct EnemySetting
@@ -77,6 +122,7 @@ public class GameManeger : MonoBehaviour
     public MinionWaves[] minionWaves;
     public PlayerSetting playerSetting;
     public EnemySetting enemySetting;
+    public GameObejct gameobject;
 
     void Awake()
     {
@@ -94,7 +140,22 @@ public class GameManeger : MonoBehaviour
         Born = false;
         Run = true;
         BossTime = true;
-        Instantiate(PlayerClone, PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
+        Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
+
+        #region 玩家狀態初始化
+        _Speed = playerSetting.speed;
+        _SpeedX = playerSetting.SpeedX;
+        _Acceleration = playerSetting.acceleration;
+        _Deceleration = playerSetting.deceleration;
+        _hurtX = playerSetting.hurtX;
+        _defendX = playerSetting.defendX;
+        _AtkTime = playerSetting.AtkTime;
+        _HurtTime = playerSetting.HurtTime;
+        _CounterTime = playerSetting.CounterTime;
+        _FallMutilpe = playerSetting.FallMutilpe ;
+        _JumpVelocity = playerSetting.JumpVelocity;
+        #endregion 
+
     }
     private void Start()
     {
@@ -107,10 +168,10 @@ public class GameManeger : MonoBehaviour
              }
          }
         */
-        Wave.GetComponent<Text>().text = "Wave 1";
-        Wave.SetActive(true);
-        YouWin.SetActive(false);
-        YouDied.SetActive(false);
+        gameobject.Wave.GetComponent<Text>().text = "Wave 1";
+        gameobject.Wave.SetActive(true);
+        gameobject.YouWin.SetActive(false);
+        gameobject.YouDied.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -119,21 +180,21 @@ public class GameManeger : MonoBehaviour
 
         if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false && isBossStage)
         {
-            Wave.SetActive(true);
-            Wave.GetComponent<Text>().text = "Warning";
+            gameobject.Wave.SetActive(true);
+            gameobject.Wave.GetComponent<Text>().text = "Warning";
             float alpha = Mathf.PingPong(1 * Time.time, 1);
-            Wave.GetComponent<Text>().color=new Color(100, 0, 0, alpha);
+            gameobject.Wave.GetComponent<Text>().color=new Color(100, 0, 0, alpha);
 
             BossBornTimer -= Time.deltaTime;
             if(BossBornTimer <= 0)
             {
-                Instantiate(Boss, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                Instantiate(gameobject.Boss, gameobject.EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
                 BossTime = false;
             }
         }
         else if (Run == false && BossTime == true && isBossStage == false && GameObject.FindWithTag("Enemy") == false)
         {
-            YouWin.SetActive(true);
+            gameobject.YouWin.SetActive(true);
         }
 
         if (PlayerHP <= 0 && playerSetting.CloneNum >=0) 
@@ -144,17 +205,17 @@ public class GameManeger : MonoBehaviour
             timer += Time.deltaTime;
             if (playerSetting.CloneNum > 0)
             {
-                YouDied.SetActive(true);
+                gameobject.YouDied.SetActive(true);
                 float alpha = Mathf.PingPong(2* Time.time, 1);
-                YouDied.GetComponentInChildren<Text>().color = new Color(1, 1, 1, alpha);
+                gameobject.YouDied.GetComponentInChildren<Text>().color = new Color(1, 1, 1, alpha);
                 if (timer >= playerSetting.RebornT)
                 {
                     PlayerHP = playerSetting.Player_HP;
                     Debug.Log(PlayerHP);
                     playerSetting.CloneNum = playerSetting.CloneNum - 1;
                     timer = 0;
-                    YouDied.SetActive(false);
-                    Instantiate(PlayerClone,PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
+                    gameobject.YouDied.SetActive(false);
+                    Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
                 }
             }
         }
@@ -163,25 +224,25 @@ public class GameManeger : MonoBehaviour
         {
             if (GameObject.Find("PlayerContent(Clone)") == false)
             {
-                GameOverUI.SetActive(true);
+                gameobject.GameOverUI.SetActive(true);
             }
         }
 
         if(HomeHP<=0)
         {
-            Destroy(Home);
-            GameOverUI.SetActive(true);
+            Destroy(gameobject.Home);
+            gameobject.GameOverUI.SetActive(true);
         }
         else if(EnemyHP<=0)
         {
-            Boss = GameObject.FindWithTag("Enemy");
-            Destroy(Boss);
-            YouWin.SetActive(true);
+            gameobject.Boss = GameObject.FindWithTag("Enemy");
+            Destroy(gameobject.Boss);
+            gameobject.YouWin.SetActive(true);
         }
 
         if(GameObject.FindWithTag("Enemy"))
         {
-            Wave.SetActive(false);
+            gameobject.Wave.SetActive(false);
         }
     }
     private void InstantiateMinnion()
@@ -190,8 +251,8 @@ public class GameManeger : MonoBehaviour
         {
             if(Born == false && GameObject.FindWithTag("Enemy") == false)
             {
-                Wave.SetActive(true);
-                Wave.GetComponent<Text>().text = "Wave " + (i + 1);//出現Wave字樣
+                gameobject.Wave.SetActive(true);
+                gameobject.Wave.GetComponent<Text>().text = "Wave " + (i + 1);//出現Wave字樣
                 wavetimer += Time.deltaTime;
                 if (wavetimer >= BreakTime)
                 {
@@ -231,7 +292,7 @@ public class GameManeger : MonoBehaviour
             {
                 if(type ==0 && Born == true)
                 {
-                    Instantiate(Minnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                    Instantiate(gameobject.Minnion, gameobject.EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
                     //Debug.Log(a);
                     inCal = true;
                     Born = false;
@@ -239,7 +300,7 @@ public class GameManeger : MonoBehaviour
                 }
                 else if (type == 1 && Born == true)
                 {
-                    Instantiate(FlyMinnion, EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
+                    Instantiate(gameobject.FlyMinnion, gameobject.EnemyRespawnPoint.transform.position, new Quaternion(0, 0, 0, 0));
                     //Debug.Log(a);
                     inCal = true;
                     Born = false;

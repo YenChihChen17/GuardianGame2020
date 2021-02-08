@@ -17,7 +17,7 @@ public class EnemyControl : MonoBehaviour
 
     private float timer;
     private bool attacked;
-    private bool attack;
+    public bool attack;
     public  bool HitHome;
     public bool counter;
     private float CounteredTimeP;
@@ -171,10 +171,10 @@ public class EnemyControl : MonoBehaviour
                     attack = true;
                 }
             }
-            else if (weapon.transform.eulerAngles.z > 90 )
+            /*else if (weapon.transform.eulerAngles.z > 90 )
             {
                 attack = false;
-            }
+            }*/
                 s += Time.deltaTime;
             if (s >= 0.2 && i < 150)
             {

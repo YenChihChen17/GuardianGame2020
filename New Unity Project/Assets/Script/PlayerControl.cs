@@ -7,23 +7,23 @@ public class PlayerControl : MonoBehaviour
     public Transform target;
     public Transform AttackPos;
     public Transform CounterPos;
-    public float speed;
-    public float SpeedX; // 起始速度
-    public float hurtX;
-    public float defendX;
     public GameObject AttackRange;
     public GameObject CounterRange;
-    public float AtkTime;// 攻擊判定時間
-    public float HurtTime;// 受傷判定時間
-    public float CounterTime;// 反擊判定時間
-    public float FallMutilpe;
-    public float LowJumpMutilpe;
-    public float JumpVelocity;
-    public float acceleration;
-    public float deceleration;
+    private float speed;
+    private float SpeedX; // 起始速度
+    private float hurtX;
+    private float defendX;
+    private float AtkTime;// 攻擊判定時間
+    private float HurtTime;// 受傷判定時間
+    private float CounterTime;// 反擊判定時間
+    private float FallMutilpe;
+    //public float LowJumpMutilpe;
+    private float JumpVelocity;
+    private float acceleration;
+    private float deceleration;
     public static bool AttackEnemy;
-    private bool KeyBoard;
 
+    private bool KeyBoard;
     private float a_timer;
     private float b_timer;
     private Rigidbody rig;
@@ -65,7 +65,19 @@ public class PlayerControl : MonoBehaviour
         DoAtk = false;
         DoDf = false;
 
-    }
+        speed = GameManeger._Speed;
+        SpeedX = GameManeger._SpeedX;
+        hurtX = GameManeger._hurtX;
+        defendX = GameManeger._defendX;
+        AtkTime = GameManeger._AtkTime;
+        HurtTime = GameManeger._HurtTime;
+        CounterTime = GameManeger._CounterTime;
+        FallMutilpe = GameManeger._FallMutilpe;
+        JumpVelocity = GameManeger._JumpVelocity;
+        acceleration = GameManeger._Acceleration;
+        deceleration = GameManeger._Deceleration;
+
+}
 
     // Update is called once per frame
     void Update()

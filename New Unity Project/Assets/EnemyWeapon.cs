@@ -30,8 +30,11 @@ public class EnemyWeapon : MonoBehaviour
         if (PW.gameObject.tag == "Counter")
         {
             Debug.Log("Countered");
-            this.GetComponentInParent<EnemyControl>().counter = true;
-            this.GetComponentInParent<EnemyControl>().DoAttack = false;
+            if(this.GetComponentInParent<EnemyControl>().attack)
+            {
+                this.GetComponentInParent<EnemyControl>().counter = true;
+                this.GetComponentInParent<EnemyControl>().DoAttack = false;
+            }
         }
     }
 }
