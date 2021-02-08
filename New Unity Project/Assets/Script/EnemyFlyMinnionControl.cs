@@ -57,7 +57,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
     {
         if (PW.gameObject.tag == "Weapon")
         {
-            GameObject Player = GameObject.Find("Player");
+            GameObject Player = GameObject.FindWithTag("Player");
             HP = HP - GameManeger.Damage_P;
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
@@ -71,10 +71,11 @@ public class EnemyFlyMinnionControl : MonoBehaviour
             }
         }
 
-        if (PW.gameObject.tag == "Home")
+        else if (PW.gameObject.tag == "Home")
         {
-            Destroy(this.gameObject);
+            Destroy(Whole);
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
+            Debug.Log("Hit");
         }
 
     }

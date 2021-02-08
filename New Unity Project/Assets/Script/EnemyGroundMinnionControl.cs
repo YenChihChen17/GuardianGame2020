@@ -53,9 +53,9 @@ public class EnemyGroundMinnionControl : MonoBehaviour
                 PlayerControl.AttackEnemy = true;
             }
         }
-        else if (PW.gameObject.tag == "Home")
+       else if (PW.gameObject.tag == "Home")
         {
-            Destroy(this.gameObject);
+            Destroy(Whole);
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }
 

@@ -168,6 +168,7 @@ public class GameManeger : MonoBehaviour
         if(HomeHP<=0)
         {
             Destroy(Home);
+            GameOverUI.SetActive(true);
         }
         else if(EnemyHP<=0)
         {

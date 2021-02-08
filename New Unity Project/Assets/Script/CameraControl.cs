@@ -17,20 +17,24 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindWithTag("Player") == true && find == false)
+        if (GameObject.FindWithTag("Player")|| GameObject.FindWithTag("Home"))
         {
-            target = GameObject.FindWithTag("Player");
-            find = true;
-        }
-        else if(GameObject.FindWithTag("Player") == false)
-        {
-            find = false;
-            target = Home;
+            if (GameObject.FindWithTag("Player") == true && find == false)
+            {
+                target = GameObject.FindWithTag("Player");
+                find = true;
+            }
+            else if (GameObject.FindWithTag("Player") == false)
+            {
+                find = false;
+                target = Home;
+            }
+
+            Vector3 position = this.transform.position;
+            position.x = Mathf.Lerp(this.transform.position.x, target.transform.position.x, smooth * Time.deltaTime);
+            position.y = Mathf.Lerp(this.transform.position.y, target.transform.position.y + 1, smooth * Time.deltaTime);
+            this.transform.position = position;
         }
 
-        Vector3 position = this.transform.position;
-        position.x = Mathf.Lerp(this.transform.position.x, target.transform.position.x, smooth * Time.deltaTime);
-        position.y = Mathf.Lerp(this.transform.position.y, target.transform.position.y+1, smooth * Time.deltaTime);
-        this.transform.position = position;
     }
 }
