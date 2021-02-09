@@ -37,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     public bool move;
     public bool jumping;
     public bool ground;
+    public bool defsuccess;
 
     private float SpeedY;
     private bool GameStart;
@@ -64,6 +65,7 @@ public class PlayerControl : MonoBehaviour
         Left = false;
         DoAtk = false;
         DoDf = false;
+        defsuccess = false;
 
         speed = GameManeger._Speed;
         SpeedX = GameManeger._SpeedX;
@@ -289,6 +291,7 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
+            defsuccess = false;
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
             b_timer = 0;
             Debug.Log("Hurt");
@@ -299,6 +302,7 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             rig.AddForce(new Vector3(-defendX, 0, 0), ForceMode.Impulse);
             hurt = true;
+            defsuccess = true;
             b_timer = 0;
             Debug.Log("Defend");
         }
@@ -307,9 +311,17 @@ public class PlayerControl : MonoBehaviour
         {
             SpeedX = 0;
             b_timer = 0;
+            defsuccess = true;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
 
+    }
+    private void OnTriggerExit(Collider Enemy)
+    {
+        if (Enemy.gameObject.tag == "Enemy")
+        {
+            defsuccess = false;
+        }
     }
 
     public void Attack()
@@ -349,7 +361,8 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             b_timer = 0;
             counter = true;
-            CounterRange.SetActive(true);
+            //Debug.Log("ok");
+            //CounterRange.SetActive(true);
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
 
@@ -359,18 +372,18 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             b_timer = 0;
             counter = true;
-            CounterRange.SetActive(true);
+            //CounterRange.SetActive(true);
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
         }
 
-        if (Input.GetKeyUp(KeyCode.S) )
+        if (Input.GetKeyUp(KeyCode.S))
         {
             defend = false;
         }
-        else if (DoDf == false)
+        else if (DoDf == false)//與虛擬按鍵衝突暫時關閉
         {
-            defend = false;
+            //defend = false;
         }
 
     }
@@ -413,7 +426,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void ResetDefend()
     {
-        DoDf = false;
+        DoDf = false;          
     }
     #endregion 
 

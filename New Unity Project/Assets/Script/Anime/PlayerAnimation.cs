@@ -11,7 +11,11 @@ public class PlayerAnimation : MonoBehaviour
     bool jum;
     bool isground;
     bool def;
+    bool defsuc;
     public GameObject Attackrange;
+    public GameObject Counterrange;
+    public Sprite shield_red;
+    public Sprite shield_white;
     private bool Attacking;
     // Start is called before the first frame update
     void Start()
@@ -64,15 +68,28 @@ public class PlayerAnimation : MonoBehaviour
         #endregion
         #region 角色防禦動畫
         def = player.GetComponent<PlayerControl>().defend;
-        if (def == true)
+        Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
+        if (def == true/*Input.GetKeyDown(KeyCode.S)*/)
         {
             //Debug.Log("OK");
             p_animator.SetBool("isDef", true);
-
+            Counterrange.SetActive(true);
+            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
         }
         else
         {
             p_animator.SetBool("isDef", false);
+            Counterrange.SetActive(false);
+            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
+        }
+        defsuc = player.GetComponent<PlayerControl>().defsuccess;
+        if (defsuc==true)
+        {
+            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
+        }
+        else
+        {
+            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
         }
         #endregion
     }
