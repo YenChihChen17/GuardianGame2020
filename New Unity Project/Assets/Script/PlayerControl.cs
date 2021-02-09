@@ -37,7 +37,6 @@ public class PlayerControl : MonoBehaviour
     public bool move;
     public bool jumping;
     public bool ground;
-    public bool defsuccess;
 
     private float SpeedY;
     private bool GameStart;
@@ -65,7 +64,6 @@ public class PlayerControl : MonoBehaviour
         Left = false;
         DoAtk = false;
         DoDf = false;
-        defsuccess = false;
 
         speed = GameManeger._Speed;
         SpeedX = GameManeger._SpeedX;
@@ -291,7 +289,6 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
-            defsuccess = false;
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
             b_timer = 0;
             Debug.Log("Hurt");
@@ -302,7 +299,6 @@ public class PlayerControl : MonoBehaviour
             SpeedX = 0;
             rig.AddForce(new Vector3(-defendX, 0, 0), ForceMode.Impulse);
             hurt = true;
-            defsuccess = true;
             b_timer = 0;
             Debug.Log("Defend");
         }
@@ -311,17 +307,9 @@ public class PlayerControl : MonoBehaviour
         {
             SpeedX = 0;
             b_timer = 0;
-            defsuccess = true;
             //Debug.Log("Player" + GameManeger.PlayerHP);
         }
 
-    }
-    private void OnTriggerExit(Collider Enemy)
-    {
-        if (Enemy.gameObject.tag == "Enemy")
-        {
-            defsuccess = false;
-        }
     }
 
     public void Attack()

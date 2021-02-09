@@ -74,15 +74,13 @@ public class PlayerAnimation : MonoBehaviour
             //Debug.Log("OK");
             p_animator.SetBool("isDef", true);
             Counterrange.SetActive(true);
-            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
         }
         else
         {
             p_animator.SetBool("isDef", false);
             Counterrange.SetActive(false);
-            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
         }
-        defsuc = player.GetComponent<PlayerControl>().defsuccess;
+        defsuc = Counterrange.GetComponent<CounterRange_Ctrl>().defsuccess;
         if (defsuc==true)
         {
             Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
