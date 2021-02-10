@@ -69,7 +69,7 @@ public class PlayerAnimation : MonoBehaviour
         #region 角色防禦動畫
         def = player.GetComponent<PlayerControl>().defend;
         Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
-        if (def == true/*Input.GetKeyDown(KeyCode.S)*/)
+        if (def == true)
         {
             //Debug.Log("OK");
             p_animator.SetBool("isDef", true);

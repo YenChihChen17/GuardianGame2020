@@ -369,9 +369,9 @@ public class PlayerControl : MonoBehaviour
         {
             defend = false;
         }
-        else if (DoDf == false)//與虛擬按鍵衝突暫時關閉
+        else if (DoDf == false && GameManeger.KeyBoardControl==false)//當不使用鍵盤時才判定防禦虛擬按鍵
         {
-            //defend = false;
+            defend = false;
         }
 
     }
