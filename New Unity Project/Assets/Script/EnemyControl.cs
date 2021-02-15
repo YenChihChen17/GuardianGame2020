@@ -17,6 +17,8 @@ public class EnemyControl : MonoBehaviour
     public float BulletMinDistance;
     public int AttackSpeedScale;
     public float BulletAttackCoolDown;
+    //動畫用
+    public bool isMove;
 
     private float timer;
     private bool attacked;
@@ -50,6 +52,8 @@ public class EnemyControl : MonoBehaviour
         i = 1;
         DoAttack = false;
         BullentTimer = BulletAttackCoolDown;
+
+        isMove = false;
     }
     
     // Update is called once per frame
@@ -101,9 +105,11 @@ public class EnemyControl : MonoBehaviour
         if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false) // Boss 移動控制
         {
             transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
+            isMove = true;
         }
         else if (counter == true)//Boss 被反擊時
         {
+            isMove = false;
             if (weapon.transform.eulerAngles.z < 150 || weapon.transform.eulerAngles.z > 300)
             {
                 s += Time.deltaTime;
@@ -122,6 +128,7 @@ public class EnemyControl : MonoBehaviour
                 counter = false;
                 CounteredTime = CounteredTimeP;
             }
+            
         }
 
         if(HitHome == true) // 打到基地被彈飛後的計時器

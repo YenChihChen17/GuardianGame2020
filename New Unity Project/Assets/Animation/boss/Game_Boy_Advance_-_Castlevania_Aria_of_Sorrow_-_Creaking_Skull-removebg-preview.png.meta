@@ -1,0 +1,440 @@
+fileFormatVersion: 2
+guid: 08e360f9fec626d4b92c6fa12bf26cf9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5028095861409609639
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_0
+  - first:
+      213: -3810977938641354386
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_1
+  - first:
+      213: -9142394734190436057
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_2
+  - first:
+      213: -1524339652826543488
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_3
+  - first:
+      213: 5528627147714953077
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_4
+  - first:
+      213: 8998471199085133199
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_5
+  - first:
+      213: -1104771164155800842
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_6
+  - first:
+      213: -4792680286473973120
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_7
+  - first:
+      213: 3358371346919263809
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_8
+  - first:
+      213: -25051907188197645
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_9
+  - first:
+      213: -8361496007905228704
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_10
+  - first:
+      213: 5607555761929381031
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_11
+  - first:
+      213: -7125519309688284970
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_12
+  - first:
+      213: -401587420505153964
+    second: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 124
+        width: 94
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 958811c347d983ab0800000000000000
+      internalID: -5028095861409609639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 86
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e618e6891cfac1bc0800000000000000
+      internalID: -3810977938641354386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 52
+        width: 40
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7216d208d60bf1180800000000000000
+      internalID: -9142394734190436057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 77
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a4b3c792578dae0800000000000000
+      internalID: -1524339652826543488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 71
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57f71235911a9bc40800000000000000
+      internalID: 5528627147714953077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 62
+        width: 61
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8741668, y: 0.7584626}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d7d0f21edf0ec70800000000000000
+      internalID: 8998471199085133199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 36
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f21662ca701ba0f0800000000000000
+      internalID: -1104771164155800842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 50
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08293b21caafc7db0800000000000000
+      internalID: -4792680286473973120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 6
+        width: 39
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e09f452f45b9e20800000000000000
+      internalID: 3358371346919263809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 38
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6f9135c6ff6aff0800000000000000
+      internalID: -25051907188197645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 19
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06846f19eaff5fb80800000000000000
+      internalID: -8361496007905228704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 100
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4eeff514a02dd40800000000000000
+      internalID: 5607555761929381031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 87
+        width: 30
+        height: 11
+      alignment: 9
+      pivot: {x: 0.9267934, y: 0.398785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8d7d1c0f11d1d90800000000000000
+      internalID: -7125519309688284970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game_Boy_Advance_-_Castlevania_Aria_of_Sorrow_-_Creaking_Skull-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 96
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45e56866e564d6af0800000000000000
+      internalID: -401587420505153964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9d98f06610f423f408f9dbe7412a5de4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
