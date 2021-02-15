@@ -9,11 +9,14 @@ public class EnemyControl : MonoBehaviour
     public float MoveSpeed;
     public float CounteredTime;
     public float HitHomeCoolDown;
-    public float hitF;
+    //public float HitForce;
     public float DistanceBetweenPlayer;
     public float DistanceBetweenHome;
     public float PrepareScale;
+    public float BulletMaxDistance;
+    public float BulletMinDistance;
     public int AttackSpeedScale;
+    public float BulletAttackCoolDown;
 
     private float timer;
     private bool attacked;
@@ -29,6 +32,8 @@ public class EnemyControl : MonoBehaviour
     public bool DoAttack;
     private bool HomeNearBy;
     public float stop_t;
+    private bool BulletAttack;
+    private float BullentTimer;
 
     public GameObject bullet;
     // Start is called before the first frame update
@@ -44,15 +49,29 @@ public class EnemyControl : MonoBehaviour
         s = 0;
         i = 1;
         DoAttack = false;
+        BullentTimer = BulletAttackCoolDown;
     }
     
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindWithTag("Player")==true)
+        GameObject Player;
+        if (GameObject.FindWithTag("Player")==true)
         {
-            GameObject Player = GameObject.FindWithTag("Player");
+            Player = GameObject.FindWithTag("Player");
             Distance = this.transform.position.x - Player.transform.position.x;
+            if(Distance > BulletMaxDistance)
+            {
+                BulletAttack = false;
+            }
+            else if (BulletMinDistance<Distance && Distance<BulletMaxDistance)
+            {
+                BulletAttack = true;
+            }
+            else if (Distance < BulletMinDistance)
+            {
+                BulletAttack = false;
+            }
         }
         else if (GameObject.FindWithTag("Player") == false)
         {
@@ -128,7 +147,19 @@ public class EnemyControl : MonoBehaviour
             Attack();
         }
         //簡易嘴砲
-        bullet.transform.position += new Vector3(-0.1f, 0f, 0f);
+        if (BulletAttack == true)
+        {
+            if(GameObject.FindWithTag("Player"))
+            {
+                if (BullentTimer >= BulletAttackCoolDown)
+                {
+                    Instantiate(bullet, this.transform.position, new Quaternion(0, 0, 0, 0));
+                    BullentTimer = 0;
+                }
+                BullentTimer += Time.deltaTime;
+            }
+        }
+
         
     }
 
