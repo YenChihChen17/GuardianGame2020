@@ -9,6 +9,11 @@ public class PlayerControl : MonoBehaviour
     public Transform CounterPos;
     public GameObject AttackRange;
     public GameObject CounterRange;
+    public AudioClip AttackSE;
+    public AudioClip HurtSE;
+    public AudioClip ParrySE;
+    public AudioClip DeadSE;
+
     private float speed;
     private float SpeedX; // 起始速度
     private float hurtX;
@@ -46,7 +51,8 @@ public class PlayerControl : MonoBehaviour
     private bool Jump;
     private bool DoAtk;
     private bool DoDf;
-   // Start is called before the first frame update
+    // Start is called before the first frame update
+    AudioSource audiosource;
     void Start()
     {
         KeyBoard = GameManeger.KeyBoardControl;
@@ -64,6 +70,8 @@ public class PlayerControl : MonoBehaviour
         Left = false;
         DoAtk = false;
         DoDf = false;
+
+        audiosource = this.GetComponent < AudioSource > (); // 初始化AudioSource
 
         speed = GameManeger._Speed;
         SpeedX = GameManeger._SpeedX;
@@ -321,6 +329,7 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             a_timer = 0;
             attack_timer = true;
+            audiosource.PlayOneShot(AttackSE);
         }
         else if(DoAtk && attack == false && defend == false && attack_timer == false)
         {

@@ -1860,29 +1860,32 @@ MonoBehaviour:
   BossBornTimer: 2
   KeyBoard: 1
   isBossStage: 1
-  Waves: 1
+  Waves: 2
   minionWaves:
+  - seconds:
+    - 1
+    type: 00000000
   - seconds:
     - 1
     type: 00000000
   playerSetting:
     CloneNum: 2
-    RebornT: 5
+    RebornT: 3
     Home_HP: 50
     Player_HP: 30
     Player_Damage: 5
     Player_Mana: 5
     Mana_consume: 1
-    speed: 4
-    SpeedX: 3
-    acceleration: 4
-    deceleration: 5
+    speed: 5
+    SpeedX: 4.5
+    acceleration: 5
+    deceleration: 6
     FallMutilpe: 3
     JumpVelocity: 10
-    hurtX: 8
+    hurtX: 10
     defendX: 3
-    HurtTime: 0.5
-    AtkTime: 0.5
+    HurtTime: 0.2
+    AtkTime: 0.7
     CounterTime: 0.5
   enemySetting:
     Boss_HP: 50

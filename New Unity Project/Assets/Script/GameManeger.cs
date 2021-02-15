@@ -48,6 +48,8 @@ public class GameManeger : MonoBehaviour
     private int type;
     private bool inCal;
     private int a ;
+    private bool Wave1;
+    private float StartTimer;
     // Start is called before the first frame update
     [System.Serializable]
     public struct GameObejct
@@ -129,20 +131,22 @@ public class GameManeger : MonoBehaviour
         KeyBoardControl = KeyBoard;
         wavetimer = 0;
         i = 0;
-        PlayerHP = playerSetting.Player_HP;
-        PlayerMana = playerSetting.Player_Mana;// Sonic add
-        ManaConsume = playerSetting.Mana_consume;//Sonic Add
+
         EnemyHP = enemySetting.Boss_HP;
-        HomeHP = playerSetting.Home_HP;
+
         Damage_P = playerSetting.Player_Damage;
         Damage_E = enemySetting.Enemy_Damage;
         MinnionHP = enemySetting.Minnion_HP;
         Born = false;
-        Run = true;
+        Run = false;
         BossTime = true;
         Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
-
+        Wave1 = false;
         #region 玩家狀態初始化
+        HomeHP = playerSetting.Home_HP;
+        PlayerHP = playerSetting.Player_HP;
+        PlayerMana = playerSetting.Player_Mana;// Sonic add
+        ManaConsume = playerSetting.Mana_consume;//Sonic Add
         _Speed = playerSetting.speed;
         _SpeedX = playerSetting.SpeedX;
         _Acceleration = playerSetting.acceleration;
@@ -169,16 +173,29 @@ public class GameManeger : MonoBehaviour
          }
         */
         gameobject.Wave.GetComponent<Text>().text = "Wave 1";
-        gameobject.Wave.SetActive(true);
+        gameobject.Wave.SetActive(false);
         gameobject.YouWin.SetActive(false);
         gameobject.YouDied.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        
+        if (Wave1 == false)
+        {
+            StartTimer += Time.deltaTime;
+            Debug.Log(StartTimer);
+            if(StartTimer >2.5f)
+            {
+                Wave1 = true;
+                Run = true;
+                gameobject.Wave.SetActive(true);
+            }
+        }
+
         InstantiateMinnion();
 
-        if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false && isBossStage)
+        if (Run == false && BossTime == true && GameObject.FindWithTag("Enemy") == false && isBossStage && Wave1 == true)
         {
             gameobject.Wave.SetActive(true);
             gameobject.Wave.GetComponent<Text>().text = "Warning";
