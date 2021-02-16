@@ -96,6 +96,7 @@ public class EnemyControl : MonoBehaviour
         {
             PlayerNearBy = true;
             DoAttack = true;
+            isMove = false;
         }
         else if (Distance > DistanceBetweenPlayer)
         {
@@ -192,7 +193,10 @@ public class EnemyControl : MonoBehaviour
     {
         if(DoAttack == true)
         {
-            if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 200)&& attack == true)
+            attack = true;
+            DoAttack = false;
+
+            /*if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 200)&& attack == true)
             {
                 weapon.transform.Rotate(Vector3.forward * Time.deltaTime * i);
                 if (weapon.transform.eulerAngles.z > 90 && weapon.transform.eulerAngles.z <95)
@@ -221,9 +225,10 @@ public class EnemyControl : MonoBehaviour
             }
 
         }
-        else if (DoAttack == false && (weapon.transform.eulerAngles.z <300|| weapon.transform.eulerAngles.z > 305))
+        else //if (DoAttack == false && (weapon.transform.eulerAngles.z <300|| weapon.transform.eulerAngles.z > 305))
         {
-            weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
+            attack = false;
+            //weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
         }
         // Debug.Log(weapon.transform.eulerAngles.z);
     }

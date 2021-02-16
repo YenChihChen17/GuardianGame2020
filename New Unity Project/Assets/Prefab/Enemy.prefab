@@ -513,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6671254330019297662
 Transform:
   m_ObjectHideFlags: 0
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 5348639619989553710}
   m_Layer: 8
   m_Name: EnemySprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   MoveSpeed: 2
   CounteredTime: 2
   HitHomeCoolDown: 3
-  DistanceBetweenPlayer: 5
+  DistanceBetweenPlayer: 6
   DistanceBetweenHome: 6
   PrepareScale: 35
   BulletMaxDistance: 15
@@ -1405,9 +1405,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9071178192727956687}
   - component: {fileID: 2142550876794987762}
+  - component: {fileID: 2375846144370752993}
   m_Layer: 0
   m_Name: hand_right_weapon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1477,6 +1478,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!136 &2375846144370752993
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711469853197195924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.05588817
+  m_Height: 0.5242761
+  m_Direction: 0
+  m_Center: {x: -0.27110434, y: -0.036285557, z: 0}
 --- !u!1 &8809016123156430904
 GameObject:
   m_ObjectHideFlags: 0
