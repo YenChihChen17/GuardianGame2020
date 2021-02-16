@@ -80,8 +80,16 @@ public class PlayerAnimation : MonoBehaviour
             p_animator.SetBool("isDef", false);
             Counterrange.SetActive(false);
         }
-        defsuc = Counterrange.GetComponent<CounterRange_Ctrl>().defsuccess;
-        if (defsuc==true)
+        //defsuc = Counterrange.GetComponent<CounterRange_Ctrl>().defsuccess;//防禦成功時符文變紅
+        //if (defsuc==true)
+        //{
+        //    Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
+        //}
+        //else
+        //{
+        //    Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
+        //}
+        if (player.GetComponent<PlayerControl>().counter== true) //反擊有效期間符文變紅
         {
             Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
         }
@@ -94,11 +102,16 @@ public class PlayerAnimation : MonoBehaviour
     #region 攻擊判定
     void OnAttackEnter()//進入攻擊判定
     {
-        Attackrange.SetActive(true);//攻擊特效：20幀=2s
+        if (atk == true)
+        {
+            Attackrange.SetActive(true);//攻擊特效：20幀=2s
+        }
     }
     void OnAttackExit()//離開攻擊判定
     {
         Attackrange.SetActive(false);
+        //Debug.Log("Attackrange");
+
     }
     #endregion
 

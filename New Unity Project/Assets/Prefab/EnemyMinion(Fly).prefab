@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1388e406bc70fe146b220bd3b1546c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedX: 5.3
-  speedY: 1.5
+  speedX: 4.5
+  speedY: 2
   hitF: 0
   Whole: {fileID: 6390526354028178636}
   HP: 0

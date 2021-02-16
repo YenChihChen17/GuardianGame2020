@@ -26,6 +26,8 @@ public class GameManeger : MonoBehaviour
     static public float _CounterTime;// 反擊判定時間
     static public float _FallMutilpe;
     static public float _JumpVelocity;
+    static public float _DefendCD;//防禦冷卻時間
+
 
     [Header("波數間的時間間隔")]
     public float BreakTime;
@@ -113,6 +115,8 @@ public class GameManeger : MonoBehaviour
         public float AtkTime;// 攻擊判定時間
         [Tooltip("反擊判定持續時間")]
         public float CounterTime;// 反擊判定時間
+        [Tooltip("防禦冷卻時間")]
+        public float Defend_CD;
     }
     [System.Serializable]
     public struct EnemySetting
@@ -158,7 +162,8 @@ public class GameManeger : MonoBehaviour
         _CounterTime = playerSetting.CounterTime;
         _FallMutilpe = playerSetting.FallMutilpe ;
         _JumpVelocity = playerSetting.JumpVelocity;
-        #endregion 
+        _DefendCD = playerSetting.Defend_CD;
+        #endregion
 
     }
     private void Start()

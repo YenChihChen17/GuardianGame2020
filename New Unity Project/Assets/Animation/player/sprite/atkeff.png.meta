@@ -132,12 +132,12 @@ TextureImporter:
       name: atkeff_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 130
-        width: 85
-        height: 73
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,19 +153,19 @@ TextureImporter:
       name: atkeff_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 130
-        width: 85
-        height: 73
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1b02d76c990175f0800000000000000
-      internalID: -760816294687536355
+      spriteID: b6eb180eb7ac825f0800000000000000
+      internalID: -781151901952393621
       vertices: []
       indices: 
       edges: []
@@ -174,19 +174,19 @@ TextureImporter:
       name: atkeff_2
       rect:
         serializedVersion: 2
-        x: 54
-        y: 4
-        width: 60
-        height: 71
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9e9a9a8399623320800000000000000
-      internalID: 2536205622569508510
+      spriteID: c4c9cdfdcfd197f70800000000000000
+      internalID: 9185405886923578444
       vertices: []
       indices: 
       edges: []

@@ -16,7 +16,8 @@ public class BulletContril : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Counter == false)
+        transform.eulerAngles = new Vector3(90, 0, 0);
+        if (Counter == false)
         {
             transform.Translate(new Vector3(-Speed, 0, 0) * Time.deltaTime, Space.World);
             Destroy(this.gameObject, 10);
@@ -33,12 +34,12 @@ public class BulletContril : MonoBehaviour
             Destroy(this.gameObject);          
         }
 
-        else if (PW.gameObject.tag == "Weapon")
-        {
-            this.gameObject.tag = "Weapon";
-            Counter = true;
-            Debug.Log(Counter);
-        }
+        //else if (PW.gameObject.tag == "Weapon")
+        //{
+        //    this.gameObject.tag = "Weapon";
+        //    Counter = true;
+        //    Debug.Log(Counter);
+        //}
 
         else if(PW.gameObject.tag == "Enemy" && Counter)
         {
