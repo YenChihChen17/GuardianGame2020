@@ -17,7 +17,7 @@ public class HomeControl : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Col)
     {
-        if(Col.gameObject.tag == "Enemy")
+        if(Col.gameObject.tag == "Enemy" && Col.gameObject.name != "Bullet")
         {
             GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
         }

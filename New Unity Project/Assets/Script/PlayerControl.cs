@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     private float AtkTime;// 攻擊判定時間
     private float HurtTime;// 受傷判定時間
     private float CounterTime;// 反擊判定時間
+    private float DefendCD;// 防禦冷卻時間
     private float FallMutilpe;
     //public float LowJumpMutilpe;
     private float JumpVelocity;
@@ -31,11 +32,12 @@ public class PlayerControl : MonoBehaviour
     private bool KeyBoard;
     private float a_timer;
     private float b_timer;
+    private float d_timer; //防禦冷卻計時
     private Rigidbody rig;
     private bool can_j;
     private bool hurt;
     public bool defend;
-    private bool counter;
+    public bool counter;
     private bool attack_timer;
     //動畫用
     public bool attack;
@@ -84,8 +86,8 @@ public class PlayerControl : MonoBehaviour
         JumpVelocity = GameManeger._JumpVelocity;
         acceleration = GameManeger._Acceleration;
         deceleration = GameManeger._Deceleration;
-
-}
+        DefendCD = GameManeger._DefendCD;
+    }
 
     // Update is called once per frame
     void Update()
@@ -99,6 +101,7 @@ public class PlayerControl : MonoBehaviour
         Move();
         Attack();
         Defend();
+
 
         if(hurt == true) // 受傷判定冷卻
         {
@@ -339,13 +342,14 @@ public class PlayerControl : MonoBehaviour
             attack_timer = true;
         }
 
-        if(a_timer >= 0.5)
-        {
-            attack = false;
-        }
+        //if(a_timer >= 0.3)
+       // {
+         //   attack = false;
+       // }
         
         if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
+            attack = false;
             AttackEnemy = false;
             attack_timer = false;
             DoAtk = false;
@@ -353,7 +357,8 @@ public class PlayerControl : MonoBehaviour
     }
     private void Defend() 
     {
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true)
+        d_timer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && d_timer>DefendCD)
         {
             SpeedX = 0;
             b_timer = 0;
@@ -362,9 +367,9 @@ public class PlayerControl : MonoBehaviour
             //CounterRange.SetActive(true);
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
-
+            d_timer = 0;
         }
-        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true)
+        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true && d_timer > DefendCD)
         {
             SpeedX = 0;
             b_timer = 0;
@@ -372,6 +377,7 @@ public class PlayerControl : MonoBehaviour
             //CounterRange.SetActive(true);
             defend = true;
             GameManeger.PlayerMana = GameManeger.PlayerMana - GameManeger.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
+            d_timer = 0;
         }
 
         if (Input.GetKeyUp(KeyCode.S))

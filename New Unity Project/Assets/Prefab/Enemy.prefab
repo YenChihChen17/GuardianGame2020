@@ -1032,9 +1032,9 @@ MonoBehaviour:
   DistanceBetweenHome: 6
   PrepareScale: 35
   BulletMaxDistance: 15
-  BulletMinDistance: 7
+  BulletMinDistance: 4
   AttackSpeedScale: 6
-  BulletAttackCoolDown: 2
+  BulletAttackCoolDown: 4
   isMove: 0
   attack: 0
   HitHome: 0
