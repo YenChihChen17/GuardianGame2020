@@ -39,6 +39,8 @@ public class GameManeger : MonoBehaviour
     public bool isBossStage;
     [Header("記得這裡要填符合MinionWveas 中的波數")]
     public int Waves;
+    [Header("YouWin顯示前時間間隔")]
+    public float YouWinTimer;
 
     private float timer;
     private float wavetimer;
@@ -259,7 +261,12 @@ public class GameManeger : MonoBehaviour
         {
             gameobject.Boss = GameObject.FindWithTag("Enemy");
             //Destroy(gameobject.Boss);
+            YouWinTimer -= Time.deltaTime;
             //gameobject.YouWin.SetActive(true);
+        }
+        if (YouWinTimer<=0)
+        {
+            gameobject.YouWin.SetActive(true);
         }
 
         if(GameObject.FindWithTag("Enemy"))

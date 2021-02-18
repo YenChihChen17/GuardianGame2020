@@ -16,7 +16,7 @@ public class BulletContril : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(90, 0, 0);
+        //transform.eulerAngles = new Vector3(90, 0, 0);
         if (Counter == false)
         {
             transform.Translate(new Vector3(-Speed, 0, 0) * Time.deltaTime, Space.World);
