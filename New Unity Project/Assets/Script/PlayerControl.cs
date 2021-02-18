@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     private float d_timer; //防禦冷卻計時
     private Rigidbody rig;
     private bool can_j;
-    private bool hurt;
+    public bool hurt;
     public bool defend;
     public bool counter;
     private bool attack_timer;
@@ -303,6 +303,7 @@ public class PlayerControl : MonoBehaviour
             GameManeger.PlayerHP = GameManeger.PlayerHP - GameManeger.Damage_E;
             b_timer = 0;
             Debug.Log("Hurt");
+            move = false;
         }
 
         else if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == true && EnemyPos == true)///防禦敵人

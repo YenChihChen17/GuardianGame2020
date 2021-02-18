@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     bool isground;
     bool def;
     bool defsuc;
+    bool hurt;
     public GameObject Attackrange;
     public GameObject Counterrange;
     public Sprite shield_red;
@@ -96,6 +97,17 @@ public class PlayerAnimation : MonoBehaviour
         else
         {
             Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
+        }
+        #endregion
+        #region 角色受傷動畫
+        hurt = player.GetComponent<PlayerControl>().hurt;
+        if (hurt==true)
+        {
+            p_animator.SetBool("isHit",true);
+        }
+        else
+        {
+            p_animator.SetBool("isHit", false);
         }
         #endregion
     }

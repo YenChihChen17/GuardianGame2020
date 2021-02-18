@@ -24,6 +24,7 @@ public class BulletContril : MonoBehaviour
         }
         else if (Counter == true)
         {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
             transform.Translate(new Vector3(Speed*1.2f, 0, 0) * Time.deltaTime, Space.World);
         }
     }
@@ -34,12 +35,14 @@ public class BulletContril : MonoBehaviour
             Destroy(this.gameObject);          
         }
 
-        //else if (PW.gameObject.tag == "Weapon")
-        //{
-        //    this.gameObject.tag = "Weapon";
-        //    Counter = true;
-        //    Debug.Log(Counter);
-        //}
+        else if (PW.gameObject.tag == "Weapon")
+        {
+            this.gameObject.tag = "Weapon";
+            Counter = true;
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            Debug.Log(Counter);
+            
+        }
 
         else if(PW.gameObject.tag == "Enemy" && Counter)
         {

@@ -1027,11 +1027,11 @@ MonoBehaviour:
   MoveSpeed: 2
   CounteredTime: 2
   HitHomeCoolDown: 3
-  DistanceBetweenPlayer: 6
+  DistanceBetweenPlayer: 8
   DistanceBetweenHome: 6
   PrepareScale: 35
   BulletMaxDistance: 15
-  BulletMinDistance: 4
+  BulletMinDistance: 10
   AttackSpeedScale: 6
   BulletAttackCoolDown: 4
   isMove: 0

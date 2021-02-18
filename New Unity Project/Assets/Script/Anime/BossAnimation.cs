@@ -6,6 +6,7 @@ public class BossAnimation : MonoBehaviour
 {
     Animator b_animator;
     public GameObject Enemy_boss;
+    public GameObject player;
     int bossHP;
     bool mov;
     bool atk;
@@ -13,6 +14,7 @@ public class BossAnimation : MonoBehaviour
     void Start()
     {
         b_animator = this.transform.GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -50,6 +52,8 @@ public class BossAnimation : MonoBehaviour
     }
     void dead()
     {
+        player.GetComponent<PlayerControl>().move = false;
         Destroy(Enemy_boss);
+
     }
 }

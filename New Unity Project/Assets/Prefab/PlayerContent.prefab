@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5692878051249235965
 Transform:
   m_ObjectHideFlags: 0
@@ -538,6 +538,7 @@ MonoBehaviour:
   ParrySE: {fileID: 0}
   DeadSE: {fileID: 0}
   defend: 0
+  counter: 0
   attack: 0
   move: 0
   jumping: 0
