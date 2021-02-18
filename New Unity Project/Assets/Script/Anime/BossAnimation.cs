@@ -6,6 +6,7 @@ public class BossAnimation : MonoBehaviour
 {
     Animator b_animator;
     public GameObject Enemy_boss;
+    int bossHP;
     bool mov;
     bool atk;
     // Start is called before the first frame update
@@ -40,5 +41,15 @@ public class BossAnimation : MonoBehaviour
             b_animator.SetBool("isAttack", false);
         }
         #endregion
+
+        bossHP = GameManeger.EnemyHP;
+        if (bossHP<=0)
+        {
+            b_animator.SetBool("isDead",true);
+        }
+    }
+    void dead()
+    {
+        Destroy(Enemy_boss);
     }
 }

@@ -1134,10 +1134,10 @@ GameObject:
   - component: {fileID: 431866034666239101}
   - component: {fileID: 8678220980779481120}
   - component: {fileID: 5648908610331214942}
-  - component: {fileID: 3350293895126330779}
+  - component: {fileID: 7185144759587650005}
   - component: {fileID: 1416321611725742366}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: weapon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1204,8 +1204,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3350293895126330779
-BoxCollider:
+--- !u!136 &7185144759587650005
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1214,9 +1214,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.21676582
+  m_Height: 0.86919147
+  m_Direction: 1
+  m_Center: {x: 0.03229357, y: 0.06540432, z: 0}
 --- !u!114 &1416321611725742366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,7 +1406,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9071178192727956687}
   - component: {fileID: 2142550876794987762}
-  - component: {fileID: 2375846144370752993}
   m_Layer: 8
   m_Name: hand_right_weapon
   m_TagString: Enemy
@@ -1479,20 +1479,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!136 &2375846144370752993
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8711469853197195924}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.05588817
-  m_Height: 0.5242761
-  m_Direction: 0
-  m_Center: {x: -0.27110434, y: -0.036285557, z: 0}
 --- !u!1 &8809016123156430904
 GameObject:
   m_ObjectHideFlags: 0

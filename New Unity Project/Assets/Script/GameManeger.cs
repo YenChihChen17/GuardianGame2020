@@ -258,8 +258,8 @@ public class GameManeger : MonoBehaviour
         else if(EnemyHP<=0)
         {
             gameobject.Boss = GameObject.FindWithTag("Enemy");
-            Destroy(gameobject.Boss);
-            gameobject.YouWin.SetActive(true);
+            //Destroy(gameobject.Boss);
+            //gameobject.YouWin.SetActive(true);
         }
 
         if(GameObject.FindWithTag("Enemy"))
