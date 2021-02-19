@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HP_animation : MonoBehaviour
+public class HPAnimation : MonoBehaviour
 {
     public GameObject player_HPbar;
     int player_HP;

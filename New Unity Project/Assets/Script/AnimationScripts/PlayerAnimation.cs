@@ -104,6 +104,7 @@ public class PlayerAnimation : MonoBehaviour
         if (hurt==true)
         {
             p_animator.SetBool("isHit",true);
+            Attackrange.SetActive(false);
         }
         else
         {

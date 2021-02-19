@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CounterRange_Ctrl : MonoBehaviour
+public class CounterRangeCtrl : MonoBehaviour
 {
     public bool defsuccess;
 
