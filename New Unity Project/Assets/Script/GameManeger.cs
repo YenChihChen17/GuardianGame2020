@@ -148,6 +148,7 @@ public class GameManeger : MonoBehaviour
         BossTime = true;
         Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
         Wave1 = false;
+
         #region 玩家狀態初始化
         HomeHP = playerSetting.Home_HP;
         PlayerHP = playerSetting.Player_HP;
@@ -224,7 +225,7 @@ public class GameManeger : MonoBehaviour
         if (PlayerHP <= 0 && playerSetting.CloneNum >=0) 
         {
             
-                Destroy(GameObject.Find("PlayerContent(Clone)"));
+            Destroy(GameObject.Find("PlayerContent(Clone)"));
 
             timer += Time.deltaTime;
             if (playerSetting.CloneNum > 0)
@@ -235,24 +236,16 @@ public class GameManeger : MonoBehaviour
                 if (timer >= playerSetting.RebornT)
                 {
                     PlayerHP = playerSetting.Player_HP;
-                    Debug.Log(PlayerHP);
+                    //Debug.Log(PlayerHP);
                     playerSetting.CloneNum = playerSetting.CloneNum - 1;
                     timer = 0;
                     gameobject.YouDied.SetActive(false);
                     Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
                 }
             }
-        }
+        }  
 
-        if(playerSetting.CloneNum == 0 )
-        {
-            if (GameObject.Find("PlayerContent(Clone)") == false)
-            {
-                gameobject.GameOverUI.SetActive(true);
-            }
-        }
-
-        if(HomeHP<=0)
+        if (HomeHP<=0)
         {
             Destroy(gameobject.Home);
             gameobject.GameOverUI.SetActive(true);
@@ -263,13 +256,21 @@ public class GameManeger : MonoBehaviour
             //Destroy(gameobject.Boss);
             YouWinTimer -= Time.deltaTime;
             //gameobject.YouWin.SetActive(true);
+            if (YouWinTimer <= 0)
+            {
+                gameobject.YouWin.SetActive(true);
+            }
         }
-        if (YouWinTimer<=0)
+        else if (playerSetting.CloneNum == 0)
         {
-            gameobject.YouWin.SetActive(true);
+            if (GameObject.Find("PlayerContent(Clone)") == false)
+            {
+                gameobject.GameOverUI.SetActive(true);
+            }
         }
 
-        if(GameObject.FindWithTag("Enemy"))
+
+        if (GameObject.FindWithTag("Enemy"))
         {
             gameobject.Wave.SetActive(false);
         }

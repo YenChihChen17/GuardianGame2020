@@ -1861,6 +1861,7 @@ MonoBehaviour:
   KeyBoard: 1
   isBossStage: 1
   Waves: 2
+  YouWinTimer: 0
   minionWaves:
   - seconds:
     - 1
@@ -1887,8 +1888,9 @@ MonoBehaviour:
     HurtTime: 0.2
     AtkTime: 0.7
     CounterTime: 0.5
+    Defend_CD: 0
   enemySetting:
-    Boss_HP: 50
+    Boss_HP: 10
     Enemy_Damage: 10
     Minnion_HP: 5
   gameobject:
