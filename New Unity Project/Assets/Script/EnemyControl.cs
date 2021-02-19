@@ -35,7 +35,7 @@ public class EnemyControl : MonoBehaviour
     private bool HomeNearBy;
     public float stop_t;
     private bool BulletAttack;
-    private float BullentTimer;
+    private float BulletTimer;
 
     public GameObject bullet;
     // Start is called before the first frame update
@@ -51,7 +51,7 @@ public class EnemyControl : MonoBehaviour
         s = 0;
         i = 1;
         DoAttack = false;
-        BullentTimer = BulletAttackCoolDown;
+        BulletTimer = BulletAttackCoolDown;
 
         isMove = false;
     }
@@ -150,21 +150,23 @@ public class EnemyControl : MonoBehaviour
                 attacked = false;
             }
         }
+
         if(counter == false)
         {
             Attack();
         }
+
         //簡易嘴砲
         if (BulletAttack == true)
         {
             if(GameObject.FindWithTag("Player"))
             {
-                if (BullentTimer >= BulletAttackCoolDown)
+                if (BulletTimer >= BulletAttackCoolDown)
                 {
                     Instantiate(bullet, this.transform.position, new Quaternion(0, 0, 0, 0));
-                    BullentTimer = 0;
+                    BulletTimer = 0;
                 }
-                BullentTimer += Time.deltaTime;
+                BulletTimer += Time.deltaTime;
             }
         }
 
@@ -216,13 +218,13 @@ public class EnemyControl : MonoBehaviour
             /*else if (weapon.transform.eulerAngles.z > 90 )
             {
                 attack = false;
-            }*/
+            }
                 s += Time.deltaTime;
             if (s >= 0.2 && i < 150)
             {
                  i = i * AttackSpeedScale;
                  s = 0;
-            }
+            }*/
 
         }
         else //if (DoAttack == false && (weapon.transform.eulerAngles.z <300|| weapon.transform.eulerAngles.z > 305))
