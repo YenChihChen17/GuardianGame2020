@@ -20,7 +20,7 @@ public class BossAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region 移動
+        #region boss移動
         mov = Enemy_boss.GetComponent<EnemyControl>().isMove;
         if (mov==true)
         {
@@ -32,7 +32,7 @@ public class BossAnimation : MonoBehaviour
         }
         #endregion
 
-        #region 攻擊
+        #region boss攻擊
         atk = Enemy_boss.GetComponent<EnemyControl>().attack;
         if (atk==true)
         {
@@ -44,16 +44,17 @@ public class BossAnimation : MonoBehaviour
         }
         #endregion
 
+        #region boss死亡
         bossHP = GameManeger.EnemyHP;
         if (bossHP<=0)
         {
             b_animator.SetBool("isDead",true);
         }
+        #endregion
     }
     void dead()
     {
-        player.GetComponent<PlayerControl>().move = false;
+        //player.GetComponent<PlayerAnimation>().mov = false;
         Destroy(Enemy_boss);
-
     }
 }

@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 38744016350679560}
   - component: {fileID: 7988438574579192386}
   - component: {fileID: 1056602378564704975}
+  - component: {fileID: 9018684038709633045}
   m_Layer: 0
   m_Name: Player_sprite
   m_TagString: Untagged
@@ -451,6 +452,43 @@ MonoBehaviour:
     type: 3}
   shield_white: {fileID: 5085415284296604745, guid: c55de9ee10385604cae8cef5d90f8cb6,
     type: 3}
+--- !u!68 &9018684038709633045
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624943786069969286}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.32465628, y: 0.0058229365}
+  - {x: -0.30638948, y: 0.0047075227}
+  - {x: -0.14115086, y: 0.2017052}
+  - {x: -0.15739605, y: 0.23476812}
+  - {x: -0.43077576, y: 0.14632314}
+  - {x: -0.45078242, y: 0.17942844}
+  - {x: -0.1163349, y: 0.3499307}
+  - {x: -0.1689057, y: 0.4794377}
+  - {x: -0.14750883, y: 0.5231614}
+  - {x: -0.0034955144, y: 0.6225827}
+  - {x: 0.016211689, y: 0.6644793}
+  - {x: 0.09285257, y: 0.6874141}
+  - {x: 0.1544579, y: 0.7694239}
+  - {x: 0.17837796, y: 0.7384644}
+  - {x: 0.22072126, y: 0.61851686}
+  - {x: 0.18185148, y: 0.5237511}
+  - {x: 0.22444835, y: 0.3923332}
+  - {x: 0.2592119, y: 0.2615775}
+  - {x: 0.24536915, y: 0.1456698}
+  - {x: 0.2729343, y: 0.06342076}
+  - {x: 0.32767382, y: 0.010137081}
 --- !u!1 &8070064116297325488
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +575,7 @@ MonoBehaviour:
   HurtSE: {fileID: 0}
   ParrySE: {fileID: 0}
   DeadSE: {fileID: 0}
+  hurt: 0
   defend: 0
   counter: 0
   attack: 0

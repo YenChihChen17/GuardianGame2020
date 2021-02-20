@@ -6,13 +6,13 @@ public class PlayerAnimation : MonoBehaviour
 {
     Animator p_animator;
     public GameObject player;
-    bool atk;
-    bool mov;
-    bool jum;
-    bool isground;
-    bool def;
-    bool defsuc;
-    bool hurt;
+    public bool atk;
+    public bool mov;
+    public bool jum;
+    public bool isground;
+    public bool def;
+    public bool defsuc;
+    public bool hurt;
     public GameObject Attackrange;
     public GameObject Counterrange;
     public Sprite shield_red;
@@ -31,7 +31,6 @@ public class PlayerAnimation : MonoBehaviour
         atk = player.GetComponent<PlayerControl>().attack;
         if (atk==true)
         {
-            //Debug.Log("OK");
             p_animator.SetBool("isAttack", true);
 
         }
@@ -40,65 +39,55 @@ public class PlayerAnimation : MonoBehaviour
             p_animator.SetBool("isAttack", false);
         }
         #endregion
+
         #region 角色移動動畫
         mov = player.GetComponent<PlayerControl>().move;
         if (mov == true)
         {
-            //Debug.Log("OK");
             p_animator.SetBool("isMove", true);
-
         }
         else
         {
             p_animator.SetBool("isMove", false);
         }
         #endregion
+
         #region 角色跳躍動畫
         jum = player.GetComponent<PlayerControl>().jumping;
         isground = player.GetComponent<PlayerControl>().ground;
         if (isground==false&&jum==true)
         {
-            //Debug.Log("OK");
             p_animator.SetBool("isJump", true);
-
         }
         else
         {
             p_animator.SetBool("isJump", false);
         }
         #endregion
+
         #region 角色防禦動畫
         def = player.GetComponent<PlayerControl>().defend;
-        Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
         if (def == true)
         {
-            //Debug.Log("OK");
             p_animator.SetBool("isDef", true);
+            p_animator.SetBool("isAttack", false);
             Counterrange.SetActive(true);
+            if (player.GetComponent<PlayerControl>().counter == true) //反擊有效期間符文變紅
+            {
+                Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
+            }
+            else
+            {
+                Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
+            }
         }
         else
         {
             p_animator.SetBool("isDef", false);
             Counterrange.SetActive(false);
-        }
-        //defsuc = Counterrange.GetComponent<CounterRange_Ctrl>().defsuccess;//防禦成功時符文變紅
-        //if (defsuc==true)
-        //{
-        //    Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
-        //}
-        //else
-        //{
-        //    Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
-        //}
-        if (player.GetComponent<PlayerControl>().counter== true) //反擊有效期間符文變紅
-        {
-            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
-        }
-        else
-        {
-            Counterrange.GetComponent<SpriteRenderer>().sprite = shield_white;
-        }
+        }     
         #endregion
+
         #region 角色受傷動畫
         hurt = player.GetComponent<PlayerControl>().hurt;
         if (hurt==true)
@@ -123,8 +112,6 @@ public class PlayerAnimation : MonoBehaviour
     void OnAttackExit()//離開攻擊判定
     {
         Attackrange.SetActive(false);
-        //Debug.Log("Attackrange");
-
     }
     #endregion
 
