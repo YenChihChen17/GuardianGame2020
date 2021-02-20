@@ -21,7 +21,7 @@ public class EnemyControl : MonoBehaviour
     public bool isMove;
 
     private float timer;
-    private bool attacked;
+    public bool attacked;
     public bool attack;
     public  bool HitHome;
     public bool counter;

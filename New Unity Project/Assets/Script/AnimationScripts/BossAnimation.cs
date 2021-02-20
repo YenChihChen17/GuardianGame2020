@@ -10,6 +10,7 @@ public class BossAnimation : MonoBehaviour
     int bossHP;
     bool mov;
     bool atk;
+    bool hurt;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,10 +52,24 @@ public class BossAnimation : MonoBehaviour
             b_animator.SetBool("isDead",true);
         }
         #endregion
+
+        #region boss受創
+        hurt = Enemy_boss.GetComponent<EnemyControl>().attacked;
+        if (hurt==true)
+        {
+            b_animator.SetBool("isHit", true);
+        }
+        else
+        {
+            b_animator.SetBool("isHit", false);
+        }
+        #endregion
+
     }
     void dead()
     {
         //player.GetComponent<PlayerAnimation>().mov = false;
+        b_animator.SetBool("isMove", false);
         Destroy(Enemy_boss);
     }
 }
