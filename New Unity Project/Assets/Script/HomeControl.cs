@@ -19,7 +19,7 @@ public class HomeControl : MonoBehaviour
     {
         if(Col.gameObject.tag == "Enemy" && Col.gameObject.name != "Bullet")
         {
-            GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
+            GameManager.HomeHP = GameManager.HomeHP - GameManager.Damage_E;
         }
     }
 

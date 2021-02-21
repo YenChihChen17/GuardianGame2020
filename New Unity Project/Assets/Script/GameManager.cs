@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManeger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     static public int PlayerHP;
     static public int EnemyHP;
@@ -28,6 +28,12 @@ public class GameManeger : MonoBehaviour
     static public float _JumpVelocity;
     static public float _DefendCD;//防禦冷卻時間
 
+
+    private AudioSource audiosource;
+    public AudioClip PlayerDeadSE;
+    public AudioClip BossDeadSE;
+    private bool DeadSE;
+    private bool BDeadSE;
 
     [Header("波數間的時間間隔")]
     public float BreakTime;
@@ -184,6 +190,9 @@ public class GameManeger : MonoBehaviour
         gameobject.Wave.SetActive(false);
         gameobject.YouWin.SetActive(false);
         gameobject.YouDied.SetActive(false);
+        audiosource = this.GetComponent<AudioSource>();
+        DeadSE = false;
+        BDeadSE = false;
     }
     // Update is called once per frame
     void Update()
@@ -192,7 +201,7 @@ public class GameManeger : MonoBehaviour
         if (Wave1 == false)
         {
             StartTimer += Time.deltaTime;
-            Debug.Log(StartTimer);
+            //Debug.Log(StartTimer);
             if(StartTimer >2.5f)
             {
                 Wave1 = true;
@@ -233,6 +242,11 @@ public class GameManeger : MonoBehaviour
                 gameobject.YouDied.SetActive(true);
                 float alpha = Mathf.PingPong(2* Time.time, 1);
                 gameobject.YouDied.GetComponentInChildren<Text>().color = new Color(1, 1, 1, alpha);
+                if(DeadSE == false)
+                {
+                    audiosource.PlayOneShot(PlayerDeadSE);
+                    DeadSE = true;
+                }
                 if (timer >= playerSetting.RebornT)
                 {
                     PlayerHP = playerSetting.Player_HP;
@@ -241,6 +255,7 @@ public class GameManeger : MonoBehaviour
                     timer = 0;
                     gameobject.YouDied.SetActive(false);
                     Instantiate(gameobject.PlayerClone, gameobject.PlayerRespawn.transform.position, new Quaternion(0, 0, 0, 0));
+                    DeadSE = false;
                 }
             }
         }  
@@ -255,6 +270,11 @@ public class GameManeger : MonoBehaviour
             gameobject.Boss = GameObject.FindWithTag("Enemy");
             //Destroy(gameobject.Boss);
             YouWinTimer -= Time.deltaTime;
+            if(BDeadSE == false)
+            {
+                audiosource.PlayOneShot(BossDeadSE);
+                BDeadSE = true;
+            }
             //gameobject.YouWin.SetActive(true);
             if (YouWinTimer <= 0)
             {

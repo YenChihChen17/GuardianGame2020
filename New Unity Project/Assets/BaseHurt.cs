@@ -8,12 +8,12 @@ public class BaseHurt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FullHP = GameManeger.HomeHP;
+        FullHP = GameManager.HomeHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3(0, 40 * ((float)GameManeger.HomeHP / (float)FullHP) - 40, 0);
+        this.transform.localPosition = new Vector3(0, 40 * ((float)GameManager.HomeHP / (float)FullHP) - 40, 0);
     }
 }

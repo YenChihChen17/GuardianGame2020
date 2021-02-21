@@ -46,7 +46,7 @@ public class BossAnimation : MonoBehaviour
         #endregion
 
         #region boss死亡
-        bossHP = GameManeger.EnemyHP;
+        bossHP = GameManager.EnemyHP;
         if (bossHP<=0)
         {
             b_animator.SetBool("isDead",true);

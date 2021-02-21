@@ -15,7 +15,7 @@ public class Minionhurt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FullHP = GameManeger.MinnionHP;
+        FullHP = GameManager.MinnionHP;
     }
 
     // Update is called once per frame

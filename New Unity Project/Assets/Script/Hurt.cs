@@ -8,12 +8,12 @@ public class Hurt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FullHP = GameManeger.EnemyHP;
+        FullHP = GameManager.EnemyHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3(800 * ((float)GameManeger.EnemyHP/(float)FullHP)-800, 0, 0);
+        this.transform.localPosition = new Vector3(800 * ((float)GameManager.EnemyHP/(float)FullHP)-800, 0, 0);
     }
 }

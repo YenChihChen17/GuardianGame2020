@@ -16,7 +16,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
     void Start()
     {
         Dead = false;
-        HP = GameManeger.MinnionHP;  //sonic changed:抓不到生命值
+        HP = GameManager.MinnionHP;  //sonic changed:抓不到生命值
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" )
         {
             GameObject Player = GameObject.FindWithTag("Player");
-            HP = HP - GameManeger.Damage_P;
+            HP = HP - GameManager.Damage_P;
 
             if (this.transform.position.x - Player.transform.position.x >= 0)//受攻擊給玩家反作用力
             {
@@ -56,7 +56,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
        else if (PW.gameObject.tag == "Home")
         {
             Destroy(Whole);
-            GameManeger.HomeHP = GameManeger.HomeHP - GameManeger.Damage_E;
+            GameManager.HomeHP = GameManager.HomeHP - GameManager.Damage_E;
         }
 
     }

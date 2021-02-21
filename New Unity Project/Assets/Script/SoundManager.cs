@@ -8,22 +8,22 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource audioSource;
     [SerializeField]
-    private AudioClip BossHurtAudio, BossDeadAudio;
+    private AudioClip Boss_HurtAudio, Boss_DeadAudio;
     
     private void Awake()
     {
         instance = this;
     }
 
-    /*public void HurtAudio()
+    public void BossHurtAudio()
     {
-        audioSource.clip = BossHurtAudio;
-        audioSource.play();
+        audioSource.clip = Boss_HurtAudio;
+        audioSource.Play();
     }
 
-    public void DeadAudio()
+    public void BossDeadAudio()
     {
-        audioSource.clip = BossDeadAudio;
-        audioSource.play();
-    }*/
+        audioSource.clip = Boss_DeadAudio;
+        audioSource.Play();
+    }
 }

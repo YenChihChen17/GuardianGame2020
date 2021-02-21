@@ -17,6 +17,10 @@ public class EnemyControl : MonoBehaviour
     public float BulletMinDistance;
     public int AttackSpeedScale;
     public float BulletAttackCoolDown;
+    //public AudioClip AttackSE;
+    public AudioClip BulletSE;
+    //public AudioClip HurtSE;
+    public AudioClip Dead;
     //動畫用
     public bool isMove;
 
@@ -37,6 +41,8 @@ public class EnemyControl : MonoBehaviour
     private bool BulletAttack;
     private float BulletTimer;
 
+    private AudioSource audiosource;
+
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
@@ -52,8 +58,9 @@ public class EnemyControl : MonoBehaviour
         i = 1;
         DoAttack = false;
         BulletTimer = BulletAttackCoolDown;
-
+        audiosource = this.GetComponent<AudioSource>();
         isMove = false;
+        //PlayAtackSE = false;
     }
     
     // Update is called once per frame
@@ -163,6 +170,7 @@ public class EnemyControl : MonoBehaviour
             {
                 if (BulletTimer >= BulletAttackCoolDown)
                 {
+                    audiosource.PlayOneShot(BulletSE);
                     Instantiate(bullet, this.transform.position, new Quaternion(0, 0, 0, 0));
                     BulletTimer = 0;
                 }
@@ -177,11 +185,12 @@ public class EnemyControl : MonoBehaviour
     {
         if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
-            GameObject Player = GameObject.Find("Player");
+            GameObject Player = GameObject.FindWithTag("Player");
+            //audiosource.PlayOneShot(HurtSE);
             attacked = true;
             timer = 0;
-            GameManeger.EnemyHP = GameManeger.EnemyHP - GameManeger.Damage_P;
-            Debug.Log("Enemy"+GameManeger.EnemyHP);
+            GameManager.EnemyHP = GameManager.EnemyHP - GameManager.Damage_P;
+            //Debug.Log("Enemy"+GameManager.EnemyHP);
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
                 PlayerControl.AttackEnemy = true;
@@ -197,7 +206,6 @@ public class EnemyControl : MonoBehaviour
         {
             attack = true;
             DoAttack = false;
-
             /*if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 200)&& attack == true)
             {
                 weapon.transform.Rotate(Vector3.forward * Time.deltaTime * i);

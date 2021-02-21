@@ -18,7 +18,7 @@ public class HPAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player_HP = GameManeger.PlayerHP;
+        player_HP = GameManager.PlayerHP;
         if (player_HP < HPlimit)
         {
             animator.SetBool("isHPdown",true);
