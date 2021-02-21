@@ -339,6 +339,7 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             a_timer = 0;
             attack_timer = true;
+            audiosource.PlayOneShot(AttackSE);
         }
         
         if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
