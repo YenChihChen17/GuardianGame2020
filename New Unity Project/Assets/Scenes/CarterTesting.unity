@@ -4037,7 +4037,7 @@ PrefabInstance:
     - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}
       propertyPath: KeyBoard
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}
