@@ -32,11 +32,12 @@ public class PlayerAnimation : MonoBehaviour
         if (atk==true)
         {
             p_animator.SetBool("isAttack", true);
-
+            
         }
         else
         {
             p_animator.SetBool("isAttack", false);
+            
         }
         #endregion
 
@@ -115,5 +116,9 @@ public class PlayerAnimation : MonoBehaviour
     }
     #endregion
 
-
+    void atk_end()
+    {
+        player.GetComponent<PlayerControl>().attack = false;
+        
+    }
 }

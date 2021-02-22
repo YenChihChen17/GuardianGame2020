@@ -41,7 +41,7 @@ public class BulletContril : MonoBehaviour
             Counter = true;
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
             PlayerControl.AttackEnemy = true;
-            Debug.Log(Counter);          
+            //Debug.Log(Counter);          
         }
 
         else if(PW.gameObject.tag == "Enemy" && Counter)

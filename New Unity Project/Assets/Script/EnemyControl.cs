@@ -189,7 +189,7 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
             GameObject Player = GameObject.FindWithTag("Player");
-            SoundManager.instance.BossHitAudio();
+            SoundManager.instance.BossHurtAudio();
             attacked = true;
             timer = 0;
             GameManager.EnemyHP = GameManager.EnemyHP - GameManager.Damage_P;

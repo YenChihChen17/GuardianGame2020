@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource audioSource;
     [SerializeField]
-    private AudioClip Boss_HurtAudio, Boss_DeadAudio, Boss_HitAudio,Boss_AttackAudio, Boss_AttackFarAudio;
+    private AudioClip Boss_HurtAudio, Boss_DeadAudio,Boss_AttackAudio, Boss_AttackFarAudio;
     [SerializeField]
     private AudioClip PlayerJumpUp, PlayerJumpDown, PlayerAttack, PlayerHurt, PlayerDead, PlayerDefense,PlayerParry;
     
@@ -25,10 +25,6 @@ public class SoundManager : MonoBehaviour
     public void BossDeadAudio()
     {
         audioSource.PlayOneShot(Boss_DeadAudio);
-    }
-    public void BossHitAudio()
-    {
-        audioSource.PlayOneShot(Boss_HitAudio);
     }
     public void BossAttackAudio()
     {

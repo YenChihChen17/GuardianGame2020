@@ -65,6 +65,10 @@ public class Analogy_handle : MonoBehaviour
     {
         Player.SendMessage("DoAttack");
     }
+    public void StopAttack()
+    {
+        Player.SendMessage("StopAttack");
+    }
     /* public void EndDrag() {
          handle.anchoredPosition = Vector2.zero;
          result = Vector2.zero;

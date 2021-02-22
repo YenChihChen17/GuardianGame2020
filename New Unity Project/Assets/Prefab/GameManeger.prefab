@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702dc95a558c0974dbdde24d4b73b64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDeadSE: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
-  BossDeadSE: {fileID: 8300000, guid: 43b01886cd34c4392b5cd2fc25136eb2, type: 3}
   BreakTime: 3
   BossBornTimer: 2
   KeyBoard: 1
@@ -205,8 +203,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  Boss_HurtAudio: {fileID: 0}
-  Boss_DeadAudio: {fileID: 0}
-  Boss_HitAudio: {fileID: 0}
+  Boss_HurtAudio: {fileID: 8300000, guid: 665c8afbcd88a4610903249764e709a6, type: 3}
+  Boss_DeadAudio: {fileID: 8300000, guid: 43b01886cd34c4392b5cd2fc25136eb2, type: 3}
+  Boss_HitAudio: {fileID: 8300000, guid: 665c8afbcd88a4610903249764e709a6, type: 3}
   Boss_AttackAudio: {fileID: 0}
-  Boss_AttackFarAudio: {fileID: 0}
+  Boss_AttackFarAudio: {fileID: 8300000, guid: 0b29a32f4a83c4e958279afe281b4b91, type: 3}
+  PlayerJumpUp: {fileID: 8300000, guid: 16c04d280b88e4966a3d99cfd30e2abf, type: 3}
+  PlayerJumpDown: {fileID: 8300000, guid: 27090ef89704d456fb15c793907c05ac, type: 3}
+  PlayerAttack: {fileID: 8300000, guid: 886386c9b27504cf697ed4771020066d, type: 3}
+  PlayerHurt: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
+  PlayerDead: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
+  PlayerDefense: {fileID: 8300000, guid: a4684f398766b4c059b4a31f1cf80f0f, type: 3}
+  PlayerParry: {fileID: 8300000, guid: 9cca8a39f83a34a36ab609e9feb99f0d, type: 3}

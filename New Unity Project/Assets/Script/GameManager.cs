@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour
     static public float _DefendCD;//防禦冷卻時間
 
 
-    private AudioSource audiosource;
-    public AudioClip PlayerDeadSE;
-    public AudioClip BossDeadSE;
+    //private AudioSource audiosource;
+    //public AudioClip PlayerDeadSE;
+   // public AudioClip BossDeadSE;
     private bool DeadSE;
     private bool BDeadSE;
 
@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
         gameobject.Wave.SetActive(false);
         gameobject.YouWin.SetActive(false);
         gameobject.YouDied.SetActive(false);
-        audiosource = this.GetComponent<AudioSource>();
+        //audiosource = this.GetComponent<AudioSource>();
         DeadSE = false;
         BDeadSE = false;
     }
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
                 gameobject.YouDied.GetComponentInChildren<Text>().color = new Color(1, 1, 1, alpha);
                 if(DeadSE == false)
                 {
-                    audiosource.PlayOneShot(PlayerDeadSE);
+                    SoundManager.instance.Player_Dead();
                     DeadSE = true;
                 }
                 if (timer >= playerSetting.RebornT)
@@ -259,8 +259,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }  
-
-        if (HomeHP<=0)
+        else if (HomeHP<=0)
         {
             Destroy(gameobject.Home);
             gameobject.GameOverUI.SetActive(true);
@@ -272,7 +271,7 @@ public class GameManager : MonoBehaviour
             YouWinTimer -= Time.deltaTime;
             if(BDeadSE == false)
             {
-                audiosource.PlayOneShot(BossDeadSE);
+                SoundManager.instance.BossDeadAudio();
                 BDeadSE = true;
             }
             //gameobject.YouWin.SetActive(true);

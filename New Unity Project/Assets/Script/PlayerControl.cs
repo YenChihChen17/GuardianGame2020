@@ -98,7 +98,6 @@ public class PlayerControl : MonoBehaviour
         Attack();
         Defend();
 
-
         if(hurt == true) // 受傷判定冷卻
         {
             b_timer += Time.deltaTime;
@@ -107,8 +106,12 @@ public class PlayerControl : MonoBehaviour
                 hurt = false;
             }
         }
+        else if (GameStart == true && attack == false && hurt == false && GameManager.PlayerHP > 0) // 移動速度控制
+        {
+            rig.velocity = new Vector3(SpeedX, SpeedY, 0);
+        }
 
-        else if (counter == true) // 控制反擊collider 關閉
+        if (counter == true) // 控制反擊collider 關閉
         {
             b_timer += Time.deltaTime;
             if (b_timer >= CounterTime)
@@ -117,10 +120,7 @@ public class PlayerControl : MonoBehaviour
                 counter = false;
             }
         }
-        else if (GameStart == true && hurt == false && AttackEnemy == false && GameManager.PlayerHP >0) // 移動速度控制
-        {
-            rig.velocity = new Vector3(SpeedX, SpeedY, 0);
-        }
+
 
         if (Physics.Raycast(ray, out hit)) // 偵測防禦方向是否正確
         {
@@ -137,7 +137,6 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
-        Debug.Log(AttackEnemy);
     }
 
     private void Move() // 移動跳躍
@@ -146,7 +145,7 @@ public class PlayerControl : MonoBehaviour
         if (KeyBoard == true)
         {
             #region 鍵盤操控
-            if (Input.GetKey(KeyCode.RightArrow) && defend == false && attack_timer == false && AttackEnemy == false && hurt == false) //控制角色方向
+            if (Input.GetKey(KeyCode.RightArrow) && defend == false && hurt == false && attack == false) //控制角色方向
             {
                 if (SpeedX < 0)
                 {
@@ -159,7 +158,7 @@ public class PlayerControl : MonoBehaviour
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
                 move = true;
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && attack_timer == false && AttackEnemy == false && hurt == false)//控制角色方向
+            else if (Input.GetKey(KeyCode.LeftArrow) && defend == false && hurt == false && attack == false)//控制角色方向
             {
 
                 if (SpeedX > 0)
@@ -179,6 +178,7 @@ public class PlayerControl : MonoBehaviour
                 SpeedX = Mathf.Lerp(SpeedX, 0, Time.deltaTime * deceleration);
                 move = false;
             }
+
             if (Input.GetKeyDown(KeyCode.Space) && can_j == true && defend == false) // 跳躍
             {
                 SpeedY = JumpVelocity;
@@ -202,7 +202,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             #region 虛擬鍵盤操控
-            if (Right == true && defend == false && attack_timer == false && AttackEnemy == false && hurt == false) //控制角色方向, 虛擬搖桿操控
+            if (Right == true && defend == false && hurt == false && attack == false) //控制角色方向, 虛擬搖桿操控
             {
                 if (SpeedX < 0)
                 {
@@ -215,7 +215,7 @@ public class PlayerControl : MonoBehaviour
                 SpeedX = Mathf.Lerp(SpeedX, speed, Time.deltaTime * acceleration);
                 move = true;
             }
-            else if (Left == true && defend == false && attack_timer == false && AttackEnemy == false && hurt == false)//控制角色方向
+            else if (Left == true && defend == false && hurt == false && attack == false)//控制角色方向
             {
                 if (SpeedX > 0)
                 {
@@ -267,10 +267,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-                can_j = false;
-                ground = false;
-            //audiosource.PlayOneShot(JumpUp);
             SoundManager.instance.Player_JumpUp();
+            can_j = false;
+            ground = false;
+            //audiosource.PlayOneShot(JumpUp);
         }
     }
 
@@ -291,13 +291,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (Enemy.gameObject.tag == "Enemy" && hurt == false && defend == false )///撞到敵人
         {
+            SoundManager.instance.Player_Hurt();
             SpeedX = 0;
             rig.AddForce(new Vector3(-hurtX, 0, 0), ForceMode.Impulse);
             hurt = true;
             GameManager.PlayerHP = GameManager.PlayerHP - GameManager.Damage_E;
             b_timer = 0;
             //audiosource.PlayOneShot(HurtSE);
-            SoundManager.instance.Player_Hurt();
             move = false;
         }
 
@@ -321,32 +321,26 @@ public class PlayerControl : MonoBehaviour
 
     public void Attack()
     {
-        a_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.A) && attack == false && defend == false && attack_timer == false)
+        //a_timer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.A) && hurt == false && attack == false && defend == false)
         {
             SpeedX = 0;
             attack = true;
-            a_timer = 0;
-            attack_timer = true;
             SoundManager.instance.Player_Attack();
         }
-        else if(DoAtk && attack == false && defend == false && attack_timer == false)
+        else if(DoAtk && attack == false && hurt == false && defend == false )
         {
             SpeedX = 0;
             attack = true;
-            a_timer = 0;
-            attack_timer = true;
             SoundManager.instance.Player_Attack();
         }
-        if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
+       /* if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
             attack = false;
             DoAtk = false; 
             AttackEnemy = false;
             attack_timer = false;
-        }
-        Debug.Log(AttackEnemy);
-        Debug.Log(a_timer);
+        }*/
     }
     private void Defend() 
     {
@@ -414,6 +408,10 @@ public class PlayerControl : MonoBehaviour
     public void DoAttack()
     {
         DoAtk = true;
+    }
+    public void StopAttack()
+    {
+        DoAtk = false;
     }
     public void DoDefend()
     {
