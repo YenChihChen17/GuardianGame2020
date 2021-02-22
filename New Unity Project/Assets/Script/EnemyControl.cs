@@ -41,7 +41,7 @@ public class EnemyControl : MonoBehaviour
     private bool BulletAttack;
     private float BulletTimer;
 
-    private AudioSource audiosource;
+    //private AudioSource audiosource;
 
     public GameObject bullet;
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class EnemyControl : MonoBehaviour
         i = 1;
         DoAttack = false;
         BulletTimer = BulletAttackCoolDown;
-        audiosource = this.GetComponent<AudioSource>();
+        //audiosource = this.GetComponent<AudioSource>();
         isMove = false;
         //PlayAtackSE = false;
     }
@@ -170,7 +170,8 @@ public class EnemyControl : MonoBehaviour
             {
                 if (BulletTimer >= BulletAttackCoolDown)
                 {
-                    audiosource.PlayOneShot(BulletSE);
+                    //audiosource.PlayOneShot(BulletSE);
+                    SoundManager.instance.BossAttackFarAudio();
                     Instantiate(bullet, this.transform.position, new Quaternion(0, 0, 0, 0));
                     BulletTimer = 0;
                 }
@@ -186,7 +187,7 @@ public class EnemyControl : MonoBehaviour
         if (PW.gameObject.tag == "Weapon" && attacked == false)
         {
             GameObject Player = GameObject.FindWithTag("Player");
-            //audiosource.PlayOneShot(HurtSE);
+            SoundManager.instance.BossHitAudio();
             attacked = true;
             timer = 0;
             GameManager.EnemyHP = GameManager.EnemyHP - GameManager.Damage_P;

@@ -9,12 +9,6 @@ public class PlayerControl : MonoBehaviour
     public Transform CounterPos;
     public GameObject AttackRange;
     public GameObject CounterRange;
-    public AudioClip AttackSE;
-    public AudioClip HurtSE;
-    public AudioClip DefenseSE;
-    public AudioClip DeadSE;
-    public AudioClip JumpUp;
-    public AudioClip JumpDown;
 
     private float speed;
     private float SpeedX; // 起始速度
@@ -56,7 +50,7 @@ public class PlayerControl : MonoBehaviour
     private bool DoAtk;
     private bool DoDf;
     // Start is called before the first frame update
-    AudioSource audiosource;
+    //AudioSource audiosource;
     void Start()
     {
         KeyBoard = GameManager.KeyBoardControl;
@@ -75,7 +69,7 @@ public class PlayerControl : MonoBehaviour
         DoAtk = false;
         DoDf = false;
 
-        audiosource = this.GetComponent < AudioSource > (); // 初始化AudioSource
+        //audiosource = this.GetComponent < AudioSource > (); // 初始化AudioSource
 
         speed = GameManager._Speed;
         SpeedX = GameManager._SpeedX;
@@ -275,7 +269,8 @@ public class PlayerControl : MonoBehaviour
         {
                 can_j = false;
                 ground = false;
-            audiosource.PlayOneShot(JumpUp);
+            //audiosource.PlayOneShot(JumpUp);
+            SoundManager.instance.Player_JumpUp();
         }
     }
 
@@ -287,7 +282,8 @@ public class PlayerControl : MonoBehaviour
             GameStart = true;
             SpeedY = 0;
             ground = true;
-            audiosource.PlayOneShot(JumpDown);
+            //audiosource.PlayOneShot(JumpDown);
+            SoundManager.instance.Player_JumpDown();
         }
     }
 
@@ -300,7 +296,8 @@ public class PlayerControl : MonoBehaviour
             hurt = true;
             GameManager.PlayerHP = GameManager.PlayerHP - GameManager.Damage_E;
             b_timer = 0;
-            audiosource.PlayOneShot(HurtSE);           
+            //audiosource.PlayOneShot(HurtSE);
+            SoundManager.instance.Player_Hurt();
             move = false;
         }
 
@@ -331,7 +328,8 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             a_timer = 0;
             attack_timer = true;
-            audiosource.PlayOneShot(AttackSE);
+            //audiosource.PlayOneShot(AttackSE);
+            SoundManager.instance.Player_Attack();
         }
         else if(DoAtk && attack == false && defend == false && attack_timer == false)
         {
@@ -339,7 +337,7 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             a_timer = 0;
             attack_timer = true;
-            audiosource.PlayOneShot(AttackSE);
+            SoundManager.instance.Player_Attack();
         }
         
         if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
@@ -355,7 +353,7 @@ public class PlayerControl : MonoBehaviour
         d_timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && d_timer>DefendCD)
         {
-            audiosource.PlayOneShot(DefenseSE);
+            SoundManager.instance.Player_Defense();
             SpeedX = 0;
             b_timer = 0;
             counter = true;
@@ -365,7 +363,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if (DoDf && attack == false && hurt == false && defend == false && can_j == true && d_timer > DefendCD)
         {
-            audiosource.PlayOneShot(DefenseSE);
+            SoundManager.instance.Player_Defense();
             SpeedX = 0;
             b_timer = 0;
             counter = true; 

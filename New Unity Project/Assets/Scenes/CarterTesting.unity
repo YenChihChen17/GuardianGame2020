@@ -4967,13 +4967,69 @@ PrefabInstance:
       propertyPath: gameobject.YouWin
       value: 
       objectReference: {fileID: 1121213277}
-    - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}
-      propertyPath: BossDeadSE
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 309491207199751715}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: Boss_HurtAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 665c8afbcd88a4610903249764e709a6, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: Boss_DeadAudio
       value: 
       objectReference: {fileID: 8300000, guid: 43b01886cd34c4392b5cd2fc25136eb2, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: Boss_AttackFarAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b29a32f4a83c4e958279afe281b4b91, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerJumpUp
+      value: 
+      objectReference: {fileID: 8300000, guid: 16c04d280b88e4966a3d99cfd30e2abf, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerJumpDown
+      value: 
+      objectReference: {fileID: 8300000, guid: 27090ef89704d456fb15c793907c05ac, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 886386c9b27504cf697ed4771020066d, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerDead
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerDefense
+      value: 
+      objectReference: {fileID: 8300000, guid: a4684f398766b4c059b4a31f1cf80f0f, type: 3}
+    - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: PlayerParry
+      value: 
+      objectReference: {fileID: 8300000, guid: 9cca8a39f83a34a36ab609e9feb99f0d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dede178d06f8de54daaa53384f21a272, type: 3}
+--- !u!82 &309491207199751715 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8044183471724856457, guid: dede178d06f8de54daaa53384f21a272,
+    type: 3}
+  m_PrefabInstance: {fileID: 309491207199751714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7280169974945664693
 PrefabInstance:
   m_ObjectHideFlags: 0
