@@ -41,16 +41,16 @@ public class EnemyGroundMinnionControl : MonoBehaviour
         {
             GameObject Player = GameObject.FindWithTag("Player");
             HP = HP - GameManager.Damage_P;
-
+            PlayerControl.AttackEnemy = true;
             if (this.transform.position.x - Player.transform.position.x >= 0)//受攻擊給玩家反作用力
             {
-                PlayerControl.AttackEnemy = true;
+
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(-hitF, 0, 0), ForceMode.Impulse);
             }
             else
             {
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
-                PlayerControl.AttackEnemy = true;
+                
             }
         }
        else if (PW.gameObject.tag == "Home")

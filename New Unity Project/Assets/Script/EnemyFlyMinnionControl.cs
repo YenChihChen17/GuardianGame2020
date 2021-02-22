@@ -59,15 +59,15 @@ public class EnemyFlyMinnionControl : MonoBehaviour
         {
             GameObject Player = GameObject.FindWithTag("Player");
             HP = HP - GameManager.Damage_P;
+            PlayerControl.AttackEnemy = true;
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
-                PlayerControl.AttackEnemy = true;
+                
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(-hitF, 0, 0), ForceMode.Impulse);
             }
             else
             {
                 Player.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
-                PlayerControl.AttackEnemy = true;
             }
         }
 

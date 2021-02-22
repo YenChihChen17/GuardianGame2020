@@ -194,7 +194,7 @@ public class PlayerControl : MonoBehaviour
                 /* else if (rig.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) 長按影響高度
                  {
                      rig.velocity += Vector3.up * Physics.gravity.y * (LowJumpMutilpe - 1) * Time.deltaTime;
-                 }*/
+                }*/
             }
 
             #endregion
@@ -328,7 +328,6 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             a_timer = 0;
             attack_timer = true;
-            //audiosource.PlayOneShot(AttackSE);
             SoundManager.instance.Player_Attack();
         }
         else if(DoAtk && attack == false && defend == false && attack_timer == false)
@@ -339,7 +338,6 @@ public class PlayerControl : MonoBehaviour
             attack_timer = true;
             SoundManager.instance.Player_Attack();
         }
-        
         if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
             attack = false;
@@ -347,6 +345,8 @@ public class PlayerControl : MonoBehaviour
             AttackEnemy = false;
             attack_timer = false;
         }
+        Debug.Log(AttackEnemy);
+        Debug.Log(a_timer);
     }
     private void Defend() 
     {
