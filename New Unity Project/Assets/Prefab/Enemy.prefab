@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 8468437594365587473}
   - component: {fileID: 3282333344626293034}
   - component: {fileID: 790761313476118927}
+  - component: {fileID: 3317879439109133237}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -715,7 +716,7 @@ RectTransform:
   m_GameObject: {fileID: 3668875131459903008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 0}
   m_Children:
   - {fileID: 1320831824196781204}
   m_Father: {fileID: 4852082575655278422}
@@ -786,6 +787,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3317879439109133237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668875131459903008}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd229a093bac44fb8ad853707cb37777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BarActive: {fileID: 3668875131459903008}
 --- !u!1 &4291443153298863912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,9 +1048,8 @@ MonoBehaviour:
   PrepareScale: 35
   BulletMaxDistance: 15
   BulletMinDistance: 10
-  AttackSpeedScale: 6
+  AttackSpeedScale: 10
   BulletAttackCoolDown: 4
-  AttackSE: {fileID: 8300000, guid: 665c8afbcd88a4610903249764e709a6, type: 3}
   BulletSE: {fileID: 8300000, guid: 0b29a32f4a83c4e958279afe281b4b91, type: 3}
   Dead: {fileID: 8300000, guid: 43b01886cd34c4392b5cd2fc25136eb2, type: 3}
   isMove: 0
@@ -1047,6 +1060,7 @@ MonoBehaviour:
   DoAttack: 0
   stop_t: 0.5
   bullet: {fileID: 6675283523117592058, guid: f55259761f7b56c459e9ddb589dfa32c, type: 3}
+  BarActive: {fileID: 3668875131459903008}
 --- !u!82 &2887990376352489197
 AudioSource:
   m_ObjectHideFlags: 0

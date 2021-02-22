@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &571514838312365081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -578,12 +578,6 @@ MonoBehaviour:
   CounterPos: {fileID: 3554582964892388373}
   AttackRange: {fileID: 8070064118183750298}
   CounterRange: {fileID: 2477915300630476051}
-  AttackSE: {fileID: 8300000, guid: 886386c9b27504cf697ed4771020066d, type: 3}
-  HurtSE: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
-  DefenseSE: {fileID: 8300000, guid: a4684f398766b4c059b4a31f1cf80f0f, type: 3}
-  DeadSE: {fileID: 8300000, guid: 1cd8e5f6014964a05a279fd773c6724a, type: 3}
-  JumpUp: {fileID: 8300000, guid: 16c04d280b88e4966a3d99cfd30e2abf, type: 3}
-  JumpDown: {fileID: 8300000, guid: 27090ef89704d456fb15c793907c05ac, type: 3}
   hurt: 0
   defend: 0
   counter: 0

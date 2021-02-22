@@ -8,6 +8,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
     public float speedY;
     public float hitF;
     public GameObject Whole;
+    public GameObject BarActive;
 
     public int HP;
     private bool Dead;
@@ -19,6 +20,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
         Dead = false;
         HP = GameManager.MinnionHP;
         up = 1;
+        BarActive.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class EnemyFlyMinnionControl : MonoBehaviour
             GameObject Player = GameObject.FindWithTag("Player");
             HP = HP - GameManager.Damage_P;
             PlayerControl.AttackEnemy = true;
+            BarActive.SetActive(true);
             if (this.transform.position.x - Player.transform.position.x >= 0)
             {
                 

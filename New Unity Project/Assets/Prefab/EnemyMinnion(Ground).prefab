@@ -215,6 +215,7 @@ MonoBehaviour:
   speed: 7
   hitF: 1
   Whole: {fileID: 4852082575655278418}
+  BarActive: {fileID: 1127264619717382231}
   HP: 0
 --- !u!1001 &8100256898555485406
 PrefabInstance:
@@ -335,6 +336,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d0f6718b25b8840b80c07eb2cdd3e2, type: 3}
+--- !u!1 &1127264619717382231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209084473974475913, guid: 47d0f6718b25b8840b80c07eb2cdd3e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8100256898555485406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7284681588024439730 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1545165635779620716, guid: 47d0f6718b25b8840b80c07eb2cdd3e2,

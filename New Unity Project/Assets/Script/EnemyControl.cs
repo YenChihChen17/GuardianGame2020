@@ -44,6 +44,7 @@ public class EnemyControl : MonoBehaviour
     //private AudioSource audiosource;
 
     public GameObject bullet;
+    public GameObject BarActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +62,7 @@ public class EnemyControl : MonoBehaviour
         //audiosource = this.GetComponent<AudioSource>();
         isMove = false;
         //PlayAtackSE = false;
+        BarActive.SetActive(false);
     }
     
     // Update is called once per frame
@@ -192,6 +194,7 @@ public class EnemyControl : MonoBehaviour
             timer = 0;
             GameManager.EnemyHP = GameManager.EnemyHP - GameManager.Damage_P;
             //Debug.Log("Enemy"+GameManager.EnemyHP);
+            BarActive.SetActive(true);
             if(this.transform.position.x - Player.transform.position.x >=0)
             {
                 PlayerControl.AttackEnemy = true;
@@ -243,4 +246,9 @@ public class EnemyControl : MonoBehaviour
         }
         // Debug.Log(weapon.transform.eulerAngles.z);
     }
+
+    
+
+    
+
 }

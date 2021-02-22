@@ -7,6 +7,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
     public float speed;
     public float hitF;
     public GameObject Whole;
+    public GameObject BarActive;
 
     //private int HP; sonic changed:抓不到生命值
     private bool Dead;
@@ -17,6 +18,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
     {
         Dead = false;
         HP = GameManager.MinnionHP;  //sonic changed:抓不到生命值
+        BarActive.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class EnemyGroundMinnionControl : MonoBehaviour
             GameObject Player = GameObject.FindWithTag("Player");
             HP = HP - GameManager.Damage_P;
             PlayerControl.AttackEnemy = true;
+            BarActive.SetActive(true);
             if (this.transform.position.x - Player.transform.position.x >= 0)//受攻擊給玩家反作用力
             {
 
