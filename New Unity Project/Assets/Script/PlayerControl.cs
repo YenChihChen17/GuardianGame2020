@@ -350,7 +350,7 @@ public class PlayerControl : MonoBehaviour
     private void Defend() 
     {
         d_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true)
+        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && GameManager.PlayerMana > 0)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -360,7 +360,7 @@ public class PlayerControl : MonoBehaviour
             GameManager.PlayerMana = GameManager.PlayerMana - GameManager.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
             d_timer = 0;
         }
-        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true)
+        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true&& GameManager.PlayerMana>0)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -383,10 +383,6 @@ public class PlayerControl : MonoBehaviour
         }
         else if (DoDf == false && GameManager.KeyBoardControl==false)//當不使用鍵盤時才判定防禦虛擬按鍵
         {
-            defend = false;
-        }
-
-        if (GameManager.PlayerMana <= -1) {
             defend = false;
         }
 
