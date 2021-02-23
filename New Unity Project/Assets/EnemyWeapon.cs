@@ -25,7 +25,7 @@ public class EnemyWeapon : MonoBehaviour
             this.GetComponentInParent<EnemyControl>().HitHome = true;
             Boss.GetComponent<Rigidbody>().AddForce(new Vector3(hitF, 0, 0), ForceMode.Impulse);
             Debug.Log("Hit");
-            GameManager.HomeHP = GameManager.HomeHP - GameManager.Damage_E*2;
+            GameManager.HomeHP = GameManager.HomeHP - GameManager.Damage_E;
         }
 
         if (PW.gameObject.tag == "Counter" && Player.GetComponent<PlayerControl>().counter ==true )

@@ -140,8 +140,17 @@ public class EnemyControl : MonoBehaviour
             }
             
         }
+        else if (attacked == true) // 被攻擊計時器
+        {
+            timer += Time.deltaTime;
+            if (timer >= stop_t)
+            {
+                attacked = false;
+            }
+            DoAttack = false;
+        }
 
-        if(HitHome == true) // 打到基地被彈飛後的計時器
+        if (HitHome == true) // 打到基地被彈飛後的計時器
         {
             HitTimer -= Time.deltaTime;
             if(HitTimer <= 0)
@@ -151,14 +160,7 @@ public class EnemyControl : MonoBehaviour
             }
         }
 
-        if (attacked == true) // 被攻擊計時器
-        {
-            timer += Time.deltaTime;
-            if (timer >= stop_t )
-            {
-                attacked = false;
-            }
-        }
+       
 
         if(counter == false)
         {

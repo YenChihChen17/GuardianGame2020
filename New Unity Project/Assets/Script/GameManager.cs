@@ -258,6 +258,10 @@ public class GameManager : MonoBehaviour
                     DeadSE = false;
                 }
             }
+            else if (playerSetting.CloneNum == 0)
+            {
+                gameobject.GameOverUI.SetActive(true);
+            }
         }  
         else if (HomeHP<=0)
         {
@@ -278,13 +282,6 @@ public class GameManager : MonoBehaviour
             if (YouWinTimer <= 0)
             {
                 gameobject.YouWin.SetActive(true);
-            }
-        }
-        else if (playerSetting.CloneNum == 0)
-        {
-            if (GameObject.Find("PlayerContent(Clone)") == false)
-            {
-                gameobject.GameOverUI.SetActive(true);
             }
         }
 
