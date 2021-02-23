@@ -386,6 +386,10 @@ public class PlayerControl : MonoBehaviour
             defend = false;
         }
 
+        if (GameManager.PlayerMana <= -1) {
+            defend = false;
+        }
+
     }
 
     #region 虛擬鍵盤控制
