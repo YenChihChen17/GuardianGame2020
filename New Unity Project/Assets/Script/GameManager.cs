@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     static public int Damage_E;
     static public int HomeHP;
     static public int MinnionHP;
-    static public int PlayerMana;//Sonic add
-    static public int ManaConsume;//Sonic add 魔力消耗
+    static public float PlayerMana;//Sonic add
+    static public float ManaConsume;//Sonic add 魔力消耗
+    static public float ManaRecover;//Sonic add 魔力回復 0223
     static public bool KeyBoardControl;
 
     static public float _Speed;
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         public int Player_Damage;
         public int Player_Mana;//Sonic add
         public int Mana_consume;// 魔力消耗
+        public float Mana_recover;// 魔力回覆 sonic 0223
         [Header("移動跳躍")]
         [Tooltip("最終速度")]
         public float speed;
@@ -160,6 +162,7 @@ public class GameManager : MonoBehaviour
         PlayerHP = playerSetting.Player_HP;
         PlayerMana = playerSetting.Player_Mana;// Sonic add
         ManaConsume = playerSetting.Mana_consume;//Sonic Add
+        ManaRecover = playerSetting.Mana_recover;//SOnic Add  0223
         _Speed = playerSetting.speed;
         _SpeedX = playerSetting.SpeedX;
         _Acceleration = playerSetting.acceleration;
