@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy_boss: {fileID: 4852082575655278418}
   player: {fileID: 0}
+  Attackover: 0
 --- !u!1 &3559321789889490323
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5001182627017601632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1040,8 +1041,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 8711469853197195924}
   Home: {fileID: 0}
+  Enemysprite: {fileID: 3133198635648097897}
   MoveSpeed: 2
-  CounteredTime: 2
+  CounteredTime: 0.5
   HitHomeCoolDown: 3
   DistanceBetweenPlayer: 8
   DistanceBetweenHome: 6

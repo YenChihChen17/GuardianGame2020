@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6177819325934543185}
   - component: {fileID: 4275406686773398772}
   m_Layer: 8
-  m_Name: enemyfly_sprite
+  m_Name: EnemyflySprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

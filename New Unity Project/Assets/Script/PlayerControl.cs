@@ -10,8 +10,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject AttackRange;
     public GameObject CounterRange;
 
-    private float speed;
-    private float SpeedX; // 起始速度
+    public float speed;
+    public float SpeedX; // 起始速度
     private float hurtX;
     private float defendX;
     private float AtkTime;// 攻擊判定時間

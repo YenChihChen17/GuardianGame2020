@@ -8,6 +8,7 @@ public class PlayerAnimation : MonoBehaviour
     public GameObject player;
     public bool atk;
     public bool mov;
+    public float movspeed;
     public bool jum;
     public bool isground;
     public bool def;
@@ -43,14 +44,25 @@ public class PlayerAnimation : MonoBehaviour
 
         #region 角色移動動畫
         mov = player.GetComponent<PlayerControl>().move;
-        if (mov == true)
+        movspeed =Mathf.Abs(player.GetComponent<PlayerControl>().SpeedX);
+        p_animator.SetFloat("speed",movspeed);
+        /*if (Mathf.Abs(movspeed) >1.7)
         {
+            Debug.Log("SPEED:"+movspeed);
             p_animator.SetBool("isMove", true);
         }
         else
         {
             p_animator.SetBool("isMove", false);
+        }*/
+        /*if (Mathf.Abs(movSpeed)>0)
+        {
+            p_animator.SetFloat("movSpeed", movSpeed);
         }
+        else if(Mathf.Abs(movSpeed) == 0)
+        {
+            p_animator.SetFloat("movSpeed", movSpeed);
+        }*/
         #endregion
 
         #region 角色跳躍動畫

@@ -11,11 +11,13 @@ public class BossAnimation : MonoBehaviour
     bool mov;
     bool atk;
     bool hurt;
+    public bool Attackover;
     // Start is called before the first frame update
     void Start()
     {
         b_animator = this.transform.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+        Attackover = false;
     }
 
     // Update is called once per frame
@@ -65,6 +67,16 @@ public class BossAnimation : MonoBehaviour
         }
         #endregion
 
+        #region 遭到反擊
+        if (Enemy_boss.GetComponent<EnemyControl>().counter==true)
+        {
+            b_animator.SetBool("isCount", true);
+        }
+        else
+        {
+            b_animator.SetBool("isCount",false);
+        }
+        #endregion
     }
     void dead()
     {

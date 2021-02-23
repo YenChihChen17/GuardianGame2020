@@ -114,8 +114,8 @@ public class EnemyControl : MonoBehaviour
 
         if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false) // Boss 移動控制
         {
-            transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
             isMove = true;
+            transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
         }
         else if (counter == true)//Boss 被反擊時
         {
