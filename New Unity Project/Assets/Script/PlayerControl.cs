@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
         if(hurt == true) // 受傷判定冷卻
         {
             b_timer += Time.deltaTime;
-            if (b_timer >= HurtTime && rig.velocity.x == 0f)
+            if (b_timer >= HurtTime )
             {
                 hurt = false;
             }
