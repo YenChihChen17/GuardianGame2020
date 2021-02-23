@@ -128,6 +128,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1817398879}
     m_Modifications:
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 365782148}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].eventID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890472023302480783, guid: 507227583d623461abc90128ff54566f,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 2890472023858319485, guid: 507227583d623461abc90128ff54566f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1075,6 +1120,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee909b55b11979543879806d37b2e147, type: 3}
+--- !u!114 &365782148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2890472023302480782, guid: 507227583d623461abc90128ff54566f,
+    type: 3}
+  m_PrefabInstance: {fileID: 45440826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e4e9d263d4abe4a8bc156cfcb0982d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &436442552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,7 +3444,7 @@ PrefabInstance:
     - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}
       propertyPath: playerSetting.AtkTime
-      value: 0.4
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}

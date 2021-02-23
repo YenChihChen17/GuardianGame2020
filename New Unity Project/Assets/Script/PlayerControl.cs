@@ -137,6 +137,7 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
+        Debug.Log(DoAtk);
     }
 
     private void Move() // 移動跳躍
@@ -334,7 +335,7 @@ public class PlayerControl : MonoBehaviour
             attack = true;
             SoundManager.instance.Player_Attack();
         }
-       /* if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
+        /*if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
             attack = false;
             DoAtk = false; 
@@ -412,6 +413,7 @@ public class PlayerControl : MonoBehaviour
     public void StopAttack()
     {
         DoAtk = false;
+        attack = false;
     }
     public void DoDefend()
     {

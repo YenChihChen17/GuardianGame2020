@@ -10,6 +10,7 @@ public class ChangeScene : MonoBehaviour
     public Text Target;
     public float ChangeScale;
     public bool Color ;
+    public Image Target_sp;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class ChangeScene : MonoBehaviour
         {
             float alpha = Mathf.PingPong(ChangeScale * Time.time, 1);
             Target.color = new Color(1, 1, 1, alpha);
+            Target_sp.color = new Color(1, 1, 1, alpha);
         }
     }
     public void Change()
