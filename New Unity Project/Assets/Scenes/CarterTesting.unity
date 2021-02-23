@@ -1492,6 +1492,16 @@ PrefabInstance:
       propertyPath: playerSetting.CloneNum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: playerSetting.AtkTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: playerSetting.Defend_CD
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}
       propertyPath: audioSource

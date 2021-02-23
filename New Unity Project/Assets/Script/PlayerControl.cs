@@ -322,31 +322,35 @@ public class PlayerControl : MonoBehaviour
 
     public void Attack()
     {
-        //a_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.A) && hurt == false && attack == false && defend == false)
+        a_timer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.A) && hurt == false && attack == false && defend == false && attack_timer == false)
         {
             SpeedX = 0;
             attack = true;
             SoundManager.instance.Player_Attack();
+            a_timer = 0;
+            attack_timer = true;
         }
-        else if(DoAtk && attack == false && hurt == false && defend == false )
+        else if(DoAtk && attack == false && hurt == false && defend == false && attack_timer == false )
         {
             SpeedX = 0;
             attack = true;
             SoundManager.instance.Player_Attack();
+            a_timer = 0;
+            attack_timer = true;
         }
-        /*if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
+
+        if (a_timer >= AtkTime && attack_timer == true )//攻擊冷卻時間
         {
             attack = false;
             DoAtk = false; 
-            AttackEnemy = false;
             attack_timer = false;
-        }*/
+        }
     }
     private void Defend() 
     {
         d_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && d_timer>DefendCD)
+        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -356,7 +360,7 @@ public class PlayerControl : MonoBehaviour
             GameManager.PlayerMana = GameManager.PlayerMana - GameManager.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
             d_timer = 0;
         }
-        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true && d_timer > DefendCD)
+        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -366,6 +370,12 @@ public class PlayerControl : MonoBehaviour
             GameManager.PlayerMana = GameManager.PlayerMana - GameManager.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
             d_timer = 0;
         }
+
+        if(d_timer > DefendCD)
+        {
+            defend = false;
+        }
+
 
         if (Input.GetKeyUp(KeyCode.S))
         {
@@ -413,7 +423,6 @@ public class PlayerControl : MonoBehaviour
     public void StopAttack()
     {
         DoAtk = false;
-        attack = false;
     }
     public void DoDefend()
     {
