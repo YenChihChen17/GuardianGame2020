@@ -423,10 +423,12 @@ public class PlayerControl : MonoBehaviour
     public void DoAttack()
     {
         DoAtk = true;
+        attack = true;
     }
     public void StopAttack()
     {
         DoAtk = false;
+        attack = false;
     }
     public void DoDefend()
     {

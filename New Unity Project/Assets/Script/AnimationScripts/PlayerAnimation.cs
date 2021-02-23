@@ -118,7 +118,6 @@ public class PlayerAnimation : MonoBehaviour
 
     void atk_end()
     {
-        player.GetComponent<PlayerControl>().attack = false;
-        
+        player.GetComponent<PlayerControl>().attack = false;        
     }
 }
