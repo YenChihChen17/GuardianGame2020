@@ -85,6 +85,7 @@ public class PlayerAnimation : MonoBehaviour
             p_animator.SetBool("isDef", true);
             p_animator.SetBool("isAttack", false);
             Counterrange.SetActive(true);
+            Attackrange.SetActive(false);
             if (player.GetComponent<PlayerControl>().counter == true) //反擊有效期間符文變紅
             {
                 Counterrange.GetComponent<SpriteRenderer>().sprite = shield_red;
@@ -103,7 +104,7 @@ public class PlayerAnimation : MonoBehaviour
 
         #region 角色受傷動畫
         hurt = player.GetComponent<PlayerControl>().hurt;
-        if (hurt==true)
+        if (hurt==true && def==false)
         {
             p_animator.SetBool("isHit",true);
             Attackrange.SetActive(false);

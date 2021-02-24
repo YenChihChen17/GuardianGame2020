@@ -78,6 +78,14 @@ public class BossAnimation : MonoBehaviour
         }
         #endregion
     }
+    void boss_atk_start()
+    {
+        Enemy_boss.GetComponent<EnemyControl>().stopatk = false;
+    }
+    void boss_atk_end()
+    {
+        Enemy_boss.GetComponent<EnemyControl>().stopatk=true;
+    }
     void dead()
     {
         //player.GetComponent<PlayerAnimation>().mov = false;

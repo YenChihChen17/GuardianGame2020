@@ -23,6 +23,7 @@ public class EnemyControl : MonoBehaviour
     public AudioClip Dead;
     //動畫用
     public bool isMove;
+    public bool stopatk; 
 
     private float timer;
     public bool attacked;
@@ -63,6 +64,7 @@ public class EnemyControl : MonoBehaviour
         isMove = false;
         //PlayAtackSE = false;
         BarActive.SetActive(false);
+        stopatk = true;
     }
     
     // Update is called once per frame
@@ -112,9 +114,10 @@ public class EnemyControl : MonoBehaviour
             PlayerNearBy = false;
         }
 
-        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false) // Boss 移動控制
+        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false&&stopatk==true) // Boss 移動控制
         {
             isMove = true;
+
             transform.Translate(new Vector3(-MoveSpeed, 0, 0) * Time.deltaTime, Space.World);
         }
         else if (counter == true)//Boss 被反擊時
