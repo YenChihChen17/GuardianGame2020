@@ -13,9 +13,9 @@ public class BulletControl1 : MonoBehaviour
     {
 
         Counter = false;
-        angle = Mathf.Atan( Mathf.Abs( this.transform.position.y - Player.transform.position.y)/ Mathf.Abs(Player.transform.position.x - this.transform.position.x)) *Mathf.Rad2Deg;
-        Debug.Log(angle);
-        this.transform.eulerAngles = new Vector3(0, 0, angle);
+        Vector3 relative = transform.InverseTransformPoint(Player.transform.position);
+        float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
+        this.transform.Rotate(0, 0, -angle);
     }
 
     // Update is called once per frame

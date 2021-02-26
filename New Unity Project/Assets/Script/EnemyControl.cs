@@ -184,7 +184,7 @@ public class EnemyControl : MonoBehaviour
                     //SoundManager.instance.BossAttackFarAudio();
                     //Instantiate(bullet, bullet_pos.transform.position, new Quaternion(0, 0, 0, 0));
                     BulletTimer = 0;
-                    atk_far_start = true;
+                    atk_far_start = true;//bossAnimation嘴砲動畫開始
                 }
                 BulletTimer += Time.deltaTime;
             }

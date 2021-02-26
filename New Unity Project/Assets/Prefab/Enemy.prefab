@@ -1049,10 +1049,10 @@ MonoBehaviour:
   DistanceBetweenPlayer: 8
   DistanceBetweenHome: 6
   PrepareScale: 35
-  BulletMaxDistance: 15
-  BulletMinDistance: 10
+  BulletMaxDistance: 16
+  BulletMinDistance: 8
   AttackSpeedScale: 10
-  BulletAttackCoolDown: 3
+  BulletAttackCoolDown: 4
   BulletSE: {fileID: 8300000, guid: 0b29a32f4a83c4e958279afe281b4b91, type: 3}
   Dead: {fileID: 8300000, guid: 43b01886cd34c4392b5cd2fc25136eb2, type: 3}
   isMove: 0
