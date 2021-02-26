@@ -77,6 +77,7 @@ public class BossAnimation : MonoBehaviour
             b_animator.SetBool("isCount",false);
         }
         #endregion
+
     }
     void boss_atk_start()
     {

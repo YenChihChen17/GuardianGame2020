@@ -39,12 +39,13 @@ public class EnemyControl : MonoBehaviour
     public bool DoAttack;
     private bool HomeNearBy;
     public float stop_t;
-    private bool BulletAttack;
+    public bool BulletAttack;
     private float BulletTimer;
 
     //private AudioSource audiosource;
 
     public GameObject bullet;
+    public GameObject bullet_pos;
     public GameObject BarActive;
     // Start is called before the first frame update
     void Start()
@@ -179,7 +180,7 @@ public class EnemyControl : MonoBehaviour
                 {
                     //audiosource.PlayOneShot(BulletSE);
                     SoundManager.instance.BossAttackFarAudio();
-                    Instantiate(bullet, this.transform.position, new Quaternion(0, 0, 0, 0));
+                    Instantiate(bullet, bullet_pos.transform.position, new Quaternion(0, 0, 0, 0));
                     BulletTimer = 0;
                 }
                 BulletTimer += Time.deltaTime;
