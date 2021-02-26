@@ -12,12 +12,14 @@ public class BossAnimation : MonoBehaviour
     bool atk;
     bool hurt;
     public bool Attackover;
+    public bool atk_far_start;
     // Start is called before the first frame update
     void Start()
     {
         b_animator = this.transform.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         Attackover = false;
+        atk_far_start = false;
     }
 
     // Update is called once per frame
@@ -78,6 +80,16 @@ public class BossAnimation : MonoBehaviour
         }
         #endregion
 
+        if (Enemy_boss.GetComponent<EnemyControl>().atk_far_start == true)
+        {
+            b_animator.SetBool("isAttackFar", true);
+            Enemy_boss.GetComponent<EnemyControl>().stopatk = false;
+        }
+        else
+        {
+            b_animator.SetBool("isAttackFar", false);
+        }
+
     }
     void boss_atk_start()
     {
@@ -86,6 +98,16 @@ public class BossAnimation : MonoBehaviour
     void boss_atk_end()
     {
         Enemy_boss.GetComponent<EnemyControl>().stopatk=true;
+    }
+    void boss_atk_far()
+    {
+        Instantiate(Enemy_boss.GetComponent<EnemyControl>().bullet, Enemy_boss.GetComponent<EnemyControl>().bullet_pos.transform.position, new Quaternion(0, 0, 0, 0));
+        Enemy_boss.GetComponent<EnemyControl>().atk_far_start = false;
+        SoundManager.instance.BossAttackFarAudio();
+    }
+    void boss_atk_far_end()
+    {
+        Enemy_boss.GetComponent<EnemyControl>().stopatk = true;
     }
     void dead()
     {

@@ -23,7 +23,8 @@ public class EnemyControl : MonoBehaviour
     public AudioClip Dead;
     //動畫用
     public bool isMove;
-    public bool stopatk; 
+    public bool stopatk;
+    public bool atk_far_start;
 
     private float timer;
     public bool attacked;
@@ -40,7 +41,7 @@ public class EnemyControl : MonoBehaviour
     private bool HomeNearBy;
     public float stop_t;
     public bool BulletAttack;
-    private float BulletTimer;
+    public float BulletTimer;
 
     //private AudioSource audiosource;
 
@@ -66,6 +67,7 @@ public class EnemyControl : MonoBehaviour
         //PlayAtackSE = false;
         BarActive.SetActive(false);
         stopatk = true;
+        atk_far_start = false;
     }
     
     // Update is called once per frame
@@ -179,9 +181,10 @@ public class EnemyControl : MonoBehaviour
                 if (BulletTimer >= BulletAttackCoolDown)
                 {
                     //audiosource.PlayOneShot(BulletSE);
-                    SoundManager.instance.BossAttackFarAudio();
-                    Instantiate(bullet, bullet_pos.transform.position, new Quaternion(0, 0, 0, 0));
+                    //SoundManager.instance.BossAttackFarAudio();
+                    //Instantiate(bullet, bullet_pos.transform.position, new Quaternion(0, 0, 0, 0));
                     BulletTimer = 0;
+                    atk_far_start = true;
                 }
                 BulletTimer += Time.deltaTime;
             }
