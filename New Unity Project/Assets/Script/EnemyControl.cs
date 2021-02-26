@@ -114,7 +114,7 @@ public class EnemyControl : MonoBehaviour
             PlayerNearBy = false;
         }
 
-        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false&&stopatk==true) // Boss 移動控制
+        if (attacked == false && counter == false && HitHome == false && PlayerNearBy == false && HomeNearBy == false && stopatk==true) // Boss 移動控制
         {
             isMove = true;
 
@@ -215,41 +215,12 @@ public class EnemyControl : MonoBehaviour
         {
             attack = true;
             DoAttack = false;
-            /*if ((weapon.transform.eulerAngles.z < 90 || weapon.transform.eulerAngles.z > 200)&& attack == true)
-            {
-                weapon.transform.Rotate(Vector3.forward * Time.deltaTime * i);
-                if (weapon.transform.eulerAngles.z > 90 && weapon.transform.eulerAngles.z <95)
-                {
-                    attack = false;
-                }
-            }
-            else if (attack == false)
-            {
-                weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
-                if (weapon.transform.eulerAngles.z > 300 && weapon.transform.eulerAngles.z < 305)
-                {
-                    DoAttack = false;
-                    attack = true;
-                }
-            }
-            /*else if (weapon.transform.eulerAngles.z > 90 )
-            {
-                attack = false;
-            }
-                s += Time.deltaTime;
-            if (s >= 0.2 && i < 150)
-            {
-                 i = i * AttackSpeedScale;
-                 s = 0;
-            }*/
-
+            //isMove = false;
         }
-        else //if (DoAttack == false && (weapon.transform.eulerAngles.z <300|| weapon.transform.eulerAngles.z > 305))
+        else 
         {
-            attack = false;
-            //weapon.transform.Rotate(Vector3.back * Time.deltaTime * PrepareScale);
+            attack = false;          
         }
-        // Debug.Log(weapon.transform.eulerAngles.z);
     }
 
     

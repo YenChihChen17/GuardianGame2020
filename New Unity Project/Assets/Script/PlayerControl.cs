@@ -52,6 +52,8 @@ public class PlayerControl : MonoBehaviour
     private float FullMP;//sonic
     // Start is called before the first frame update
     //AudioSource audiosource;
+    private bool defend_CL = false;
+
     void Start()
     {
         KeyBoard = GameManager.KeyBoardControl;
@@ -113,15 +115,7 @@ public class PlayerControl : MonoBehaviour
             rig.velocity = new Vector3(SpeedX, SpeedY, 0);
         }
 
-        if (counter == true) // 控制反擊collider 關閉
-        {
-            b_timer += Time.deltaTime;
-            if (b_timer >= CounterTime)
-            {
-                CounterRange.SetActive(false);
-                counter = false;
-            }
-        }
+        
 
 
         if (Physics.Raycast(ray, out hit)) // 偵測防禦方向是否正確
@@ -350,9 +344,9 @@ public class PlayerControl : MonoBehaviour
         }
     }
     private void Defend() 
-    {
+    { 
         d_timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && GameManager.PlayerMana > 10)
+        if (Input.GetKey(KeyCode.S) && attack == false && hurt == false && defend == false && can_j == true && GameManager.PlayerMana > 10 && defend_CL == false)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -361,8 +355,9 @@ public class PlayerControl : MonoBehaviour
             defend = true;
             GameManager.PlayerMana = GameManager.PlayerMana - GameManager.ManaConsume;//Sonic Add 魔力消耗時機點為按下S5
             d_timer = 0;
+            defend_CL = true;
         }
-        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true&& GameManager.PlayerMana>10)
+        else if (DoDf && attack == false && hurt == false && defend == false && can_j == true&& GameManager.PlayerMana>10 && defend_CL == false)
         {
             SoundManager.instance.Player_Defense();
             SpeedX = 0;
@@ -371,21 +366,26 @@ public class PlayerControl : MonoBehaviour
             defend = true;
             GameManager.PlayerMana = GameManager.PlayerMana - GameManager.ManaConsume;//Sonic Add 魔力消耗時機點為按下S時
             d_timer = 0;
-        }
-
-        if(d_timer > DefendCD)
-        {
-            defend = false;
+            defend_CL = true;
         }
 
 
-        if (Input.GetKeyUp(KeyCode.S))
+        if (!Input.GetKey(KeyCode.S) && GameManager.KeyBoardControl == true)
         {
             defend = false;
+            if (d_timer > DefendCD)
+            {
+            defend_CL = false;
+            }
+
         }
         else if (DoDf == false && GameManager.KeyBoardControl==false)//當不使用鍵盤時才判定防禦虛擬按鍵
         {
             defend = false;
+            if (d_timer > DefendCD)
+            {
+                defend_CL = false;
+            }
         }
 
         if (GameManager.PlayerMana < FullMP)
@@ -395,6 +395,15 @@ public class PlayerControl : MonoBehaviour
            GameManager.PlayerMana += GameManager.ManaRecover * Time.deltaTime; 
 
 
+        }
+        if (counter == true) // 控制反擊collider 關閉
+        {
+            b_timer += Time.deltaTime;
+            if (b_timer >= CounterTime)
+            {
+                CounterRange.SetActive(false);
+                counter = false;
+            }
         }
 
     }
