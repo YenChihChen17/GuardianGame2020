@@ -14,6 +14,6 @@ public class BaseHurt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3(0, 40 * ((float)GameManager.HomeHP / (float)FullHP) - 40, 0);
+        this.transform.localPosition = new Vector3(320 * ((float)GameManager.HomeHP / (float)FullHP)-320,0, 0);
     }
 }
