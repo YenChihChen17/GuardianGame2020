@@ -133,7 +133,7 @@ public class PlayerControl : MonoBehaviour
                 EnemyPos = false;
             }
         }
-        Debug.Log(DoAtk);
+        //Debug.Log(DoAtk);
     }
 
     private void Move() // 移動跳躍
