@@ -11,21 +11,24 @@ public class Shikigami : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Target = body.gameObject;
+        Target = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Target.transform.position.x - body.transform.position.x > 0)
+        if(Target!=null)
         {
-            transform.Translate(new Vector3(speed,0,0)* Time.deltaTime, Space.World);
+            if (Target.transform.position.x - body.transform.position.x > 0)
+            {
+                transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime, Space.World);
+            }
+            else if (Target.transform.position.x - body.transform.position.x < 0)
+            {
+                transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
+            }
         }
-        else if (Target.transform.position.x - body.transform.position.x < 0)
-        {
-            transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime, Space.World);
-        }
-        Debug.Log(Target.transform.position.x - this.transform.position.x);
+        
     }
 
 }
