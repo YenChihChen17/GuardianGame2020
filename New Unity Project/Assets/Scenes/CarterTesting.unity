@@ -1153,12 +1153,12 @@ PrefabInstance:
     - target: {fileID: 3683100219238080591, guid: 769ab337f601ab94288b2a7a4724ed34,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 110.956825
+      value: 27.739206
       objectReference: {fileID: 0}
     - target: {fileID: 3683100219776024936, guid: 769ab337f601ab94288b2a7a4724ed34,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.4
+      value: -8.9
       objectReference: {fileID: 0}
     - target: {fileID: 3683100219776024936, guid: 769ab337f601ab94288b2a7a4724ed34,
         type: 3}
@@ -1754,6 +1754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: playerSetting.Player_Damage
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 309491206400393531, guid: dede178d06f8de54daaa53384f21a272,
+        type: 3}
+      propertyPath: minionWaves.Array.data[0].seconds.Array.data[0]
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 786079246757559340, guid: dede178d06f8de54daaa53384f21a272,
         type: 3}

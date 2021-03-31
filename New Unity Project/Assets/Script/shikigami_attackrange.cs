@@ -17,12 +17,12 @@ public class shikigami_attackrange : MonoBehaviour
         if(Shikigami.Target!=null)
         {
             found_enemy = false;
-            Debug.Log("Stop");
+            //Debug.Log("Stop");
         }
         else
         {
             found_enemy = true;
-            Debug.Log("Search");
+            //Debug.Log("Search");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -32,7 +32,7 @@ public class shikigami_attackrange : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 Shikigami.Target = other.gameObject;
-                Debug.Log("Find Enemy");
+                //Debug.Log("Find Enemy");
             }
         }
     }
