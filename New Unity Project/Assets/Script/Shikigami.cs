@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class Shikigami : MonoBehaviour
 {
+    public static Shikigami instance;
     public static GameObject Target;
     public GameObject body;
     public float speed;
+    public int HP;
+    public int hurt_value;
+    public float hang_around_range;
 
     private float break_time;
-    private int move_distance;
+    private float move_distance;
     private bool move;
     private bool get_random_number;
     private Vector3 destination;
+    private Vector3 start_position;
     //public static Shikigami instance;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         Target = null;
         move = false;
         get_random_number = false;
+        start_position = this.transform.position;
+        
+
     }
 
     // Update is called once per frame
@@ -42,8 +55,7 @@ public class Shikigami : MonoBehaviour
             {
                 Debug.Log(body.transform.position.x);
                 break_time = Random.Range(1, 3);
-                move_distance = Random.Range(-5, 5);
-                destination.x = this.transform.position.x + move_distance;
+                destination.x = Random.Range(start_position.x+hang_around_range, start_position.x - hang_around_range);
                 destination.y = this.transform.position.y;
                 Debug.Log(move_distance);
                 Debug.Log(destination);
@@ -59,8 +71,7 @@ public class Shikigami : MonoBehaviour
                 }
             }
             
-            
-            if (move)
+            else if (move)
             {
                 float hang_around_speed;
                 hang_around_speed = speed * 0.5f;
@@ -72,7 +83,12 @@ public class Shikigami : MonoBehaviour
                 }
             }
         }
-        
+
+        if(HP<=0)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
 }

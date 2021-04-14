@@ -1150,6 +1150,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3683100218599760142, guid: 769ab337f601ab94288b2a7a4724ed34,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 3683100219238080591, guid: 769ab337f601ab94288b2a7a4724ed34,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1214,6 +1219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shikigami
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683100219776024937, guid: 769ab337f601ab94288b2a7a4724ed34,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 4419671336624051073, guid: 769ab337f601ab94288b2a7a4724ed34,
         type: 3}
